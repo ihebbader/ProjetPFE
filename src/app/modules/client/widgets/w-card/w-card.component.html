@@ -1,0 +1,242 @@
+<app-leftmenu></app-leftmenu>
+<!-- Main body part  -->
+<div class="page">
+    <app-header></app-header>
+    <div class="section-body">
+        <div class="container-fluid">
+            <ul class="nav nav-tabs page-header-tab">
+                <li class="nav-item " [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets']" href="javascript:void(0)">Card</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link active" [routerLink]="['/widgets-card']" href="javascript:void(0)">Card
+                        Image</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets-statistics']" href="javascript:void(0)">Statistics</a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets-data']" href="javascript:void(0)">Data</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets-social']" href="javascript:void(0)">Social</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets-other']" href="javascript:void(0)">Mix</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <img class="card-img-top" src="../assets/images/gallery/12.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+                            <a href="javascript:void(0);" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <img class="card-img-top" src="../assets/images/gallery/13.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+                            <a href="javascript:void(0);" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <img class="card-img-top" src="../assets/images/gallery/15.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+                            <a href="javascript:void(0);" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card">
+                        <img class="card-img-top" src="../assets/images/gallery/4.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the card's content.</p>
+                            <a href="javascript:void(0);" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card-group mb-4">
+                        <div class="card">
+                            <img class="card-img-top" src="../assets/images/gallery/6.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img class="card-img-top" src="../assets/images/gallery/7.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This card has supporting text below as a natural lead-in to
+                                    additional content.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img class="card-img-top" src="../assets/images/gallery/8.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This card has even longer content than the first to
+                                    show that equal height action.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-12">
+                    <div class="card-columns mb-4">
+                        <div class="card">
+                            <img class="card-img-top" src="../assets/images/gallery/12.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title that wraps to a new line</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                        <div class="card p-3">
+                            <blockquote class="blockquote mb-0 card-body">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                                </p>
+                                <footer class="blockquote-footer">
+                                    <small class="text-muted">
+                                        Someone famous in <cite title="Source Title">Source Title</cite>
+                                    </small>
+                                </footer>
+                            </blockquote>
+                        </div>
+                        <div class="card">
+                            <img class="card-img-top" src="../assets/images/gallery/13.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This card has supporting text below as a natural lead-in to
+                                    additional content.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This card has a regular title and short paragraphy of text below
+                                    it.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img class="card-img" src="../assets/images/gallery/14.jpg" alt="Card image">
+                        </div>
+                        <div class="card p-3 text-right">
+                            <blockquote class="blockquote mb-0">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                                </p>
+                                <footer class="blockquote-footer">
+                                    <small class="text-muted">
+                                        Someone famous in <cite title="Source Title">Source Title</cite>
+                                    </small>
+                                </footer>
+                            </blockquote>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is another card with title and supporting text below. This
+                                    card has some additional content to make it slightly taller overall.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-12">
+                    <div class="card">
+                        <img src="../assets/images/gallery/1.jpg" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="mb-4">Girl & Lake</h5>
+                            <div class="row mb-4">
+                                <div class="col-5">
+                                    <i class="mdi mdi-camera mr-1"></i>ISO 200
+                                </div>
+                                <div class="col-7">
+                                    <i class="mdi mdi-camera-iris mr-1"></i>1/1000
+                                </div>
+                                <div class="col-5">3780 x 2984</div>
+                                <div class="col-7">9.54 MB</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-5"><strong>Created:</strong></div>
+                                <div class="col-7">09 Jun 2017 11:32AM</div>
+                                <div class="col-5"><strong>Updated:</strong></div>
+                                <div class="col-7">19 Jun 2017 9:43PM</div>
+                                <div class="col-5"><strong>Bit Depth:</strong></div>
+                                <div class="col-7">16 bit</div>
+                                <div class="col-5"><strong>Creator:</strong></div>
+                                <div class="col-7">Nathan Guerrero</div>
+                            </div>
+                            <hr>
+                            <div class="row align-items-center mb-4">
+                                <div class="col-5"><strong>Privacy</strong></div>
+                                <div class="col-7">
+                                    <select class="custom-select custom-select-sm">
+                                        <option value="">Public</option>
+                                        <option value="">Private</option>
+                                        <option value="">Friends</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col-5"><strong>Collaborators</strong></div>
+                                <div class="col-7">
+                                    <ul class="list-inline avatar-list">
+                                        <li class="avatar-list-item inlineblock"><img class="avatar avatar-sm"
+                                                src="../assets/images/xs/avatar1.jpg" alt="avatar"></li>
+                                        <li class="avatar-list-item inlineblock"><img class="avatar avatar-sm"
+                                                src="../assets/images/xs/avatar2.jpg" alt="avatar"></li>
+                                        <li class="avatar-list-item inlineblock"><img class="avatar avatar-sm"
+                                                src="../assets/images/xs/avatar3.jpg" alt="avatar"></li>
+                                        <li class="avatar-list-item inlineblock"><img class="avatar avatar-sm"
+                                                src="../assets/images/xs/avatar4.jpg" alt="avatar"></li>
+                                        <li class="avatar-list-item inlineblock"><img class="avatar avatar-sm"
+                                                src="../assets/images/xs/avatar5.jpg" alt="avatar"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="card">
+                        <img class="card-img-top" src="../assets/images/gallery/9.jpg" alt="Card image cap">
+                        <ul class="list-group card-list-group">
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

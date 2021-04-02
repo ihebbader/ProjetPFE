@@ -1,0 +1,74 @@
+<app-leftmenu></app-leftmenu>
+<!-- Main body part  -->
+<div class="page">
+    <app-header></app-header>
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="row clearfix row-deck">
+                <div class="col-lg-4 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Events List</h3>
+                            <div id="event-list" class="fc event_list">
+                                <div class='fc-event bg-primary' data-class="bg-primary">My Event 1</div>
+                                <div class='fc-event bg-info' data-class="bg-info">Birthday Party</div>
+                                <div class='fc-event bg-success' data-class="bg-success">Meeting</div>
+                                <div class='fc-event bg-warning' data-class="bg-warning">Conference</div>
+                                <div class='fc-event bg-danger' data-class="bg-danger">My Event 5</div>
+                            </div>
+                            <div class="todo_list mt-4">
+                                <h3 class="card-title">ToDo List <small>This Month task list</small></h3>
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" name="example-checkbox1"
+                                                value="option1" checked="">
+                                            <span class="custom-control-label">Report Panel Usag</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" name="example-checkbox1"
+                                                value="option1">
+                                            <span class="custom-control-label">Report Panel Usag</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" name="example-checkbox1"
+                                                value="option1" checked="">
+                                            <span class="custom-control-label">New logo design for Angular Admin</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" name="example-checkbox1"
+                                                value="option1">
+                                            <span class="custom-control-label">Design PSD files for Angular Admin</span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <div class="card" [ngClass]="{'card-fullscreen': isFull}">
+                        <div class="card-header bline">
+                            <h3 class="card-title">Sara Hopkins</h3>
+                            <div class="card-options">
+                                <a href="javascript:void(0)" (click)="fullScreenSection(1)"
+                                    class="card-options-fullscreen" data-toggle="card-fullscreen"><i
+                                        class="fe fe-maximize"></i></a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <app-fullcalender></app-fullcalender>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

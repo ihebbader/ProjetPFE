@@ -1,0 +1,34 @@
+<app-leftmenu></app-leftmenu>
+<!-- Main body part  -->
+<div class="page">
+    <app-header></app-header>
+    <div class="section-body mt-3 fixNavMargin">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card" *ngIf="activitycard" [ngClass]="{'card-fullscreen': isFull}"
+                        [ngClass]="{'card-collapsed': !isTimelineCollapsed, '': isTimelineCollapsed}">
+                        <div class="card-header bline">
+                            <h3 class="card-title">Sara Hopkins</h3>
+                            <div class="card-options">
+                                <a class="card-options-collapse" href="javascript:void(0)"
+                                    (click)="isTimelineCollapsed = !isTimelineCollapsed"
+                                    [attr.aria-expanded]="!isTimelineCollapsed" aria-controls="collapseBasic"
+                                    data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                                <a href="javascript:void(0)" (click)="fullScreenSection(1)"
+                                    class="card-options-fullscreen" data-toggle="card-fullscreen"><i
+                                        class="fe fe-maximize"></i></a>
+                                <a href="javascript:void(0)" (click)="CardRemoveActivity()" class="card-options-remove"
+                                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <app-fullcalender></app-fullcalender>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

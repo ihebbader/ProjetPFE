@@ -1,0 +1,57 @@
+<div class="auth">
+    <div class="auth_left">
+        <div class="card">
+            <div class="text-center">
+                <a class="header-brand" href="javascript:void(0)">
+                  <img src="assets/images/logo-web.png" class="logo"></a>
+            </div>
+            <div class="card-body">
+                <div class="card-title">Connectez-vous</div>
+                <div class="form-group">
+                  <label class="form-label">Nom d'utilisateur</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Entrer votre Nom d'utilisateur ici ">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Mot de passe <a [routerLink]="['/forgot-password']" href="javascript:void(0)"
+                            class="float-right small">Mot de passe oubliée</a></label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+                </div>
+                <div class="form-footer">
+                    <a [routerLink]="['/hr-dashboard']" href="javascript:void(0)" class="btn btn-primary btn-block"
+                        title="">Se connecter</a>
+                </div>
+            </div>
+            <div class="text-center text-muted">
+               Vous n'avez pas encore un compte? <a [routerLink]="['/register']" href="javascript:void(0)">S'inscrire</a>
+            </div>
+        </div>
+    </div>
+    <div class="auth_right">
+        <carousel [isAnimated]="true">
+            <slide>
+                <img src="assets/images/r1.png" class="img-fluid" alt="first slide">
+                <div class="px-4 mt-4">
+                    <h4>Automation </h4>
+                    <p>Finis les innombrables tâches répétitives tels que la saisie de données.
+                    </p>
+                </div>
+            </slide>
+            <slide>
+                <img src="assets/images/r2.png" class="img-fluid" alt="second slide">
+                <div class="px-4 mt-4">
+                    <h4>Collaboration </h4>
+                    <p> Avec un outil de Workflow Management le tout sera centralisé et ces étapes seront<br>
+                      intégrées dans un processus global.</p>
+                </div>
+            </slide>
+            <slide>
+                <img src="assets/images/r3.png" class="img-fluid" alt="third slide">
+                <div class="px-4 mt-4">
+                    <h4>Communication </h4>
+                    <p>Une solution de Workflow Management vous fournira un système de communication fiable</p>
+                </div>
+            </slide>
+        </carousel>
+    </div>
+</div>

@@ -1,0 +1,299 @@
+<app-leftmenu></app-leftmenu>
+<!-- Main body part  -->
+<div class="page">
+    <app-header></app-header>
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-12">
+                    <div class="card c_grid c_yellow">
+                        <div class="card-body text-center">
+                            <div class="circle">
+                                <img class="rounded-circle" src="../assets/images/sm/avatar1.jpg" alt="">
+                            </div>
+                            <h6 class="mt-3 mb-0">Michelle Green</h6>
+                            <span>jason-porter@info.com</span>
+                            <ul class="mt-3 list-unstyled d-flex justify-content-center">
+                                <li><a class="p-3" target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a class="p-3" target="_blank" href="#"><i class="fa fa-slack"></i></a></li>
+                                <li><a class="p-3" target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                            <button class="btn btn-default btn-sm">Follow</button>
+                            <button class="btn btn-default btn-sm ml-1">Message</button>
+                        </div>
+                    </div>
+                    <div class="card" *ngIf="tikitcard">
+                        <div class="card-header">
+                            <h3 class="card-title">Ticket Details</h3>
+                            <div class="card-options">
+                                <a href="javascript:void(0)" class="card-options-remove" (click)="CardRemoveTikit()"
+                                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                <div class="item-action dropdown ml-2" dropdown>
+                                    <a href="javascript:void(0)" id="button-basic" dropdownToggle
+                                        data-toggle="dropdown"><i class="fe fe-more-vertical"></i></a>
+                                    <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right">
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-eye"></i> View Details </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-share-alt"></i> Share </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-cloud-download"></i> Download</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-copy"></i> Copy to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-folder"></i> Move to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-edit"></i> Rename</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-trash"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <span>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
+                                piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard
+                                McClintock, a Latin professor at Hampden-Sydney College in Virginia</span>
+                        </div>
+                    </div>
+                    <div class="card" *ngIf="tikitcard1">
+                        <div class="card-header">
+                            <h3 class="card-title">Ticket Info</h3>
+                            <div class="card-options">
+                                <a href="javascript:void(0)" class="card-options-remove" (click)="CardRemoveTikit1()"
+                                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                <div class="item-action dropdown ml-2" dropdown>
+                                    <a href="javascript:void(0)" id="button-basic" dropdownToggle
+                                        data-toggle="dropdown"><i class="fe fe-more-vertical"></i></a>
+                                    <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right">
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-eye"></i> View Details </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-share-alt"></i> Share </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-cloud-download"></i> Download</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-copy"></i> Copy to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-folder"></i> Move to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-edit"></i> Rename</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-trash"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <small class="text-muted">Title: </small>
+                                    <p class="mb-0">Oculux Admin Template</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <small class="text-muted">Department: </small>
+                                    <p class="mb-0">Pre-Sales</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <small class="text-muted">Product: </small>
+                                    <p class="mb-0">Oculux Side Menu Open OnClick</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <small class="text-muted">Date: </small>
+                                    <p class="mb-0">07 Feb 2019</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <div>In Progress</div>
+                                    <div class="progress progress-xs mb-0">
+                                        <div class="progress-bar bg-info" style="width: 58%"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <ckeditor [editor]="Editor" data="  Hi there,
+                            <p>The toolbar can be customized and it also supports various callbacks such as
+                                <code>oninit</code>, <code>onfocus</code>, <code>onpaste</code> and many more.</p>
+                                <p>Thank you!</p>
+                                <h6>Summer Note</h6>">
+                            </ckeditor>
+
+                        </div>
+                    </div>
+                    <div class="card" *ngIf="tikitcard2">
+                        <div class="card-header">
+                            <h3 class="card-title">Ticket Replies</h3>
+                            <div class="card-options">
+                                <a href="javascript:void(0)" class="card-options-remove" (click)="CardRemoveTikit2()"
+                                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                <div class="item-action dropdown ml-2" dropdown>
+                                    <a href="javascript:void(0)" id="button-basic" dropdownToggle
+                                        data-toggle="dropdown"><i class="fe fe-more-vertical"></i></a>
+                                    <div id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right">
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-eye"></i> View Details </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-share-alt"></i> Share </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-cloud-download"></i> Download</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-copy"></i> Copy to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-folder"></i> Move to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-edit"></i> Rename</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-trash"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline_item ">
+                                <img class="tl_avatar" src="../assets/images/xs/avatar1.jpg" alt="">
+                                <span><a href="javascript:void(0);">Elisse Joson</a> San Francisco, CA <small
+                                        class="float-right text-right">20-April-2019 - Today</small></span>
+                                <h6 class="font600">Hello, 'Im a single div responsive timeline without media Queries!
+                                </h6>
+                                <div class="msg">
+                                    <p>I'm speaking with myself, number one, because I have a very good brain and I've
+                                        said a lot of things. I write the best placeholder text, and I'm the biggest
+                                        developer on the web card she has is the Lorem card.</p>
+                                    <a href="javascript:void(0);" class="mr-20 text-muted"><i
+                                            class="fa fa-heart text-pink"></i> 12 Love</a>
+                                    <a class="text-muted" role="button" data-toggle="collapse"
+                                        (click)="isCommentCollapsed1 = !isCommentCollapsed1"
+                                        [attr.aria-expanded]="!isCommentCollapsed1" aria-expanded="false"
+                                        aria-controls="collapseBasic"><i class="fa fa-comments"></i> 1 Comment</a>
+                                    <div class="collapse p-4 section-gray mt-2" id="collapseBasic"
+                                        [collapse]="isCommentCollapsed1" [isAnimated]="true">
+                                        <form class="well">
+                                            <div class="form-group">
+                                                <textarea rows="2" class="form-control no-resize"
+                                                    placeholder="Enter here for tweet..."></textarea>
+                                            </div>
+                                            <button class="btn btn-primary">Submit</button>
+                                        </form>
+                                        <ul class="recent_comments list-unstyled mt-4 mb-0">
+                                            <li>
+                                                <div class="avatar_img">
+                                                    <img class="rounded img-fluid" src="../assets/images/xs/avatar4.jpg"
+                                                        alt="">
+                                                </div>
+                                                <div class="comment_body">
+                                                    <h6>Donald Gardner <small class="float-right font-14">Just
+                                                            now</small></h6>
+                                                    <p>Lorem ipsum Veniam aliquip culpa laboris minim tempor</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline_item ">
+                                <img class="tl_avatar" src="../assets/images/xs/avatar4.jpg" alt="">
+                                <span><a href="javascript:void(0);" title="">Dessie Parks</a> Oakland, CA <small
+                                        class="float-right text-right">19-April-2019 - Yesterday</small></span>
+                                <h6 class="font600">Oeehhh, that's awesome.. Me too!</h6>
+                                <div class="msg">
+                                    <p>I'm speaking with myself, number one, because I have a very good brain and I've
+                                        said a lot of things. on the web by far... While that's mock-ups and this is
+                                        politics, are they really so different? I think the only card she has is the
+                                        Lorem card.</p>
+                                    <div class="timeline_img mb-20">
+                                        <img class="width100" src="../assets/images/gallery/1.jpg" alt="Awesome Image">
+                                        <img class="width100" src="../assets/images/gallery/2.jpg" alt="Awesome Image">
+                                    </div>
+                                    <a href="javascript:void(0);" class="mr-20 text-muted"><i
+                                            class="fa fa-heart text-pink"></i> 23 Love</a>
+                                    <a class="text-muted" role="button" data-toggle="collapse"
+                                        (click)="isCommentCollapsed2 = !isCommentCollapsed2"
+                                        [attr.aria-expanded]="!isCommentCollapsed2" aria-expanded="false"
+                                        aria-controls="collapseBasic"><i class="fa fa-comments"></i> 2 Comment</a>
+                                    <div class="collapse p-4 section-gray mt-2" id="collapseBasic"
+                                        [collapse]="isCommentCollapsed2" [isAnimated]="true">
+                                        <form class="well">
+                                            <div class="form-group">
+                                                <textarea rows="2" class="form-control no-resize"
+                                                    placeholder="Enter here for tweet..."></textarea>
+                                            </div>
+                                            <button class="btn btn-primary">Submit</button>
+                                        </form>
+                                        <ul class="recent_comments list-unstyled mt-4 mb-0">
+                                            <li>
+                                                <div class="avatar_img">
+                                                    <img class="rounded img-fluid" src="../assets/images/xs/avatar4.jpg"
+                                                        alt="">
+                                                </div>
+                                                <div class="comment_body">
+                                                    <h6>Donald Gardner <small class="float-right font-14">Just
+                                                            now</small></h6>
+                                                    <p>Lorem ipsum Veniam aliquip culpa laboris minim tempor</p>
+                                                    <div class="timeline_img mb-20">
+                                                        <img class="width150" src="../assets/images/gallery/7.jpg"
+                                                            alt="Awesome Image">
+                                                        <img class="width150" src="../assets/images/gallery/8.jpg"
+                                                            alt="Awesome Image">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="avatar_img">
+                                                    <img class="rounded img-fluid" src="../assets/images/xs/avatar3.jpg"
+                                                        alt="">
+                                                </div>
+                                                <div class="comment_body">
+                                                    <h5>Dessie Parks <small class="float-right font-14">1min ago</small>
+                                                    </h5>
+                                                    <p>It is a long established fact that a reader will be distracted by
+                                                        the readable content of a page when looking</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline_item ">
+                                <img class="tl_avatar" src="../assets/images/xs/avatar7.jpg" alt="">
+                                <span><a href="javascript:void(0);" title="">Rochelle Barton</a> San Francisco, CA
+                                    <small class="float-right text-right">12-April-2019</small></span>
+                                <h6 class="font600">An Engineer Explains Why You Should Always Order the Larger Pizza
+                                </h6>
+                                <div class="msg">
+                                    <p>I'm speaking with myself, number one, because I have a very good brain and I've
+                                        said a lot of things. I write the best placeholder text, and I'm the biggest
+                                        developer on the web by far... While that's mock-ups and this is politics, is
+                                        the Lorem card.</p>
+                                    <a href="javascript:void(0);" class="mr-20 text-muted"><i
+                                            class="fa fa-heart text-pink"></i> 7 Love</a>
+                                    <a class="text-muted" role="button" data-toggle="collapse"
+                                        (click)="isCommentCollapsed3 = !isCommentCollapsed3"
+                                        [attr.aria-expanded]="!isCommentCollapsed3" aria-expanded="false"
+                                        aria-controls="collapseBasic"><i class="fa fa-comments"></i> 1 Comment</a>
+                                    <div class="collapse p-4 section-gray mt-2" id="collapseBasic"
+                                        [collapse]="isCommentCollapsed3" [isAnimated]="true">
+                                        <form class="well">
+                                            <div class="form-group">
+                                                <textarea rows="2" class="form-control no-resize"
+                                                    placeholder="Enter here for tweet..."></textarea>
+                                            </div>
+                                            <button class="btn btn-primary">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

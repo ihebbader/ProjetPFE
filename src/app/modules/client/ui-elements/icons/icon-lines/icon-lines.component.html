@@ -1,0 +1,235 @@
+<app-leftmenu></app-leftmenu>
+<!-- Main body part  -->
+<div class="page">
+    <app-header></app-header>
+    <div class="section-body">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <ul class="nav nav-tabs page-header-tab">
+                    <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                            class="nav-link" [routerLink]="['/icon-fontawesome']"
+                            href="javascript:void(0)">Fontawesome</a></li>
+                    <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                            class="nav-link" [routerLink]="['/icon-feather']" href="javascript:void(0)">Feather</a>
+                    </li>
+                    <li class="nav-item dropdown" [routerLinkActive]="['active']"
+                        [routerLinkActiveOptions]="{exact:true}" dropdown>
+                        <a class="nav-link dropdown-toggle active" id="button-basic" dropdownToggle type="button"
+                            aria-controls="dropdown-basic">More</a>
+                        <div id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                            aria-labelledby="button-basic">
+                            <a class="dropdown-item" [routerLink]="['/icon-lines']" href="javascript:void(0)">Line
+                                Icons</a>
+                            <a class="dropdown-item" [routerLink]="['/icon-flags']" href="javascript:void(0)">Flags
+                                Icons</a>
+                            <a class="dropdown-item" [routerLink]="['/icon-payments']"
+                                href="javascript:void(0)">Payments
+                                Icon</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="header-action">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i
+                            class="fe fe-plus mr-2"></i>Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body icons-list-wrap">
+                            <ul class="icons-list">
+                                <li class="icons-list-item"><i class="icon-user"></i></li>
+                                <li class="icons-list-item"><i class="icon-user-female"></i></li>
+                                <li class="icons-list-item"><i class="icon-users"></i></li>
+                                <li class="icons-list-item"><i class="icon-user-follow"></i></li>
+                                <li class="icons-list-item"><i class="icon-user-following"></i></li>
+                                <li class="icons-list-item"><i class="icon-user-unfollow"></i></li>
+                                <li class="icons-list-item"><i class="icon-trophy"></i></li>
+                                <li class="icons-list-item"><i class="icon-speedometer"></i></li>
+                                <li class="icons-list-item"><i class="icon-social-youtube"></i></li>
+                                <li class="icons-list-item"><i class="icon-social-twitter"></i></li>
+                                <li class="icons-list-item"><i class="icon-social-tumblr"></i></li>
+                                <li class="icons-list-item"><i class="icon-social-facebook"></i></li>
+                                <li class="icons-list-item"><i class="icon-social-dropbox"></i></li>
+                                <li class="icons-list-item"><i class="icon-social-dribbble"></i></li>
+                                <li class="icons-list-item"><i class="icon-shield"></i></li>
+                                <li class="icons-list-item"><i class="icon-screen-tablet"></i></li>
+                                <li class="icons-list-item"><i class="icon-screen-smartphone"></i></li>
+                                <li class="icons-list-item"><i class="icon-screen-desktop"></i></li>
+                                <li class="icons-list-item"><i class="icon-plane"></i></li>
+                                <li class="icons-list-item"><i class="icon-notebook"></i></li>
+                                <li class="icons-list-item"><i class="icon-moustache"></i></li>
+                                <li class="icons-list-item"><i class="icon-mouse"></i></li>
+                                <li class="icons-list-item"><i class="icon-magnet"></i></li>
+                                <li class="icons-list-item"><i class="icon-magic-wand"></i></li>
+                                <li class="icons-list-item"><i class="icon-hourglass"></i></li>
+                                <li class="icons-list-item"><i class="icon-graduation"></i></li>
+                                <li class="icons-list-item"><i class="icon-ghost"></i></li>
+                                <li class="icons-list-item"><i class="icon-game-controller"></i></li>
+                                <li class="icons-list-item"><i class="icon-fire"></i></li>
+                                <li class="icons-list-item"><i class="icon-eyeglasses"></i></li>
+                                <li class="icons-list-item"><i class="icon-envelope-open"></i></li>
+                                <li class="icons-list-item"><i class="icon-envelope-letter"></i></li>
+                                <li class="icons-list-item"><i class="icon-energy"></i></li>
+                                <li class="icons-list-item"><i class="icon-emoticon-smile"></i></li>
+                                <li class="icons-list-item"><i class="icon-disc"></i></li>
+                                <li class="icons-list-item"><i class="icon-cursor-move"></i></li>
+                                <li class="icons-list-item"><i class="icon-crop"></i></li>
+                                <li class="icons-list-item"><i class="icon-credit-card"></i></li>
+                                <li class="icons-list-item"><i class="icon-chemistry"></i></li>
+                                <li class="icons-list-item"><i class="icon-bell"></i></li>
+                                <li class="icons-list-item"><i class="icon-badge"></i></li>
+                                <li class="icons-list-item"><i class="icon-anchor"></i></li>
+                                <li class="icons-list-item"><i class="icon-action-redo"></i></li>
+                                <li class="icons-list-item"><i class="icon-action-undo"></i></li>
+                                <li class="icons-list-item"><i class="icon-bag"></i></li>
+                                <li class="icons-list-item"><i class="icon-basket"></i></li>
+                                <li class="icons-list-item"><i class="icon-basket-loaded"></i></li>
+                                <li class="icons-list-item"><i class="icon-book-open"></i></li>
+                                <li class="icons-list-item"><i class="icon-briefcase"></i></li>
+                                <li class="icons-list-item"><i class="icon-bubbles"></i></li>
+                                <li class="icons-list-item"><i class="icon-calculator"></i></li>
+                                <li class="icons-list-item"><i class="icon-call-end"></i></li>
+                                <li class="icons-list-item"><i class="icon-call-in"></i></li>
+                                <li class="icons-list-item"><i class="icon-call-out"></i></li>
+                                <li class="icons-list-item"><i class="icon-compass"></i></li>
+                                <li class="icons-list-item"><i class="icon-cup"></i></li>
+                                <li class="icons-list-item"><i class="icon-diamond"></i></li>
+                                <li class="icons-list-item"><i class="icon-direction"></i></li>
+                                <li class="icons-list-item"><i class="icon-directions"></i></li>
+                                <li class="icons-list-item"><i class="icon-docs"></i></li>
+                                <li class="icons-list-item"><i class="icon-drawer"></i></li>
+                                <li class="icons-list-item"><i class="icon-drop"></i></li>
+                                <li class="icons-list-item"><i class="icon-earphones"></i></li>
+                                <li class="icons-list-item"><i class="icon-earphones-alt"></i> </li>
+                                <li class="icons-list-item"><i class="icon-feed"></i></li>
+                                <li class="icons-list-item"><i class="icon-film"></i></li>
+                                <li class="icons-list-item"><i class="icon-folder-alt"></i></li>
+                                <li class="icons-list-item"><i class="icon-frame"></i></li>
+                                <li class="icons-list-item"><i class="icon-globe"></i></li>
+                                <li class="icons-list-item"><i class="icon-globe-alt"></i></li>
+                                <li class="icons-list-item"><i class="icon-handbag"></i></li>
+                                <li class="icons-list-item"><i class="icon-layers"></i></li>
+                                <li class="icons-list-item"><i class="icon-map"></i></li>
+                                <li class="icons-list-item"><i class="icon-picture"></i></li>
+                                <li class="icons-list-item"><i class="icon-pin"></i></li>
+                                <li class="icons-list-item"><i class="icon-playlist"></i></li>
+                                <li class="icons-list-item"><i class="icon-present"></i></li>
+                                <li class="icons-list-item"><i class="icon-printer"></i></li>
+                                <li class="icons-list-item"><i class="icon-puzzle"></i></li>
+                                <li class="icons-list-item"><i class="icon-speech"></i></li>
+                                <li class="icons-list-item"><i class="icon-vector"></i></li>
+                                <li class="icons-list-item"><i class="icon-wallet"></i></li>
+                                <li class="icons-list-item"><i class="icon-arrow-down"></i></li>
+                                <li class="icons-list-item"><i class="icon-arrow-left"></i></li>
+                                <li class="icons-list-item"><i class="icon-arrow-right"></i></li>
+                                <li class="icons-list-item"><i class="icon-arrow-up"></i></li>
+                                <li class="icons-list-item"><i class="icon-bar-chart"></i></li>
+                                <li class="icons-list-item"><i class="icon-bulb"></i></li>
+                                <li class="icons-list-item"><i class="icon-calendar"></i></li>
+                                <li class="icons-list-item"><i class="icon-control-end"></i></li>
+                                <li class="icons-list-item"><i class="icon-control-forward"></i></li>
+                                <li class="icons-list-item"><i class="icon-control-pause"></i></li>
+                                <li class="icons-list-item"><i class="icon-control-play"></i></li>
+                                <li class="icons-list-item"><i class="icon-control-rewind"></i></li>
+                                <li class="icons-list-item"><i class="icon-control-start"></i></li>
+                                <li class="icons-list-item"><i class="icon-cursor"></i></li>
+                                <li class="icons-list-item"><i class="icon-dislike"></i></li>
+                                <li class="icons-list-item"><i class="icon-equalizer"></i></li>
+                                <li class="icons-list-item"><i class="icon-graph"></i></li>
+                                <li class="icons-list-item"><i class="icon-grid"></i></li>
+                                <li class="icons-list-item"><i class="icon-home"></i></li>
+                                <li class="icons-list-item"><i class="icon-like"></i></li>
+                                <li class="icons-list-item"><i class="icon-list"></i></li>
+                                <li class="icons-list-item"><i class="icon-login"></i></li>
+                                <li class="icons-list-item"><i class="icon-logout"></i></li>
+                                <li class="icons-list-item"><i class="icon-loop"></i></li>
+                                <li class="icons-list-item"><i class="icon-microphone"></i></li>
+                                <li class="icons-list-item"><i class="icon-music-tone"></i></li>
+                                <li class="icons-list-item"><i class="icon-music-tone-alt"></i></li>
+                                <li class="icons-list-item"><i class="icon-note"></i></li>
+                                <li class="icons-list-item"><i class="icon-pencil"></i></li>
+                                <li class="icons-list-item"><i class="icon-pie-chart"></i></li>
+                                <li class="icons-list-item"><i class="icon-question"></i></li>
+                                <li class="icons-list-item"><i class="icon-rocket"></i></li>
+                                <li class="icons-list-item"><i class="icon-share"></i></li>
+                                <li class="icons-list-item"><i class="icon-share-alt"></i></li>
+                                <li class="icons-list-item"><i class="icon-shuffle"></i></li>
+                                <li class="icons-list-item"><i class="icon-size-actual"></i></li>
+                                <li class="icons-list-item"><i class="icon-size-fullscreen"></i></li>
+                                <li class="icons-list-item"><i class="icon-support"></i></li>
+                                <li class="icons-list-item"><i class="icon-tag"></i></li>
+                                <li class="icons-list-item"><i class="icon-trash"></i></li>
+                                <li class="icons-list-item"><i class="icon-umbrella"></i></li>
+                                <li class="icons-list-item"><i class="icon-wrench"></i></li>
+                                <li class="icons-list-item"><i class="icon-ban"></i></li>
+                                <li class="icons-list-item"><i class="icon-bubble"></i></li>
+                                <li class="icons-list-item"><i class="icon-camcorder"></i></li>
+                                <li class="icons-list-item"><i class="icon-camera"></i></li>
+                                <li class="icons-list-item"><i class="icon-check"></i></li>
+                                <li class="icons-list-item"><i class="icon-clock"></i></li>
+                                <li class="icons-list-item"><i class="icon-close"></i></li>
+                                <li class="icons-list-item"><i class="icon-cloud-download"></i></li>
+                                <li class="icons-list-item"><i class="icon-cloud-upload"></i></li>
+                                <li class="icons-list-item"><i class="icon-doc"></i></li>
+                                <li class="icons-list-item"><i class="icon-envelope"></i> </li>
+                                <li class="icons-list-item"><i class="icon-eye"></i></li>
+                                <li class="icons-list-item"><i class="icon-flag"></i></li>
+                                <li class="icons-list-item"><i class="icon-folder"></i></li>
+                                <li class="icons-list-item"><i class="icon-heart"></i></li>
+                                <li class="icons-list-item"><i class="icon-info"></i></li>
+                                <li class="icons-list-item"><i class="icon-key"></i></li>
+                                <li class="icons-list-item"><i class="icon-link"></i></li>
+                                <li class="icons-list-item"><i class="icon-lock"></i></li>
+                                <li class="icons-list-item"><i class="icon-lock-open"></i></li>
+                                <li class="icons-list-item"><i class="icon-magnifier"></i></li>
+                                <li class="icons-list-item"><i class="icon-magnifier-add"></i></li>
+                                <li class="icons-list-item"><i class="icon-magnifier-remove"></i></li>
+                                <li class="icons-list-item"><i class="icon-paper-clip"></i></li>
+                                <li class="icons-list-item"><i class="icon-paper-plane"></i></li>
+                                <li class="icons-list-item"><i class="icon-plus"></i></li>
+                                <li class="icons-list-item"><i class="icon-pointer"></i></li>
+                                <li class="icons-list-item"><i class="icon-power"></i></li>
+                                <li class="icons-list-item"><i class="icon-refresh"></i></li>
+                                <li class="icons-list-item"><i class="icon-reload"></i></li>
+                                <li class="icons-list-item"><i class="icon-settings"></i></li>
+                                <li class="icons-list-item"><i class="icon-star"></i></li>
+                                <li class="icons-list-item"><i class="icon-symbol-female"></i></li>
+                                <li class="icons-list-item"><i class="icon-symbol-male"></i></li>
+                                <li class="icons-list-item"><i class="icon-target"></i></li>
+                                <li class="icons-list-item"><i class="icon-volume-1"></i></li>
+                                <li class="icons-list-item"><i class="icon-volume-2"></i></li>
+                                <li class="icons-list-item"><i class="icon-volume-off"></i></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

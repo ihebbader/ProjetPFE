@@ -1,0 +1,587 @@
+<div id="header_top" class="header_top">
+    <div class="container">
+        <div class="hleft">
+            <a class="header-brand" [routerLink]="['/hr-dashboard']" href="javascript:void(0)"><i
+                    class="fe fe-command brand-logo"></i></a>
+            <div class="dropdown">
+                <a [routerLink]="['/search']" href="javascript:void(0)" class="nav-link icon"><i
+                        class="fa fa-search"></i></a>
+                <a [routerLink]="['/calender']" href="javascript:void(0)" class="nav-link icon app_inbox"><i
+                        class="fa fa-calendar"></i></a>
+                <a [routerLink]="['/contacts']" href="javascript:void(0)" class="nav-link icon xs-hide"><i
+                        class="fa fa-id-card-o"></i></a>
+                <a [routerLink]="['/chat']" href="javascript:void(0)" class="nav-link icon xs-hide"><i
+                        class="fa fa-comments-o"></i></a>
+                <a [routerLink]="['/filemanager']" href="javascript:void(0)" class="nav-link icon app_file xs-hide"><i
+                        class="fa fa-folder-o"></i></a>
+            </div>
+        </div>
+        <div class="hright">
+            <div class="dropdown">
+                <!-- <a href="javascript:void(0)" class="nav-link icon theme_btn"><i class="fa fa-paint-brush"
+                        data-toggle="tooltip" data-placement="right" title="Themes"></i></a> -->
+                <a href="javascript:void(0)" class="nav-link icon settingbar" (click)="toggleSettingMenu()"><i
+                        class="fa fa-gear fa-spin" data-toggle="tooltip" data-placement="right"
+                        title="Settings"></i></a>
+                <a href="javascript:void(0)" class="nav-link user_btn" (click)="toggleUserMenu()"><img class="avatar"
+                        src="../assets/images/user.png" alt="" data-toggle="tooltip" data-placement="right"
+                        title="User Menu" /></a>
+                <a href="javascript:void(0)" (click)="toggleMenu()" class="nav-link icon menu_toggle"><i
+                        class="fa  fa-align-left"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="rightsidebar" class="right_sidebar">
+    <a href="javascript:void(0)" (click)="toggleSettingMenu()" class="p-3 settingbar float-right"><i
+            class="fa fa-close"></i></a>
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="javascript:void(0)" (click)="onTab('1')"
+                [ngClass]="{'active': chatTab}" aria-expanded="true">Settings</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" (click)="onTab('2')"
+                [ngClass]="{'active': contactTab}" aria-expanded="false">Activity</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane vivify fadeIn active" [ngClass]="{'active': chatTab}" id="Settings"
+            aria-expanded="true">
+            <div class="mb-4">
+                <h6 class="font-14 font-weight-bold text-muted">Font Style</h6>
+                <div class="custom-controls-stacked font_setting">
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" (click)="onFontStyle(1)" name="font"
+                            value="font-opensans" [checked]="fontSelect == 'font-opensans' ? 'checked': null">
+                        <span class="custom-control-label">Open Sans Font</span>
+                    </label>
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" (click)="onFontStyle(2)" name="font"
+                            value="font-montserrat" [checked]="fontSelect=='font-montserrat' ? 'checked': null">
+                        <span class="custom-control-label">Montserrat Google Font</span>
+                    </label>
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" (click)="onFontStyle(3)" name="font"
+                            value="font-roboto" [checked]="fontSelect == 'font-roboto' ? 'checked': null">
+                        <span class="custom-control-label">Robot Google Font</span>
+                    </label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <h6 class="font-14 font-weight-bold text-muted">Dropdown Menu Icon</h6>
+                <div class="custom-controls-stacked arrow_option">
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" name="marrow" value="arrow-a">
+                        <span class="custom-control-label">A</span>
+                    </label>
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" name="marrow" value="arrow-b">
+                        <span class="custom-control-label">B</span>
+                    </label>
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" name="marrow" value="arrow-c" checked="">
+                        <span class="custom-control-label">C</span>
+                    </label>
+                </div>
+                <h6 class="font-14 font-weight-bold mt-4 text-muted">SubMenu List Icon</h6>
+                <div class="custom-controls-stacked list_option">
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" (click)="onSubMenuIcon(1)"
+                            [checked]="menuIconSelect=='list-a' ? 'checked': null" name="listicon" value="list-a"
+                            checked="">
+                        <span class="custom-control-label">A</span>
+                    </label>
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" (click)="onSubMenuIcon(2)"
+                            [checked]="menuIconSelect=='list-b' ? 'checked': null" name="listicon" value="list-b">
+                        <span class="custom-control-label">B</span>
+                    </label>
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" class="custom-control-input" (click)="onSubMenuIcon(3)"
+                            [checked]="menuIconSelect=='list-c' ? 'checked': null" name="listicon" value="list-c">
+                        <span class="custom-control-label">C</span>
+                    </label>
+                </div>
+            </div>
+            <div>
+                <h6 class="font-14 font-weight-bold mt-4 text-muted">General Settings</h6>
+                <ul class="setting-list list-unstyled mt-1 setting_switch">
+                    <li>
+                        <label class="custom-switch">
+                            <span class="custom-switch-description">Night Mode</span>
+                            <input type="checkbox" (click)="onGeneralSetting(1,$event)" name="custom-switch-checkbox"
+                                class="custom-switch-input btn-darkmode" [checked]="toggle1 ? 'checked': null">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="custom-switch">
+                            <span class="custom-switch-description">Fix Navbar top</span>
+                            <input type="checkbox" (click)="onGeneralSetting(2,$event)" name="custom-switch-checkbox"
+                                class="custom-switch-input btn-fixnavbar" [checked]="toggle2 ? 'checked': null">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="custom-switch">
+                            <span class="custom-switch-description">Header Dark</span>
+                            <input type="checkbox" (click)="onGeneralSetting(3,$event)" name="custom-switch-checkbox"
+                                class="custom-switch-input btn-pageheader" [checked]="toggle3 ? 'checked' : null">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="custom-switch">
+                            <span class="custom-switch-description">Min Sidebar Dark {{toggle4}}</span>
+                            <input type="checkbox" (click)="onGeneralSetting(4,$event)" name="custom-switch-checkbox"
+                                class="custom-switch-input btn-min_sidebar" [checked]="toggle4 ? 'checked': null">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="custom-switch">
+                            <span class="custom-switch-description">Sidebar Dark</span>
+                            <input type="checkbox" (click)="onGeneralSetting(5,$event)" name="custom-switch-checkbox"
+                                class="custom-switch-input btn-sidebar" [checked]="toggle5 ? 'checked': null">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="custom-switch">
+                            <span class="custom-switch-description">Icon Color</span>
+                            <input type="checkbox" (click)="onGeneralSetting(6,$event)" name="custom-switch-checkbox"
+                                class="custom-switch-input btn-iconcolor" [checked]="toggle6 ? 'checked': null">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="custom-switch">
+                            <span class="custom-switch-description">Gradient Color</span>
+                            <input type="checkbox" (click)="onGeneralSetting(7,$event)" name="custom-switch-checkbox"
+                                class="custom-switch-input btn-gradient" [checked]="toggle7 ? 'checked': null">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="custom-switch">
+                            <span class="custom-switch-description">Box Shadow</span>
+                            <input type="checkbox" (click)="onGeneralSetting(8,$event)" name="custom-switch-checkbox"
+                                class="custom-switch-input btn-boxshadow" [checked]="toggle8 ? 'checked': null">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="custom-switch">
+                            <span class="custom-switch-description">RTL Support</span>
+                            <input type="checkbox" (click)="onGeneralSetting(9,$event)" name="custom-switch-checkbox"
+                                class="custom-switch-input btn-rtl" [checked]="toggle9 ? 'checked': null">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="custom-switch">
+                            <span class="custom-switch-description">Box Layout</span>
+                            <input type="checkbox" (click)="onGeneralSetting(10,$event)" name="custom-switch-checkbox"
+                                class="custom-switch-input btn-boxlayout" [checked]="toggle10 ? 'checked': null">
+                            <span class="custom-switch-indicator"></span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label class="d-block">Storage <span class="float-right">77%</span></label>
+                <div class="progress progress-sm">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="77" aria-valuemin="0"
+                        aria-valuemax="100" style="width: 77%;"></div>
+                </div>
+                <button type="button" class="btn btn-primary btn-block mt-3">Upgrade Storage</button>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane vivify fadeIn" [ngClass]="{'active': contactTab}" id="activity"
+            aria-expanded="false">
+            <ul class="new_timeline mt-3">
+                <li>
+                    <div class="bullet pink"></div>
+                    <div class="time">11:00am</div>
+                    <div class="desc">
+                        <h3>Attendance</h3>
+                        <h4>Computer Class</h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="bullet pink"></div>
+                    <div class="time">11:30am</div>
+                    <div class="desc">
+                        <h3>Added an interest</h3>
+                        <h4>“Volunteer Activities”</h4>
+                    </div>
+                </li>
+                <li>
+                    <div class="bullet green"></div>
+                    <div class="time">12:00pm</div>
+                    <div class="desc">
+                        <h3>Developer Team</h3>
+                        <h4>Hangouts</h4>
+                        <ul class="list-unstyled team-info margin-0 p-t-5">
+                            <li><img src="../assets/images/xs/avatar1.jpg" alt="Avatar"></li>
+                            <li><img src="../assets/images/xs/avatar2.jpg" alt="Avatar"></li>
+                            <li><img src="../assets/images/xs/avatar3.jpg" alt="Avatar"></li>
+                            <li><img src="../assets/images/xs/avatar4.jpg" alt="Avatar"></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="bullet green"></div>
+                    <div class="time">2:00pm</div>
+                    <div class="desc">
+                        <h3>Responded to need</h3>
+                        <a href="javascript:void(0)">“In-Kind Opportunity”</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="bullet orange"></div>
+                    <div class="time">1:30pm</div>
+                    <div class="desc">
+                        <h3>Lunch Break</h3>
+                    </div>
+                </li>
+                <li>
+                    <div class="bullet green"></div>
+                    <div class="time">2:38pm</div>
+                    <div class="desc">
+                        <h3>Finish</h3>
+                        <h4>Go to Home</h4>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="theme_div">
+    <div class="card">
+        <div class="card-body">
+            <ul class="list-group list-unstyled">
+                <li class="list-group-item mb-2">
+                    <p>Default Theme</p>
+                    <a href="../main/index.html"><img src="../assets/images/themes/default.png" class="img-fluid" /></a>
+                </li>
+                <li class="list-group-item mb-2">
+                    <p>Night Mode Theme</p>
+                    <a href="../dark/index.html"><img src="../assets/images/themes/dark.png" class="img-fluid" /></a>
+                </li>
+                <li class="list-group-item mb-2">
+                    <p>RTL Version</p>
+                    <a href="../rtl/index.html"><img src="../assets/images/themes/rtl.png" class="img-fluid" /></a>
+                </li>
+                <li class="list-group-item mb-2">
+                    <p>Theme Version2</p>
+                    <a href="../theme2/index.html"><img src="../assets/images/themes/theme2.png"
+                            class="img-fluid" /></a>
+                </li>
+                <li class="list-group-item mb-2">
+                    <p>Theme Version3</p>
+                    <a href="../theme3/index.html"><img src="../assets/images/themes/theme3.png"
+                            class="img-fluid" /></a>
+                </li>
+                <li class="list-group-item mb-2">
+                    <p>Theme Version4</p>
+                    <a href="../theme4/index.html"><img src="../assets/images/themes/theme4.png"
+                            class="img-fluid" /></a>
+                </li>
+                <li class="list-group-item mb-2">
+                    <p>Horizontal Version</p>
+                    <a href="../horizontal/index.html"><img src="../assets/images/themes/horizontal.png"
+                            class="img-fluid" /></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="user_div">
+    <h5 class="brand-name mb-4">Epic HR<a href="javascript:void(0)" (click)="toggleUserMenu()" class="user_btn"><i
+                class="icon-logout"></i></a>
+    </h5>
+    <div class="card">
+        <div class="card-body">
+            <div class="media">
+                <img class="avatar avatar-xl mr-3" src="../assets/images/sm/avatar1.jpg" alt="avatar">
+                <div class="media-body">
+                    <h5 class="m-0">Sara Hopkins</h5>
+                    <p class="text-muted mb-0">Webdeveloper</p>
+                    <ul class="social-links list-inline mb-0 mt-2">
+                        <li class="list-inline-item"><a href="javascript:void(0)" title="" data-toggle="tooltip"
+                                data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)" title="" data-toggle="tooltip"
+                                data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)" title="" data-toggle="tooltip"
+                                data-original-title="1234567890"><i class="fa fa-phone"></i></a></li>
+                        <li class="list-inline-item"><a href="javascript:void(0)" title="" data-toggle="tooltip"
+                                data-original-title="@skypename"><i class="fa fa-skype"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card" *ngIf="staticscard"
+        [ngClass]="{'card-collapsed': !isStaticticsCollapsed, '': isStaticticsCollapsed}">
+        <div class="card-header">
+            <h3 class="card-title">Statistics</h3>
+            <div class="card-options">
+                <a class="card-options-collapse" href="javascript:void(0)"
+                    (click)="isStaticticsCollapsed = !isStaticticsCollapsed"
+                    [attr.aria-expanded]="!isStaticticsCollapsed" aria-controls="collapseBasic"
+                    data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                <a href="javascript:void(0)" class="card-options-remove" (click)="CardRemoveStatics()"
+                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
+            </div>
+        </div>
+        <div class="card-body" id="collapseBasic" [collapse]="isStaticticsCollapsed">
+            <div class="text-center">
+                <div class="row">
+                    <div class="col-6 pb-3">
+                        <label class="mb-0">Balance</label>
+                        <h4 class="font-30 font-weight-bold">$545</h4>
+                    </div>
+                    <div class="col-6 pb-3">
+                        <label class="mb-0">Growth</label>
+                        <h4 class="font-30 font-weight-bold">27%</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="d-block">Total Income<span class="float-right">77%</span></label>
+                <div class="progress progress-xs">
+                    <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="77" aria-valuemin="0"
+                        aria-valuemax="100" style="width: 77%;"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="d-block">Total Expenses <span class="float-right">50%</span></label>
+                <div class="progress progress-xs">
+                    <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+                        aria-valuemax="100" style="width: 50%;"></div>
+                </div>
+            </div>
+            <div class="form-group mb-0">
+                <label class="d-block">Gross Profit <span class="float-right">23%</span></label>
+                <div class="progress progress-xs">
+                    <div class="progress-bar bg-green" role="progressbar" aria-valuenow="23" aria-valuemin="0"
+                        aria-valuemax="100" style="width: 23%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card" *ngIf="friendscard" [ngClass]="{'card-collapsed': !isFriendsCollapsed, '': isFriendsCollapsed}">
+        <div class="card-header">
+            <h3 class="card-title">Friends</h3>
+            <div class="card-options">
+                <a class="card-options-collapse" data-toggle="card-collapse" href="javascript:void(0)"
+                    (click)="isFriendsCollapsed = !isFriendsCollapsed" [attr.aria-expanded]="!isFriendsCollapsed"
+                    aria-controls="collapseBasic"><i class="fe fe-chevron-up"></i></a>
+                <a href="javascript:void(0)" class="card-options-remove" (click)="CardRemoveFriends()"
+                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
+            </div>
+        </div>
+        <div class="card-body" id="collapseBasic" [collapse]="isFriendsCollapsed">
+            <ul class="right_chat list-unstyled">
+                <li class="online">
+                    <a href="javascript:void(0);">
+                        <div class="media">
+                            <img class="media-object " src="../assets/images/xs/avatar4.jpg" alt="">
+                            <div class="media-body">
+                                <span class="name">Donald Gardner</span>
+                                <span class="message">Designer, Blogger</span>
+                                <span class="badge badge-outline status"></span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="online">
+                    <a href="javascript:void(0);">
+                        <div class="media">
+                            <img class="media-object " src="../assets/images/xs/avatar5.jpg" alt="">
+                            <div class="media-body">
+                                <span class="name">Wendy Keen</span>
+                                <span class="message">Java Developer</span>
+                                <span class="badge badge-outline status"></span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="offline">
+                    <a href="javascript:void(0);">
+                        <div class="media">
+                            <img class="media-object " src="../assets/images/xs/avatar2.jpg" alt="">
+                            <div class="media-body">
+                                <span class="name">Matt Rosales</span>
+                                <span class="message">CEO, Epic Theme</span>
+                                <span class="badge badge-outline status"></span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="card b-none">
+        <ul class="list-group">
+            <li class="list-group-item d-flex">
+                <div class="box-icon sm rounded bg-blue"><i class="fa fa-credit-card"></i> </div>
+                <div class="ml-3">
+                    <div>+$29 New sale</div>
+                    <a href="javascript:void(0)">Admin Template</a>
+                    <div class="text-muted font-12">5 min ago</div>
+                </div>
+            </li>
+            <li class="list-group-item d-flex">
+                <div class="box-icon sm rounded bg-pink"><i class="fa fa-upload"></i> </div>
+                <div class="ml-3">
+                    <div>Project Update</div>
+                    <a href="javascript:void(0)">New HTML page</a>
+                    <div class="text-muted font-12">10 min ago</div>
+                </div>
+            </li>
+            <li class="list-group-item d-flex">
+                <div class="box-icon sm rounded bg-teal"><i class="fa fa-file-word-o"></i> </div>
+                <div class="ml-3">
+                    <div>You edited the file</div>
+                    <a href="javascript:void(0)">reposrt.doc</a>
+                    <div class="text-muted font-12">11 min ago</div>
+                </div>
+            </li>
+            <li class="list-group-item d-flex">
+                <div class="box-icon sm rounded bg-cyan"><i class="fa fa-user"></i> </div>
+                <div class="ml-3">
+                    <div>New user</div>
+                    <a href="javascript:void(0)">Puffin web - view</a>
+                    <div class="text-muted font-12">17 min ago</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="left-sidebar" class="sidebar ">
+    <h5 class="brand-name">Epic HR
+        <!-- <a href="javascript:void(0)" class="menu_option float-right"><i
+                class="icon-grid font-16" data-toggle="tooltip" data-placement="left"
+                title="Grid & List Toggle"></i></a> -->
+    </h5>
+    <nav id="left-sidebar-nav" class="sidebar-nav">
+        <ul class="metismenu">
+            <li class="g_heading">Directories</li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                <a href="javascript:void(0)" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+                    aria-controls="collapseBasic" class="has-arrow arrow-c"><i
+                        class="icon-rocket"></i><span>HRMS</span></a>
+                <ul class="collapse" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/hr-dashboard']" href="javascript:void(0)"><span>Dashboard</span>
+                        </a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                        <a class="submenu" [routerLink]="['/hr-users']" href="javascript:void(0)"><span>Users</span></a>
+                    </li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/hr-departments']" href="javascript:void(0)"><span>Departments</span></a>
+                    </li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/hr-employee']" href="javascript:void(0)"><span>Employee</span></a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/hr-activities']" href="javascript:void(0)"><span>Activities</span></a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/hr-holidays']" href="javascript:void(0)"><span>Holidays</span></a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/hr-events']" href="javascript:void(0)"><span>Events</span></a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/hr-payroll']" href="javascript:void(0)"><span>Payroll</span></a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/hr-accounts']" href="javascript:void(0)"><span>Accounts</span></a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/hr-reports']" href="javascript:void(0)"><span>Report</span></a></li>
+                </ul>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                <a href="javascript:void(0)" (click)="isProjectCollapsed = !isProjectCollapsed"
+                    [attr.aria-expanded]="!isProjectCollapsed" aria-controls="ProjectCollapsed"
+                    class="has-arrow arrow-c"><i class="icon-cup"></i><span>Project</span></a>
+                <ul class="collapse" id="ProjectCollapsed" [collapse]="isProjectCollapsed" [isAnimated]="true">
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/project-deashboard']" href="javascript:void(0)">Dashboard</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/project-list']" href="javascript:void(0)">Project list</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/project-taskboard']" href="javascript:void(0)">Taskboard</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/project-ticketlist']" href="javascript:void(0)">Ticket List</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/project-ticketdetails']" href="javascript:void(0)">Ticket Details</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/project-clients']" href="javascript:void(0)">Clients</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/project-todo-list']" href="javascript:void(0)">Todo List</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0)" (click)="isJobportalCollapsed = !isJobportalCollapsed"
+                    [attr.aria-expanded]="!isJobportalCollapsed" aria-controls="JobCollapsed"
+                    class="has-arrow arrow-c"><i class="icon-briefcase"></i><span>Job
+                        Portal</span></a>
+                <ul class="submenu" class="collapse" id="JobCollapsed" [collapse]="isJobportalCollapsed"
+                    [isAnimated]="true">
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/jobportal-job-dashboard']" href="javascript:void(0)"><span>Job
+                                Dashboard</span></a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/jobportal-positions']" href="javascript:void(0)"><span>Positions</span></a>
+                    </li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/jobportal-applicants']"
+                            href="javascript:void(0)"><span>Applicants</span></a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/jobportal-resumes']" href="javascript:void(0)"><span>Resumes</span></a>
+                    </li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/jobportal-settings']" href="javascript:void(0)"><span>Settings</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0)" (click)="isAuthCollapsed = !isAuthCollapsed"
+                    [attr.aria-expanded]="!isAuthCollapsed" aria-controls="AuthCollapsed" class="has-arrow arrow-c"><i
+                        class="icon-lock"></i><span>Authentication</span></a>
+                <ul class="submenu" class="collapse" id="AuthCollapsed" [collapse]="isAuthCollapsed"
+                    [isAnimated]="true">
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/login']" href="javascript:void(0)">Login</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/register']" href="javascript:void(0)">Register</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/forgot-password']" href="javascript:void(0)">Forgot password</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/error-404']" href="javascript:void(0)">404 error</a></li>
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/error-500']" href="javascript:void(0)">500 error</a></li>
+                </ul>
+            </li>
+            <li class="g_heading">UI Elements</li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                    [routerLink]="['/icon-fontawesome']" href="javascript:void(0)"><i
+                        class="icon-tag"></i><span>Icons</span></a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/charts']"
+                    href="javascript:void(0)"><i class="icon-bar-chart"></i><span>Charts</span></a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                    [routerLink]="['/formelement']" href="javascript:void(0)"><i
+                        class="icon-layers"></i><span>Forms</span></a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/table']"
+                    href="javascript:void(0)"><i class="icon-tag"></i><span>Tables</span></a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/widgets']"
+                    href="javascript:void(0)"><i class="icon-puzzle"></i><span>Widgets</span></a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/map']"
+                    href="javascript:void(0)"><i class="icon-map"></i><span>Maps</span></a></li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/gallery']"
+                    href="javascript:void(0)"><i class="icon-picture"></i><span>Gallery</span></a></li>
+        </ul>
+    </nav>
+</div>

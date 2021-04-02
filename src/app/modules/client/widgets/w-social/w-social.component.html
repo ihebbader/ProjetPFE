@@ -1,0 +1,623 @@
+<app-leftmenu></app-leftmenu>
+<!-- Main body part  -->
+<div class="page">
+    <app-header></app-header>
+    <div class="section-body">
+        <div class="container-fluid">
+            <ul class="nav nav-tabs page-header-tab">
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets']" href="javascript:void(0)">Card</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets-card']" href="javascript:void(0)">Card Image</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets-statistics']" href="javascript:void(0)">Statistics</a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets-data']" href="javascript:void(0)">Data</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link active" [routerLink]="['/widgets-social']" href="javascript:void(0)">Social</a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets-other']" href="javascript:void(0)">Mix</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="card">
+                        <div class="card-body w_social_state">
+                            <div class="icon"><i class="fa fa-facebook"></i></div>
+                            <div class="content">
+                                <div class="text">Like</div>
+                                <div class="number">123</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="card">
+                        <div class="card-body w_social_state">
+                            <div class="icon"><i class="fa fa-instagram"></i></div>
+                            <div class="content">
+                                <div class="text">Followers</div>
+                                <div class="number">231</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="card">
+                        <div class="card-body w_social_state">
+                            <div class="icon"><i class="fa fa-twitter"></i></div>
+                            <div class="content">
+                                <div class="text">Followers</div>
+                                <div class="number">31</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="card">
+                        <div class="card-body w_social_state">
+                            <div class="icon"><i class="fa fa-google"></i></div>
+                            <div class="content">
+                                <div class="text">Like</div>
+                                <div class="number">254</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="card">
+                        <div class="card-body w_social_state">
+                            <div class="icon"><i class="fa fa-linkedin"></i></div>
+                            <div class="content">
+                                <div class="text">Followers</div>
+                                <div class="number">2510</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="card">
+                        <div class="card-body w_social_state">
+                            <div class="icon"><i class="fa fa-behance"></i></div>
+                            <div class="content">
+                                <div class="text">Project</div>
+                                <div class="number">121</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-12">
+                    <div class="card">
+                        <div class="card-body w_user">
+                            <div class="user_avtar">
+                                <img class="rounded-circle" src="../assets/images/sm/avatar1.jpg" alt="">
+                            </div>
+                            <div class="wid-u-info">
+                                <h5>Dessie Parks</h5>
+                                <p class="text-muted m-b-0">123 6th St. Melbourne, FL 32904</p>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <h5 class="mb-0">270</h5>
+                                        <small>Followers</small>
+                                    </li>
+                                    <li>
+                                        <h5 class="mb-0">310</h5>
+                                        <small>Following</small>
+                                    </li>
+                                    <li>
+                                        <h5 class="mb-0">908</h5>
+                                        <small>Liks</small>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="card">
+                        <div class="card-body w_user">
+                            <div class="user_avtar">
+                                <img class="rounded-circle" src="../assets/images/sm/avatar4.jpg" alt="">
+                            </div>
+                            <div class="wid-u-info">
+                                <h5>Nancy Flanary</h5>
+                                <p class="text-muted m-b-0">123 6th St. Melbourne, FL 32904</p>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <h5 class="mb-0">270</h5>
+                                        <small>Followers</small>
+                                    </li>
+                                    <li>
+                                        <h5 class="mb-0">310</h5>
+                                        <small>Following</small>
+                                    </li>
+                                    <li>
+                                        <h5 class="mb-0">908</h5>
+                                        <small>Liks</small>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="card">
+                        <div class="card-body w_user">
+                            <div class="user_avtar">
+                                <img class="rounded-circle" src="../assets/images/sm/avatar3.jpg" alt="">
+                            </div>
+                            <div class="wid-u-info">
+                                <h5>Paul Schmidt</h5>
+                                <p class="text-muted m-b-0">123 6th St. Melbourne, FL 32904</p>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <h5 class="mb-0">270</h5>
+                                        <small>Followers</small>
+                                    </li>
+                                    <li>
+                                        <h5 class="mb-0">310</h5>
+                                        <small>Following</small>
+                                    </li>
+                                    <li>
+                                        <h5 class="mb-0">908</h5>
+                                        <small>Liks</small>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="card" *ngIf="cardremove1" [ngClass]="{'card-fullscreen': isFull}">
+                        <div class="card-header">
+                            <h3 class="card-title">Social Media</h3>
+                            <div class="card-options">
+                                <a href="javascript:void(0)" class="card-options-fullscreen"
+                                    (click)="fullScreenSection(1)" data-toggle="card-fullscreen"><i
+                                        class="fe fe-maximize"></i></a>
+                                <a href="javascript:void(0)" class="card-options-remove" (click)="CardRemoveTrans(1)"
+                                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                <div class="item-action dropdown ml-2" dropdown>
+                                    <a href="javascript:void(0)" id="button-basic" dropdownToggle data-toggle="dropdown"
+                                        aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+                                    <div id="dropdown-basic" *dropdownMenu role="menu" aria-labelledby="button-basic"
+                                        class="dropdown-menu dropdown-menu-right" x-placement="bottom-end"
+                                        style="position: absolute; transform: translate3d(-174px, 25px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-eye"></i> View Details </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-share-alt"></i> Share </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-cloud-download"></i> Download</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-copy"></i> Copy to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-folder"></i> Move to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-edit"></i> Rename</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-trash"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-vcenter text-nowrap table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Media</th>
+                                            <th>Name</th>
+                                            <th>Like</th>
+                                            <th>Comments</th>
+                                            <th>Share</th>
+                                            <th>Members</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="width40"><i class="fa fa-linkedin"></i></td>
+                                            <td><span class="list-name">Linked In</span>
+                                                <span class="text-muted">Florida, United States</span>
+                                            </td>
+                                            <td>19K</td>
+                                            <td>14K</td>
+                                            <td>10K</td>
+                                            <td>
+                                                <span class="tag tag-success">2341</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-twitter"></i></td>
+                                            <td><span class="list-name">Twitter</span>
+                                                <span class="text-muted">Arkansas, United States</span>
+                                            </td>
+                                            <td>7K</td>
+                                            <td>11K</td>
+                                            <td>21K</td>
+                                            <td>
+                                                <span class="tag tag-success">952</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-facebook"></i></td>
+                                            <td><span class="list-name">Facebook</span>
+                                                <span class="text-muted">Illunois, United States</span>
+                                            </td>
+                                            <td>15K</td>
+                                            <td>18K</td>
+                                            <td>8K</td>
+                                            <td>
+                                                <span class="tag tag-success">6127</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-google-plus"></i></td>
+                                            <td><span class="list-name">Google Plus</span>
+                                                <span class="text-muted">Arizona, United States</span>
+                                            </td>
+                                            <td>15K</td>
+                                            <td>18K</td>
+                                            <td>154</td>
+                                            <td>
+                                                <span class="tag tag-success">325</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-youtube-play"></i></td>
+                                            <td><span class="list-name">YouTube</span>
+                                                <span class="text-muted">Alaska, United States</span>
+                                            </td>
+                                            <td>15K</td>
+                                            <td>18K</td>
+                                            <td>200</td>
+                                            <td>
+                                                <span class="tag tag-success">160</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix row-cards">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <article class="media">
+                                <div class="mr-3">
+                                    <img class="avatar avatar-xl" src="../assets/images/sm/avatar5.jpg" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <div class="content">
+                                        <p class="h5">John Smith <small>@johnsmith</small> <small
+                                                class="float-right text-muted">31 minutes ago</small></p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit
+                                            amet massa fringilla egestas. Nullam condimentum luctus turpis.</p>
+                                        <figure>
+                                            <img src="../assets/images/gallery/14.jpg" alt="" class="rounded">
+                                        </figure>
+                                    </div>
+                                    <nav class="d-flex text-muted">
+                                        <a href="javascript:void(0)" class="icon mr-3"><i class="fe fe-repeat"></i></a>
+                                        <a href="javascript:void(0)" class="icon mr-3"><i class="fe fe-twitter"></i>
+                                            24</a>
+                                        <a href="javascript:void(0)" class="icon mr-3"><i class="fe fe-heart"></i>
+                                            43</a>
+                                        <a href="" class="text-muted ml-auto">5 notes</a>
+                                    </nav>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <article class="media">
+                                <div class="mr-3">
+                                    <img class="avatar avatar-xl" src="../assets/images/sm/avatar2.jpg" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <div class="content">
+                                        <p class="h5">John Smith <small>@johnsmith</small> <small
+                                                class="float-right text-muted">31 minutes ago</small></p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit
+                                            amet massa fringilla egestas. Nullam condimentum luctus turpis.</p>
+                                    </div>
+                                    <nav class="d-flex text-muted">
+                                        <a href="javascript:void(0)" class="icon mr-3"><i class="fe fe-repeat"></i></a>
+                                        <a href="javascript:void(0)" class="icon mr-3"><i class="fe fe-twitter"></i>
+                                            24</a>
+                                        <a href="javascript:void(0)" class="icon mr-3"><i class="fe fe-heart"></i>
+                                            43</a>
+                                        <a href="" class="text-muted ml-auto">5 notes</a>
+                                    </nav>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <article class="media">
+                                <div class="mr-3">
+                                    <img class="avatar avatar-xl" src="../assets/images/sm/avatar3.jpg" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <div class="content">
+                                        <p class="h5">John Smith <small>@johnsmith</small> <small
+                                                class="float-right text-muted">31 minutes ago</small></p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit
+                                            amet massa fringilla egestas. Nullam condimentum luctus turpis.</p>
+                                    </div>
+                                    <nav class="d-flex text-muted">
+                                        <a href="javascript:void(0)" class="icon mr-3"><i class="fe fe-repeat"></i></a>
+                                        <a href="javascript:void(0)" class="icon mr-3"><i class="fe fe-twitter"></i>
+                                            24</a>
+                                        <a href="javascript:void(0)" class="icon mr-3"><i class="fe fe-heart"></i>
+                                            43</a>
+                                        <a href="" class="text-muted ml-auto">5 notes</a>
+                                    </nav>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <article class="media">
+                                <div class="mr-3">
+                                    <img class="avatar avatar-xl" src="../assets/images/sm/avatar2.jpg" alt="">
+                                </div>
+                                <div class="media-body">
+                                    <div class="content">
+                                        <p class="h5">John Smith <small>@johnsmith</small> <small
+                                                class="float-right text-muted">31 minutes ago</small></p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit
+                                            amet massa fringilla egestas. Nullam condimentum luctus turpis.</p>
+                                    </div>
+                                    <nav class="d-flex text-muted">
+                                        <a href="javascript:void(0)" class="icon mr-3"><i class="fe fe-repeat"></i></a>
+                                        <a href="javascript:void(0)" class="icon mr-3"><i class="fe fe-twitter"></i>
+                                            24</a>
+                                        <a href="javascript:void(0)" class="icon mr-3"><i class="fe fe-heart"></i>
+                                            43</a>
+                                        <a href="" class="text-muted ml-auto">5 notes</a>
+                                    </nav>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-12">
+                    <div class="card">
+                        <img class="rounded" src="../assets/images/gallery/4.jpg" alt="">
+                        <div class="card-body w_user">
+                            <div class="user_avtar">
+                                <img class="rounded-circle" src="../assets/images/sm/avatar2.jpg" alt="">
+                            </div>
+                            <div class="wid-u-info">
+                                <h5>Dessie Parks</h5>
+                                <p class="text-muted m-b-0">123 6th St. Melbourne, FL 32904</p>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <h5 class="mb-0">270</h5>
+                                        <small>Followers</small>
+                                    </li>
+                                    <li>
+                                        <h5 class="mb-0">310</h5>
+                                        <small>Following</small>
+                                    </li>
+                                    <li>
+                                        <h5 class="mb-0">908</h5>
+                                        <small>Liks</small>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="card">
+                        <img class="rounded" src="../assets/images/gallery/6.jpg" alt="">
+                        <div class="card-body w_user">
+                            <div class="user_avtar">
+                                <img class="rounded-circle" src="../assets/images/sm/avatar3.jpg" alt="">
+                            </div>
+                            <div class="wid-u-info">
+                                <h5>Nancy Flanary</h5>
+                                <p class="text-muted m-b-0">123 6th St. Melbourne, FL 32904</p>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <h5 class="mb-0">270</h5>
+                                        <small>Followers</small>
+                                    </li>
+                                    <li>
+                                        <h5 class="mb-0">310</h5>
+                                        <small>Following</small>
+                                    </li>
+                                    <li>
+                                        <h5 class="mb-0">908</h5>
+                                        <small>Liks</small>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="card">
+                        <img class="rounded" src="../assets/images/gallery/2.jpg" alt="">
+                        <div class="card-body w_user">
+                            <div class="user_avtar">
+                                <img class="rounded-circle" src="../assets/images/sm/avatar4.jpg" alt="">
+                            </div>
+                            <div class="wid-u-info">
+                                <h5>Paul Schmidt</h5>
+                                <p class="text-muted m-b-0">123 6th St. Melbourne, FL 32904</p>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <h5 class="mb-0">270</h5>
+                                        <small>Followers</small>
+                                    </li>
+                                    <li>
+                                        <h5 class="mb-0">310</h5>
+                                        <small>Following</small>
+                                    </li>
+                                    <li>
+                                        <h5 class="mb-0">908</h5>
+                                        <small>Liks</small>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="card w_social_state2">
+                        <div class="card-body">
+                            <div class="icon facebook"><i class="fa fa-facebook fa-2x"></i></div>
+                            <div class="content">
+                                <div class="text">Like</div>
+                                <h5 class="mb-0">123</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="card w_social_state2">
+                        <div class="card-body">
+                            <div class="icon instagram"><i class="fa fa-instagram fa-2x"></i></div>
+                            <div class="content">
+                                <div class="text">Followers</div>
+                                <h5 class="mb-0">231</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="card w_social_state2">
+                        <div class="card-body">
+                            <div class="icon twitter"><i class="fa fa-twitter fa-2x"></i></div>
+                            <div class="content">
+                                <div class="text">Followers</div>
+                                <h5 class="mb-0">31</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="card w_social_state2">
+                        <div class="card-body">
+                            <div class="icon google"><i class="fa fa-google fa-2x"></i></div>
+                            <div class="content">
+                                <div class="text">Like</div>
+                                <h5 class="mb-0">254</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="card w_social_state2">
+                        <div class="card-body">
+                            <div class="icon linkedin"><i class="fa fa-linkedin fa-2x"></i></div>
+                            <div class="content">
+                                <div class="text">Followers</div>
+                                <h5 class="mb-0">2510</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="card w_social_state2">
+                        <div class="card-body">
+                            <div class="icon behance"><i class="fa fa-behance fa-2x"></i></div>
+                            <div class="content">
+                                <div class="text">Project</div>
+                                <h5 class="mb-0">121</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-12">
+                    <div class="card google w_social">
+                        <div id="w_social1" class="carousel slide" data-ride="carousel" data-interval="2000">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <i class="fa fa-google-plus fa-2x"></i>
+                                    <p>18th Feb</p>
+                                    <h4>Now Get <span>Up to 70% Off</span><br>on buy</h4>
+                                    <div class="mt-20"><i>- post form WrapTheme</i></div>
+                                </div>
+                                <div class="carousel-item">
+                                    <i class="fa fa-google-plus fa-2x"></i>
+                                    <p>28th Mar</p>
+                                    <h4>Now Get <span>50% Off</span><br>on buy</h4>
+                                    <div class="mt-20"><i>- post form Epic Theme</i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="card twitter w_social">
+                        <div id="w_social2" class="carousel vert slide" data-ride="carousel" data-interval="2000">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <i class="fa fa-twitter fa-2x"></i>
+                                    <p>23th Feb</p>
+                                    <h4>Now Get <span>Up to 70% Off</span><br>on buy</h4>
+                                    <div class="mt-20"><i>- post form Epic Theme</i></div>
+                                </div>
+                                <div class="carousel-item">
+                                    <i class="fa fa-twitter fa-2x"></i>
+                                    <p>25th Jan</p>
+                                    <h4>Now Get <span>50% Off</span><br>on buy</h4>
+                                    <div class="mt-20"><i>- post form WrapTheme</i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="card facebook w_social">
+                        <div id="w_social2" class="carousel vert slide" data-ride="carousel" data-interval="2000">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <i class="fa fa-facebook fa-2x"></i>
+                                    <p>20th Jan</p>
+                                    <h4>Now Get <span>50% Off</span><br>on buy</h4>
+                                    <div class="mt-20"><i>- post form Theme</i></div>
+                                </div>
+                                <div class="carousel-item">
+                                    <i class="fa fa-facebook fa-2x"></i>
+                                    <p>23th Feb</p>
+                                    <h4>Now Get <span>Up to 70% Off</span><br>on buy</h4>
+                                    <div class="mt-20"><i>- post form Theme</i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

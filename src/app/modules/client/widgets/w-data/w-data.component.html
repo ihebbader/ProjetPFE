@@ -1,0 +1,946 @@
+<app-leftmenu></app-leftmenu>
+<!-- Main body part  -->
+<div class="page">
+    <app-header></app-header>
+    <div class="section-body">
+        <div class="container-fluid">
+            <ul class="nav nav-tabs page-header-tab">
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets']" href="javascript:void(0)">Card</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets-card']" href="javascript:void(0)">Card Image</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets-statistics']" href="javascript:void(0)">Statistics</a>
+                </li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link active" [routerLink]="['/widgets-data']" href="javascript:void(0)">Data</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets-social']" href="javascript:void(0)">Social</a></li>
+                <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
+                        class="nav-link" [routerLink]="['/widgets-other']" href="javascript:void(0)">Mix</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="card" *ngIf="cardremove1" [ngClass]="{'card-fullscreen': isFull}">
+                        <div class="card-header">
+                            <h2 class="card-title">Projects</h2>
+                            <div class="card-options">
+                                <a href="javascript:void(0)" (click)="fullScreenSection(1)"
+                                    class="card-options-fullscreen" data-toggle="card-fullscreen"><i
+                                        class="fe fe-maximize"></i></a>
+                                <a href="javascript:void(0)" (click)="CardRemoveTrans(1)" class="card-options-remove"
+                                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                <div class="item-action dropdown ml-2" dropdown>
+                                    <a href="javascript:void(0)" id="button-basic" dropdownToggle data-toggle="dropdown"
+                                        aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+                                    <div id="dropdown-basic" *dropdownMenu role="menu" aria-labelledby="button-basic"
+                                        class="dropdown-menu dropdown-menu-right" x-placement="bottom-end"
+                                        style="position: absolute; transform: translate3d(-174px, 25px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-eye"></i> View Details </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-share-alt"></i> Share </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-cloud-download"></i> Download</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-copy"></i> Copy to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-folder"></i> Move to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-edit"></i> Rename</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-trash"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table card-table">
+                            <tbody>
+                                <tr>
+                                    <td>Admin Template</td>
+                                    <td class="text-right">
+                                        <span class="tag tag-default">65%</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Landing Page</td>
+                                    <td class="text-right">
+                                        <span class="tag tag-success">Finished</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Backend UI</td>
+                                    <td class="text-right">
+                                        <span class="tag tag-danger">Rejected</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Personal Blog</td>
+                                    <td class="text-right">
+                                        <span class="tag tag-default">40%</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>E-mail Templates</td>
+                                    <td class="text-right">
+                                        <span class="tag tag-default">13%</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Corporate Website</td>
+                                    <td class="text-right">
+                                        <span class="tag tag-warning">Pending</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="../assets/images/gallery/6.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Daniel Kristeen</h5>
+                            <p class="card-text">795 Folsom Ave, Suite 600 San Francisco, 94107</p>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6><strong>3265</strong></h6>
+                                    <span>Post</span>
+                                </div>
+                                <div class="col-4">
+                                    <h6><strong>1358</strong></h6>
+                                    <span>Followers</span>
+                                </div>
+                                <div class="col-4">
+                                    <h6><strong>10K</strong></h6>
+                                    <span>Likes</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">michael@gmail.com</li>
+                            <li class="list-group-item">+ 202-555-2828</li>
+                            <li class="list-group-item">October 22th, 1990</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="javascript:void(0);" class="card-link">View More</a>
+                            <a href="javascript:void(0);" class="card-link">Another link</a>
+                        </div>
+                    </div>
+                    <div class="card" [ngClass]="{'card-fullscreen': isFull1}"
+                        [ngClass]="{'card-collapsed': !isCollapsed, '': isCollapsed}">
+                        <div class="card-header">
+                            <h3 class="card-title">Subscribe</h3>
+                            <div class="card-options">
+                                <a href="javascript:void(0)" (click)="isCollapsed = !isCollapsed"
+                                    [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"
+                                    class="card-options-collapse" data-toggle="card-collapse"><i
+                                        class="fe fe-chevron-up"></i></a>
+                                <a href="javascript:void(0)" (click)="fullScreenSection(2)"
+                                    class="card-options-fullscreen" data-toggle="card-fullscreen"><i
+                                        class="fe fe-maximize"></i></a>
+                            </div>
+                        </div>
+                        <div class="card-body" id="collapseBasic" [collapse]="isCollapsed">
+                            <form>
+                                <div class="form-group">
+                                    <input type="text" value="" placeholder="Enter Name" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" value="" placeholder="Enter Email" class="form-control">
+                                </div>
+                                <button class="btn btn-primary">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card" *ngIf="cardremove2"
+                        [ngClass]="{'card-collapsed': !isCollapsed1, '': isCollapsed1}">
+                        <div class="card-header">
+                            <h3 class="card-title">Followers</h3>
+                            <div class="card-options">
+                                <a href="javascript:void(0)" (click)="isCollapsed1 = !isCollapsed1"
+                                    [attr.aria-expanded]="!isCollapsed1" aria-controls="collapseBasic"
+                                    class="card-options-collapse" data-toggle="card-collapse"><i
+                                        class="fe fe-chevron-up"></i></a>
+                                <a href="javascript:void(0)" (click)="CardRemoveTrans(2)" class="card-options-remove"
+                                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                            </div>
+                        </div>
+                        <div class="card-body" id="collapseBasic" [collapse]="isCollapsed1">
+                            <form>
+                                <div class="input-group m-b-20">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="icon-magnifier"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                </div>
+                            </form>
+                            <ul class="right_chat list-unstyled">
+                                <li class="online">
+                                    <a href="javascript:void(0);">
+                                        <div class="media">
+                                            <img class="media-object " src="../assets/images/xs/avatar4.jpg" alt="">
+                                            <div class="media-body">
+                                                <span class="name">Donald Gardner</span>
+                                                <span class="message">Designer, Blogger</span>
+                                                <span class="badge badge-outline status"></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="online">
+                                    <a href="javascript:void(0);">
+                                        <div class="media">
+                                            <img class="media-object " src="../assets/images/xs/avatar5.jpg" alt="">
+                                            <div class="media-body">
+                                                <span class="name">Wendy Keen</span>
+                                                <span class="message">Java Developer</span>
+                                                <span class="badge badge-outline status"></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="offline">
+                                    <a href="javascript:void(0);">
+                                        <div class="media">
+                                            <img class="media-object " src="../assets/images/xs/avatar2.jpg" alt="">
+                                            <div class="media-body">
+                                                <span class="name">Matt Rosales</span>
+                                                <span class="message">CEO, Epic Theme</span>
+                                                <span class="badge badge-outline status"></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="offline">
+                                    <a href="javascript:void(0);">
+                                        <div class="media">
+                                            <img class="media-object " src="../assets/images/xs/avatar1.jpg" alt="">
+                                            <div class="media-body">
+                                                <span class="name">Nancy Flanary</span>
+                                                <span class="message">Art director, Movie Cut</span>
+                                                <span class="badge badge-outline status"></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="online">
+                                    <a href="javascript:void(0);">
+                                        <div class="media">
+                                            <img class="media-object " src="../assets/images/xs/avatar3.jpg" alt="">
+                                            <div class="media-body">
+                                                <span class="name">Phillip Smith</span>
+                                                <span class="message">Writter, Mag Editor</span>
+                                                <span class="badge badge-outline status"></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Referrals</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-vcenter text-nowrap card-table table_custom">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="clearfix">
+                                                    <div class="float-left"><strong>35%</strong></div>
+                                                    <div class="float-right"><small class="text-muted">visitor from
+                                                            America</small></div>
+                                                </div>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar bg-azure" role="progressbar"
+                                                        style="width: 35%" aria-valuenow="42" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="clearfix">
+                                                    <div class="float-left"><strong>25%</strong></div>
+                                                    <div class="float-right"><small class="text-muted">visitor from
+                                                            Canada</small></div>
+                                                </div>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar bg-green" role="progressbar"
+                                                        style="width: 25%" aria-valuenow="0" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="clearfix">
+                                                    <div class="float-left"><strong>15%</strong></div>
+                                                    <div class="float-right"><small class="text-muted">visitor from
+                                                            India</small></div>
+                                                </div>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar bg-orange" role="progressbar"
+                                                        style="width: 15%" aria-valuenow="36" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="clearfix">
+                                                    <div class="float-left"><strong>20%</strong></div>
+                                                    <div class="float-right"><small class="text-muted">visitor from
+                                                            UK</small></div>
+                                                </div>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar bg-indigo" role="progressbar"
+                                                        style="width: 20%" aria-valuenow="6" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="clearfix">
+                                                    <div class="float-left"><strong>5%</strong></div>
+                                                    <div class="float-right"><small class="text-muted">visitor from
+                                                            Australia</small></div>
+                                                </div>
+                                                <div class="progress progress-xs">
+                                                    <div class="progress-bar bg-cyan" role="progressbar"
+                                                        style="width: 5%" aria-valuenow="7" aria-valuemin="0"
+                                                        aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="card" [ngClass]="{'card-fullscreen': isFull2}"
+                        [ngClass]="{'card-collapsed': !isCollapsed2, '': isCollapsed2}">
+                        <div class="card-status bg-green"></div>
+                        <div class="card-header">
+                            <h3 class="card-title">ToDo List <small>This Month task list</small></h3>
+                            <div class="card-options">
+                                <a href="javascript:void(0)" (click)="isCollapsed2 = !isCollapsed2"
+                                    [attr.aria-expanded]="!isCollapsed2" aria-controls="collapseBasic"
+                                    class="card-options-collapse" data-toggle="card-collapse"><i
+                                        class="fe fe-chevron-up"></i></a>
+                                <a href="javascript:void(0)" (click)="fullScreenSection(3)"
+                                    class="card-options-fullscreen" data-toggle="card-fullscreen"><i
+                                        class="fe fe-maximize"></i></a>
+                                <div class="item-action dropdown ml-2" dropdown>
+                                    <a href="javascript:void(0)" id="button-basic" dropdownToggle data-toggle="dropdown"
+                                        aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+                                    <div id="dropdown-basic" *dropdownMenu role="menu" aria-labelledby="button-basic"
+                                        class="dropdown-menu dropdown-menu-right" x-placement="bottom-end"
+                                        style="position: absolute; transform: translate3d(-174px, 25px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-eye"></i> View Details </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-share-alt"></i> Share </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-cloud-download"></i> Download</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-copy"></i> Copy to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-folder"></i> Move to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-edit"></i> Rename</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-trash"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body todo_list" id="collapseBasic" [collapse]="isCollapsed2">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1"
+                                            value="option1" checked>
+                                        <span class="custom-control-label">Report Panel Usag</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1"
+                                            value="option1">
+                                        <span class="custom-control-label">Report Panel Usag</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1"
+                                            value="option1" checked>
+                                        <span class="custom-control-label">New logo design for Angular Admin</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="example-checkbox1"
+                                            value="option1">
+                                        <span class="custom-control-label">Design PSD files for Angular Admin</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card" *ngIf="cardremove3" [ngClass]="{'card-fullscreen': isFull3}"
+                        [ngClass]="{'card-collapsed': !isCollapsed3, '': isCollapsed3}">
+                        <div class="card-status bg-teal"></div>
+                        <div class="card-header">
+                            <h3 class="card-title">Timeline</h3>
+                            <div class="card-options">
+                                <a href="javascript:void(0)" (click)="isCollapsed3 = !isCollapsed3"
+                                    [attr.aria-expanded]="!isCollapsed3" aria-controls="collapseBasic"
+                                    class="card-options-collapse" data-toggle="card-collapse"><i
+                                        class="fe fe-chevron-up"></i></a>
+                                <a href="javascript:void(0)" (click)="fullScreenSection(4)"
+                                    class="card-options-fullscreen" data-toggle="card-fullscreen"><i
+                                        class="fe fe-maximize"></i></a>
+                                <a href="javascript:void(0)" (click)="CardRemoveTrans(3)" class="card-options-remove"
+                                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                <div class="item-action dropdown ml-2" dropdown>
+                                    <a href="javascript:void(0)" id="button-basic" dropdownToggle data-toggle="dropdown"
+                                        aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+                                    <div id="dropdown-basic" *dropdownMenu role="menu" aria-labelledby="button-basic"
+                                        class="dropdown-menu dropdown-menu-right" x-placement="bottom-end"
+                                        style="position: absolute; transform: translate3d(-174px, 25px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-eye"></i> View Details </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-share-alt"></i> Share </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-cloud-download"></i> Download</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-copy"></i> Copy to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-folder"></i> Move to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-edit"></i> Rename</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-trash"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" id="collapseBasic" [collapse]="isCollapsed3">
+                            <ul class="new_timeline mt-3">
+                                <li>
+                                    <div class="bullet pink"></div>
+                                    <div class="time">11:00am</div>
+                                    <div class="desc">
+                                        <h3>Attendance</h3>
+                                        <h4>Computer Class</h4>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="bullet pink"></div>
+                                    <div class="time">11:30am</div>
+                                    <div class="desc">
+                                        <h3>Added an interest</h3>
+                                        <h4>“Volunteer Activities”</h4>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="bullet green"></div>
+                                    <div class="time">12:00pm</div>
+                                    <div class="desc">
+                                        <h3>Developer Team</h3>
+                                        <h4>Hangouts</h4>
+                                        <ul class="list-unstyled team-info margin-0 p-t-5">
+                                            <li><img src="../assets/images/xs/avatar1.jpg" alt="Avatar"></li>
+                                            <li><img src="../assets/images/xs/avatar2.jpg" alt="Avatar"></li>
+                                            <li><img src="../assets/images/xs/avatar3.jpg" alt="Avatar"></li>
+                                            <li><img src="../assets/images/xs/avatar4.jpg" alt="Avatar"></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="bullet green"></div>
+                                    <div class="time">2:00pm</div>
+                                    <div class="desc">
+                                        <h3>Responded to need</h3>
+                                        <a href="javascript:void(0)">“In-Kind Opportunity”</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="bullet orange"></div>
+                                    <div class="time">1:30pm</div>
+                                    <div class="desc">
+                                        <h3>Lunch Break</h3>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="bullet green"></div>
+                                    <div class="time">2:38pm</div>
+                                    <div class="desc">
+                                        <h3>Finish</h3>
+                                        <h4>Go to Home</h4>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="list-group list-widget">
+                                <a href="app-inbox.html" class="list-group-item"><span
+                                        class="badge badge-success">654</span><i
+                                        class="fa fa-envelope text-muted"></i>Inbox</a>
+                                <a href="javascript:void(0);" class="list-group-item"><span
+                                        class="badge badge-info">364</span><i class="fa fa-eye text-muted"></i> Profile
+                                    visits</a>
+                                <a href="javascript:void(0);" class="list-group-item"><span
+                                        class="badge badge-warning">12</span><i class="fa fa-phone text-muted"></i>
+                                    Call</a>
+                                <a href="javascript:void(0);" class="list-group-item"><span
+                                        class="badge badge-danger">54</span><i class="fa fa-comments-o text-muted"></i>
+                                    Messages</a>
+                                <a href="javascript:void(0);" class="list-group-item"><span
+                                        class="badge badge-warning">19</span><i class="fa fa-bookmark text-muted"></i>
+                                    Bookmarks</a>
+                                <a href="javascript:void(0);" class="list-group-item"><span
+                                        class="badge badge-warning">56</span><i class="fa fa-bell text-muted"></i>
+                                    Notifications</a>
+                                <a href="javascript:void(0);" class="list-group-item"><span
+                                        class="badge badge-info">25</span><i class="fa fa-clock-o text-muted"></i>
+                                    Watch</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Site Traffic</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-6 border-right pb-4 pt-4">
+                                    <label class="mb-0">User</label>
+                                    <h4 class="font-30 font-weight-bold text-col-blue">11,545</h4>
+                                </div>
+                                <div class="col-6 pb-4 pt-4">
+                                    <label class="mb-0">Chat</label>
+                                    <h4 class="font-30 font-weight-bold text-col-blue">542</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="d-block">New items <span class="float-right">77%</span></label>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="77"
+                                        aria-valuemin="0" aria-valuemax="100" style="width: 77%;"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="d-block">Uploads <span class="float-right">50%</span></label>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50"
+                                        aria-valuemin="0" aria-valuemax="100" style="width: 50%;"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="d-block">Comments <span class="float-right">23%</span></label>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="23"
+                                        aria-valuemin="0" aria-valuemax="100" style="width: 23%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-status bg-green"></div>
+                        <div class="card-body text-center">
+                            <div class="card-category">Premium</div>
+                            <div class="display-3 my-4">$49</div>
+                            <ul class="list-unstyled leading-loose">
+                                <li><strong>10</strong> Users</li>
+                                <li><i class="fe fe-check text-success mr-2" aria-hidden="true"></i> Sharing Tools</li>
+                                <li><i class="fe fe-check text-success mr-2" aria-hidden="true"></i> Design Tools</li>
+                                <li><i class="fe fe-x text-danger mr-2" aria-hidden="true"></i> Private Messages</li>
+                                <li><i class="fe fe-x text-danger mr-2" aria-hidden="true"></i> Twitter API</li>
+                            </ul>
+                            <div class="text-center mt-6">
+                                <a href="javascript:void(0)" class="btn btn-block btn-success">Choose plan</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-4 col-md-12">
+                    <div class="card" *ngIf="cardremove4" [ngClass]="{'card-fullscreen': isFull4}"
+                        [ngClass]="{'card-collapsed': !isCollapsed4, '': isCollapsed4}">
+                        <div class="card-header">
+                            <h3 class="card-title">Invoice</h3>
+                            <div class="card-options">
+                                <a href="javascript:void(0)" (click)="isCollapsed4 = !isCollapsed4"
+                                    [attr.aria-expanded]="!isCollapsed4" aria-controls="collapseBasic"
+                                    class="card-options-collapse" data-toggle="card-collapse"><i
+                                        class="fe fe-chevron-up"></i></a>
+                                <a href="javascript:void(0)" (click)="fullScreenSection(5)"
+                                    class="card-options-fullscreen" data-toggle="card-fullscreen"><i
+                                        class="fe fe-maximize"></i></a>
+                                <a href="javascript:void(0)" (click)="CardRemoveTrans(4)" class="card-options-remove"
+                                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                <div class="item-action dropdown ml-2" dropdown>
+                                    <a href="javascript:void(0)" id="button-basic" dropdownToggle data-toggle="dropdown"
+                                        aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+                                    <div id="dropdown-basic" *dropdownMenu role="menu" aria-labelledby="button-basic"
+                                        class="dropdown-menu dropdown-menu-right" x-placement="bottom-end"
+                                        style="position: absolute; transform: translate3d(-174px, 25px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-eye"></i> View Details </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-share-alt"></i> Share </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-cloud-download"></i> Download</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-copy"></i> Copy to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-folder"></i> Move to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-edit"></i> Rename</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-trash"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" id="collapseBasic" [collapse]="isCollapsed4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <address>
+                                        <strong>Epic Theme Inc.</strong> <small
+                                            class="float-right">16/05/2018</small><br>
+                                        795 Folsom Ave, Suite 546<br>
+                                        San Francisco, CA 54656<br>
+                                        <abbr title="Phone">P:</abbr> (123) 456-34636
+                                    </address>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Item</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Simple Black Clock</td>
+                                            <td>$30</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Brone Candle</td>
+                                            <td>$25</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td><strong>$55</strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 align-right">
+                                    <button class="btn btn-warning"><i class="icon-printer"></i></button>
+                                    <button class="btn btn-primary ml-1">Pay Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" *ngIf="cardremove5" [ngClass]="{'card-fullscreen': isFull5}"
+                        [ngClass]="{'card-collapsed': !isCollapsed5, '': isCollapsed5}">
+                        <div class="card-header">
+                            <h3 class="card-title">Last comments</h3>
+                            <div class="card-options">
+                                <a href="javascript:void(0)" (click)="isCollapsed5 = !isCollapsed5"
+                                    [attr.aria-expanded]="!isCollapsed5" aria-controls="collapseBasic"
+                                    class="card-options-collapse" data-toggle="card-collapse"><i
+                                        class="fe fe-chevron-up"></i></a>
+                                <a href="javascript:void(0)" (click)="fullScreenSection(6)"
+                                    class="card-options-fullscreen" data-toggle="card-fullscreen"><i
+                                        class="fe fe-maximize"></i></a>
+                                <a href="javascript:void(0)" (click)="CardRemoveTrans(5)" class="card-options-remove"
+                                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                <div class="item-action dropdown ml-2" dropdown>
+                                    <a href="javascript:void(0)" id="button-basic" dropdownToggle data-toggle="dropdown"
+                                        aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+                                    <div id="dropdown-basic" *dropdownMenu role="menu" aria-labelledby="button-basic"
+                                        class="dropdown-menu dropdown-menu-right" x-placement="bottom-end"
+                                        style="position: absolute; transform: translate3d(-174px, 25px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-eye"></i> View Details </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-share-alt"></i> Share </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-cloud-download"></i> Download</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-copy"></i> Copy to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-folder"></i> Move to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-edit"></i> Rename</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-trash"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" id="collapseBasic" [collapse]="isCollapsed5">
+                            <ul class="recent_comments list-unstyled">
+                                <li>
+                                    <div class="avatar_img">
+                                        <img class="rounded img-fluid" src="../assets/images/xs/avatar4.jpg" alt="">
+                                    </div>
+                                    <div class="comment_body">
+                                        <h6>Donald Gardner <small class="float-right">Just now</small></h6>
+                                        <p>Lorem ipsum Veniam aliquip culpa laboris minim tempor</p>
+                                        <div>
+                                            <span class="tag tag-success">Approved</span>
+                                            <a class="ml-1" href="javascript:void(0);"><i class="icon-bubbles"></i></a>
+                                            <a href="javascript:void(0);"><i class="icon-trash"></i></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="avatar_img">
+                                        <img class="rounded img-fluid" src="../assets/images/xs/avatar3.jpg" alt="">
+                                    </div>
+                                    <div class="comment_body">
+                                        <h6>Dessie Parks <small class="float-right">1min ago</small></h6>
+                                        <p>It is a long established fact that a reader will be distracted by the
+                                            readable content of a page when looking</p>
+                                        <div>
+                                            <span class="tag tag-danger">Rejected</span>
+                                            <a class="ml-1" href="javascript:void(0);"><i class="icon-bubbles"></i></a>
+                                            <a href="javascript:void(0);"><i class="icon-trash"></i></a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="avatar_img">
+                                        <img class="rounded img-fluid" src="../assets/images/xs/avatar6.jpg" alt="">
+                                    </div>
+                                    <div class="comment_body">
+                                        <h6>Gary Camara <small class="float-right">5imn ago</small></h6>
+                                        <p>The point of using Lorem Ipsum is that it has a more-or-less normal
+                                            distribution</p>
+                                        <div>
+                                            <span class="tag tag-warning">Pending</span>
+                                            <a class="ml-1" href="javascript:void(0);"><i class="icon-bubbles"></i></a>
+                                            <a href="javascript:void(0);"><i class="icon-trash"></i></a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card" *ngIf="cardremove6" [ngClass]="{'card-fullscreen': isFull6}"
+                        [ngClass]="{'card-collapsed': !isCollapsed6, '': isCollapsed6}">
+                        <div class="card-header">
+                            <h3 class="card-title">Feeds Notifications</h3>
+                            <div class="card-options">
+                                <a href="javascript:void(0)" (click)="isCollapsed6 = !isCollapsed6"
+                                    [attr.aria-expanded]="!isCollapsed6" aria-controls="collapseBasic"
+                                    class="card-options-collapse" data-toggle="card-collapse"><i
+                                        class="fe fe-chevron-up"></i></a>
+                                <a href="javascript:void(0)" (click)="fullScreenSection(7)"
+                                    class="card-options-fullscreen" data-toggle="card-fullscreen"><i
+                                        class="fe fe-maximize"></i></a>
+                                <a href="javascript:void(0)" (click)="CardRemoveTrans(6)" class="card-options-remove"
+                                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                <div class="item-action dropdown ml-2" dropdown>
+                                    <a href="javascript:void(0)" id="button-basic" dropdownToggle data-toggle="dropdown"
+                                        aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+                                    <div id="dropdown-basic" *dropdownMenu role="menu" aria-labelledby="button-basic"
+                                        class="dropdown-menu dropdown-menu-right" x-placement="bottom-end"
+                                        style="position: absolute; transform: translate3d(-174px, 25px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-eye"></i> View Details </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-share-alt"></i> Share </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-cloud-download"></i> Download</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-copy"></i> Copy to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-folder"></i> Move to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-edit"></i> Rename</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-trash"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" id="collapseBasic" [collapse]="isCollapsed6">
+                            <ul class="list-unstyled feeds_widget">
+                                <li>
+                                    <div class="feeds-left"><i class="fa fa-thumbs-o-up"></i></div>
+                                    <div class="feeds-body">
+                                        <h4 class="title">7 New Feedback <small
+                                                class="float-right text-muted">Today</small></h4>
+                                        <small>It will give a smart finishing to your site</small>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="feeds-left"><i class="fa fa-user"></i></div>
+                                    <div class="feeds-body">
+                                        <h4 class="title">New User <small class="float-right text-muted">10:45</small>
+                                        </h4>
+                                        <small>I feel great! Thanks team</small>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="feeds-left"><i class="fa fa-question-circle"></i></div>
+                                    <div class="feeds-body">
+                                        <h4 class="title text-warning">Server Warning <small
+                                                class="float-right text-muted">10:50</small></h4>
+                                        <small>Your connection is not private</small>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="feeds-left"><i class="fa fa-check"></i></div>
+                                    <div class="feeds-body">
+                                        <h4 class="title text-danger">Issue Fixed <small
+                                                class="float-right text-muted">11:05</small></h4>
+                                        <small>WE have fix all Design bug with Responsive</small>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="feeds-left"><i class="fa fa-shopping-cart"></i></div>
+                                    <div class="feeds-body">
+                                        <h4 class="title">7 New Orders <small
+                                                class="float-right text-muted">11:35</small></h4>
+                                        <small>You received a new oder from Tina.</small>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card" *ngIf="cardremove7" [ngClass]="{'card-fullscreen': isFull7}"
+                        [ngClass]="{'card-collapsed': !isCollapsed7, '': isCollapsed7}">
+                        <div class="card-header">
+                            <h3 class="card-title">Twitter Feed</h3>
+                            <div class="card-options">
+                                <a href="javascript:void(0)" (click)="isCollapsed7 = !isCollapsed7"
+                                    [attr.aria-expanded]="!isCollapsed7" aria-controls="collapseBasic"
+                                    class="card-options-collapse" data-toggle="card-collapse"><i
+                                        class="fe fe-chevron-up"></i></a>
+                                <a href="javascript:void(0)" (click)="fullScreenSection(8)"
+                                    class="card-options-fullscreen" data-toggle="card-fullscreen"><i
+                                        class="fe fe-maximize"></i></a>
+                                <a href="javascript:void(0)" (click)="CardRemoveTrans(7)" class="card-options-remove"
+                                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                <div class="item-action dropdown ml-2" dropdown>
+                                    <a href="javascript:void(0)" id="button-basic" dropdownToggle data-toggle="dropdown"
+                                        aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+                                    <div id="dropdown-basic" *dropdownMenu role="menu" aria-labelledby="button-basic"
+                                        class="dropdown-menu dropdown-menu-right" x-placement="bottom-end"
+                                        style="position: absolute; transform: translate3d(-174px, 25px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-eye"></i> View Details </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-share-alt"></i> Share </a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-cloud-download"></i> Download</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-copy"></i> Copy to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-folder"></i> Move to</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-edit"></i> Rename</a>
+                                        <a href="javascript:void(0)" class="dropdown-item"><i
+                                                class="dropdown-icon fa fa-trash"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" id="collapseBasic" [collapse]="isCollapsed7">
+                            <form>
+                                <div class="form-group">
+                                    <textarea rows="4" class="form-control no-resize"
+                                        placeholder="Enter here for tweet..."></textarea>
+                                </div>
+                                <button class="btn btn-primary">Tweet</button>
+                                <a href="javascript:void(0);" class="float-right">13K users active</a>
+                            </form>
+                            <hr>
+                            <ul class="right_chat list-unstyled">
+                                <li class="offline">
+                                    <a href="javascript:void(0);">
+                                        <div class="media">
+                                            <img class="media-object " src="../assets/images/xs/avatar2.jpg" alt="">
+                                            <div class="media-body">
+                                                <span class="name">@Matt Rosales <small class="float-right">1 hours
+                                                        ago</small></span>
+                                                <span class="message">Contrary to popular belief, Lorem Ipsum is not
+                                                    simply random text</span>
+                                                <span class="badge badge-outline status"></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="offline">
+                                    <a href="javascript:void(0);">
+                                        <div class="media">
+                                            <img class="media-object " src="../assets/images/xs/avatar1.jpg" alt="">
+                                            <div class="media-body">
+                                                <span class="name">@Nancy Flanary <small class="float-right">45 hours
+                                                        ago</small></span>
+                                                <span class="message">There are many variations of passages of Lorem
+                                                    Ipsum available, but the majority</span>
+                                                <span class="badge badge-outline status"></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="online">
+                                    <a href="javascript:void(0);">
+                                        <div class="media">
+                                            <img class="media-object " src="../assets/images/xs/avatar3.jpg" alt="">
+                                            <div class="media-body">
+                                                <span class="name">@Phillip Smith <small class="float-right">1 day
+                                                        ago</small></span>
+                                                <span class="message">It is a long established fact that a reader will
+                                                    be distracted</span>
+                                                <span class="badge badge-outline status"></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
