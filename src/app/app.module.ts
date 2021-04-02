@@ -9,6 +9,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import {Router} from '@angular/router';
+import {SimpleNotificationsModule} from 'angular2-notifications';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {Router} from '@angular/router';
     CarouselModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
-    })
+    }),
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [BsDatepickerModule],
   bootstrap: [AppComponent]
