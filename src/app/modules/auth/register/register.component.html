@@ -8,21 +8,26 @@
             </div>
             <div class="card-body">
                 <div class="card-title">Créer un compte</div>
+              <div id="alerte" *ngIf="alerte" class="alert alert-danger" role="alert">
+               {{message}}
+              </div>
+              <form #f="ngForm" (ngSubmit)="onCreate(f.value)">
                 <div class="form-group">
                     <label class="form-label">Nom d'utilisateur</label>
-                    <input type="text" class="form-control" placeholder="Entrer votre nom d'utilisateur">
+                    <input type="text"  [ngClass]="!checkUsername?'is-invalid':'is-valid'" (keydown)="check(f.value)" ngModel="" name="username"  id="username"  class="form-control  " placeholder="Entrer votre nom d'utilisateur">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Adresse E-mail</label>
-                    <input type="email" class="form-control" placeholder="Entrer votre adresse email">
+                    <input type="email" [ngClass]="!checkEmail?'is-invalid':'is-valid'" (keydown)="check(f.value)" ngModel name="email" class="form-control" placeholder="Entrer votre adresse email">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control" placeholder="Entrer votre mot de passe ici">
+                    <input type="password" [ngClass]="!checkPassword?'is-invalid':'is-valid'" (keydown)="check(f.value)"  [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Entrer votre mot de passe ici">
+                  <app-password-control *ngIf="password" [passwordToCheck]="password" [barLabel]="barLabel"></app-password-control>
                 </div>
                 <div class="form-group">
                     <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" />
+                        <input type="checkbox" [ngClass]="!checkIsCheked?'is-invalid':'is-valid'"  ngModel="" class="custom-control-input" name="check" />
                         <span class="custom-control-label">J'accepte <a href="javascript:void(0)"> les
                         tous les termes et les conditions</a></span>
                     </label>
@@ -30,6 +35,7 @@
                 <div class="form-footer">
                     <button type="submit" class="btn btn-primary btn-block">Inscription</button>
                 </div>
+              </form>
             </div>
             <div class="text-center text-muted">
               Vous avez déja un compte?  <a [routerLink]="['/login']" href="javascript:void(0)">Connectez-vous!</a>

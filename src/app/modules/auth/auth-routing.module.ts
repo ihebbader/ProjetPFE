@@ -6,6 +6,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { RegisterComponent } from './register/register.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { ErrorPage2Component } from './error-page2/error-page2.component';
+import {ChagePasswordComponent} from './chage-password/chage-password.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
-    data: { title: ':: Epic :: Register' }
+    data: { title: 'Inscription' }
   },
   {
     path: 'error-404',
@@ -32,6 +33,11 @@ const routes: Routes = [
     path: 'error-500',
     component: ErrorPage2Component,
     data: { title: ':: Epic :: Error-500' }
+  },
+  {
+    path: 'resetPassword',
+    component:ChagePasswordComponent ,
+    data: { title: 'Changer mot de passe ' }
   },
 ];
 

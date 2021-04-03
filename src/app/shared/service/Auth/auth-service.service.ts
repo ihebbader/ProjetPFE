@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../../../environments/environment';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {HttpClient} from '@angular/common/http';
 
@@ -35,5 +34,19 @@ export class AuthServiceService {
   getUser(){
     console.log(this.DecodeToken);
     return this.http.post(this.host+"/getuser",this.DecodeToken.sub,{headers:{'Authorization':localStorage.getItem('token')}});
+  }
+  existUser(user){
+
+    return this.http.post(this.host+"/exist",user,{observe:'response'});
+  }
+  register(user){
+    return this.http.post(this.host+"/register",user,{observe:'response'});
+  }
+  DemandeReset(username){
+    return this.http.post(this.host+"/resetPassword",username);
+  }
+  changepassword(form){
+
+    return this.http.post(this.host+"/changePassword",form);
   }
 }

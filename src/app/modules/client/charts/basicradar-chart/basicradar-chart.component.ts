@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {
   ApexNonAxisChartSeries,
   ApexPlotOptions,
@@ -21,10 +21,10 @@ export type ChartOptions = {
 export class BasicradarChartComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
-
+  @Input() pourc:number;
   constructor() {
     this.chartOptions = {
-      series: [70],
+      series: [30],
       chart: {
         height: 250,
         type: "radialBar",
@@ -37,7 +37,7 @@ export class BasicradarChartComponent implements OnInit {
           }
         }
       },
-      labels: ["REVENUE"]
+      labels: ["COMPTE DESACTIVEE"]
     };
   }
   ngOnInit(): void {

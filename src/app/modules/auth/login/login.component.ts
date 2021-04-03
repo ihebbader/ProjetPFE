@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
-import {AuthServiceService} from '../../../shared/service/auth-service.service';
+import {AuthServiceService} from '../../../shared/service/Auth/auth-service.service';
 import {Router} from '@angular/router';
 import {NotificationsService} from 'angular2-notifications';
 @Component({
@@ -53,7 +53,7 @@ disabled=false;
           localStorage.removeItem('token');
           return;
         }else {
-          this.router.navigateByUrl("/hr-dashboard");
+          this.router.navigateByUrl("/Dashboard-Admin");
           this.onSuccess("Opération Reussite! Vous etes maintenant connecter !")
         }
       },error => {

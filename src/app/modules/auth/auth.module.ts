@@ -12,6 +12,8 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import {FormsModule} from '@angular/forms';
+import { PasswordControlComponent } from './register/password-control/password-control.component';
+import { ChagePasswordComponent } from './chage-password/chage-password.component';
 
 
 @NgModule({
@@ -21,7 +23,7 @@ import {FormsModule} from '@angular/forms';
     CarouselModule.forRoot(),
     FormsModule,
   ],
-  declarations: [AuthRoutingModule.components, LoginComponent, ForgotPasswordComponent, RegisterComponent, ErrorPageComponent, ErrorPage2Component],
+  declarations: [AuthRoutingModule.components, LoginComponent, ForgotPasswordComponent, RegisterComponent, ErrorPageComponent, ErrorPage2Component, PasswordControlComponent, ChagePasswordComponent],
   providers: []
 })
 export class AuthModule {

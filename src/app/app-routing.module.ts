@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'auth', loadChildren: './modules/auth/auth.module#AuthModule' },
   { path: 'client', loadChildren: './modules/client/client.module#ClientModule' },
   { path: '', pathMatch: 'full', redirectTo: '/login' },
-  { path: '**', redirectTo: '/login',  },
+ // { path: '**', redirectTo: '/login',  },
 ];
 
 @NgModule({

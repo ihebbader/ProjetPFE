@@ -21,9 +21,9 @@ export class AppComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private titleService: Title) { }
   ngOnInit(): void {
-    if(localStorage.getItem('token') == null){
+   /* if(localStorage.getItem('token') == null){
       this.router.navigateByUrl('/login')
-    }
+    }*/
     sessionStorage.setItem("MinSideClass", "");
     sessionStorage.setItem("HeaderClass", "top_dark");
     sessionStorage.setItem("Font1", "font-montserrat");

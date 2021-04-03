@@ -57,9 +57,9 @@ const routes: Routes = [
     data: { title: ':: Epic :: Home' }
   },
   {
-    path: 'hr-dashboard',
+    path: 'Dashboard-Admin',
     component: HrDashboardComponent,
-    data: { title: ':: Epic :: Home' }
+    data: { title: 'Page daccueil' }
   },
   {
     path: 'hr-users',

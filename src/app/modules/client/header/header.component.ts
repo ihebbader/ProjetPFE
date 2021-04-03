@@ -12,7 +12,9 @@ export class HeaderComponent implements OnInit {
   groupTab: boolean;
   chatTab: boolean = true;
   title: any
+  maintenant: any;
   constructor(private route: Router) {
+    this.maintenant=new Date().getHours();
     this.title = route.url;
     debugger
     this.title = this.title.replace(/\//g, '');

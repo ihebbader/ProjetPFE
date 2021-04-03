@@ -1,20 +1,9 @@
 <div id="header_top" class="header_top">
     <div class="container">
         <div class="hleft">
-            <a class="header-brand" [routerLink]="['/hr-dashboard']" href="javascript:void(0)"><i
+            <a class="header-brand" [routerLink]="['/Dashboard-Admin']" href="javascript:void(0)"><i
                     class="fe fe-command brand-logo"></i></a>
-            <div class="dropdown">
-                <a [routerLink]="['/search']" href="javascript:void(0)" class="nav-link icon"><i
-                        class="fa fa-search"></i></a>
-                <a [routerLink]="['/calender']" href="javascript:void(0)" class="nav-link icon app_inbox"><i
-                        class="fa fa-calendar"></i></a>
-                <a [routerLink]="['/contacts']" href="javascript:void(0)" class="nav-link icon xs-hide"><i
-                        class="fa fa-id-card-o"></i></a>
-                <a [routerLink]="['/chat']" href="javascript:void(0)" class="nav-link icon xs-hide"><i
-                        class="fa fa-comments-o"></i></a>
-                <a [routerLink]="['/filemanager']" href="javascript:void(0)" class="nav-link icon app_file xs-hide"><i
-                        class="fa fa-folder-o"></i></a>
-            </div>
+
         </div>
         <div class="hright">
             <div class="dropdown">
@@ -471,11 +460,11 @@
     </h5>
     <nav id="left-sidebar-nav" class="sidebar-nav">
         <ul class="metismenu">
-            <li class="g_heading">Directories</li>
+            <li class="g_heading">Dashboard</li>
             <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
                 <a href="javascript:void(0)" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
                     aria-controls="collapseBasic" class="has-arrow arrow-c"><i
-                        class="icon-rocket"></i><span>HRMS</span></a>
+                        class="fa fa-user-circle"></i><span>Admin Panel</span></a>
                 <ul class="collapse" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
                             [routerLink]="['/hr-dashboard']" href="javascript:void(0)"><span>Dashboard</span>
@@ -548,40 +537,6 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:void(0)" (click)="isAuthCollapsed = !isAuthCollapsed"
-                    [attr.aria-expanded]="!isAuthCollapsed" aria-controls="AuthCollapsed" class="has-arrow arrow-c"><i
-                        class="icon-lock"></i><span>Authentication</span></a>
-                <ul class="submenu" class="collapse" id="AuthCollapsed" [collapse]="isAuthCollapsed"
-                    [isAnimated]="true">
-                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/login']" href="javascript:void(0)">Login</a></li>
-                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/register']" href="javascript:void(0)">Register</a></li>
-                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/forgot-password']" href="javascript:void(0)">Forgot password</a></li>
-                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/error-404']" href="javascript:void(0)">404 error</a></li>
-                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/error-500']" href="javascript:void(0)">500 error</a></li>
-                </ul>
-            </li>
-            <li class="g_heading">UI Elements</li>
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
-                    [routerLink]="['/icon-fontawesome']" href="javascript:void(0)"><i
-                        class="icon-tag"></i><span>Icons</span></a></li>
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/charts']"
-                    href="javascript:void(0)"><i class="icon-bar-chart"></i><span>Charts</span></a></li>
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a
-                    [routerLink]="['/formelement']" href="javascript:void(0)"><i
-                        class="icon-layers"></i><span>Forms</span></a></li>
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/table']"
-                    href="javascript:void(0)"><i class="icon-tag"></i><span>Tables</span></a></li>
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/widgets']"
-                    href="javascript:void(0)"><i class="icon-puzzle"></i><span>Widgets</span></a></li>
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/map']"
-                    href="javascript:void(0)"><i class="icon-map"></i><span>Maps</span></a></li>
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/gallery']"
-                    href="javascript:void(0)"><i class="icon-picture"></i><span>Gallery</span></a></li>
         </ul>
     </nav>
 </div>
