@@ -29,11 +29,9 @@ export class HrDashboardComponent implements OnInit {
 
   getUsers(){
     this.userService.getusers().subscribe(resp=>{
-      console.log(resp);
+    //  console.log(resp);
       this.Users = resp;
       for(let u of this.Users._embedded.appUsers){
-        console.log(this.NbreUsersNotActived);
-        console.log(this.NbreUsers);
         if(u.actived == 0  ){
           this.NbreUsersNotActived=this.NbreUsersNotActived+1;
         }

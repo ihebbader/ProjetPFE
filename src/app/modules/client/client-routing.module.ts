@@ -62,9 +62,9 @@ const routes: Routes = [
     data: { title: 'Page daccueil' }
   },
   {
-    path: 'hr-users',
+    path: 'user-management',
     component: HrUsersComponent,
-    data: { title: ':: Epic :: HR Users' }
+    data: { title: 'gestion des utilisateur' }
   },
   {
     path: 'hr-departments',

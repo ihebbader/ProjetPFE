@@ -1,8 +1,7 @@
 <div id="header_top" class="header_top">
     <div class="container">
         <div class="hleft">
-            <a class="header-brand" [routerLink]="['/Dashboard-Admin']" href="javascript:void(0)"><i
-                    class="fe fe-command brand-logo"></i></a>
+            <a class="header-brand" [routerLink]="['/Dashboard-Admin']" href="javascript:void(0)"><img src="assets/images/log.png"></a>
 
         </div>
         <div class="hright">
@@ -467,10 +466,10 @@
                         class="fa fa-user-circle"></i><span>Admin Panel</span></a>
                 <ul class="collapse" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/hr-dashboard']" href="javascript:void(0)"><span>Dashboard</span>
+                            [routerLink]="['/Dashboard-Admin']" href="javascript:void(0)"><span>Dashboard</span>
                         </a></li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-                        <a class="submenu" [routerLink]="['/hr-users']" href="javascript:void(0)"><span>Users</span></a>
+                        <a class="submenu" [routerLink]="['/user-management']" href="javascript:void(0)"><span>Users</span></a>
                     </li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
                             [routerLink]="['/hr-departments']" href="javascript:void(0)"><span>Departments</span></a>

@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
     this.authService.existUser(value).subscribe(resp=>{
       if(resp.body){
         this.alerte=true;
-        this.message="Cette nom d'utilisateur déja !";
+        this.message="Cette nom d'utilisateur existe déja !";
         this.checkUsername=false;
         return;
       }else{
