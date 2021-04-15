@@ -1,7 +1,8 @@
 export class User {
   id?:any;
   username?: string;
-  nomPrenom?: string;
+  nom?: string;
+  prenom?: string;
   email?: string;
   numTel?: number;
   actived?: boolean;
@@ -9,6 +10,8 @@ export class User {
   post?: string;
   adresse?: string;
   password?: string;
+  sexe?: string;
+  note?: string;
 
 }
 export class roles{

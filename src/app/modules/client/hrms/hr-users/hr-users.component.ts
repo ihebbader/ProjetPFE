@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2'
 import {UserService} from '../../../../shared/service/users/user.service';
 import {roles, User} from '../../../../shared/Model/user';
+import {AuthServiceService} from '../../../../shared/service/Auth/auth-service.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-hr-users',
   templateUrl: './hr-users.component.html',
   styleUrls: ['./hr-users.component.scss']
 })
 export class HrUsersComponent implements OnInit {
-
+username;
   contactTab: boolean;
   chatTab: boolean = true;
   user:User[] | null=null;
@@ -21,12 +24,43 @@ export class HrUsersComponent implements OnInit {
   validNumTel= true;
   validPassword=true;
   validRepass= true;
-  validPermssion;
+  alerte;
+  updateUserForm=false;
+  usernme: any;
+  CurrentlyUSerUpdated:User=null;
   user1:User[] | null=null;
-  constructor(private  userService:UserService) { }
+  //UpdatedUser:User | null=null;
+  roleAdmin:roles;
+  roleUser:roles;
+  private message: string;
+  editForm:FormGroup;
+
+  constructor(private  userService:UserService,
+              private authService:AuthServiceService,
+              private fb: FormBuilder,
+              private router:Router)
+  {
+    this.editForm=this.fb.group({
+      username: ['',[Validators.required,Validators.maxLength(50),Validators.minLength(3)]],
+      nom:['', [Validators.minLength(3),Validators.maxLength(30)]],
+      prenom:['', [Validators.minLength(3),Validators.maxLength(30)]],
+      email:['', [Validators.minLength(5),Validators.maxLength(250),Validators.email]],
+      tel:['', [Validators.minLength(8),Validators.maxLength(8)]],
+      sexe:['',[]],
+      note:['', [Validators.minLength(3),Validators.maxLength(300)]],
+      admin:['', ],
+    })
+  }
 
   ngOnInit( ): void {
     this.getAllUser();
+    this.roleAdmin=new roles();
+    this.roleAdmin.id=2;
+   this.roleAdmin.roleName="ADMIN";
+   this.roleUser=new roles();
+   this.roleUser.id=1;
+   this.roleUser.roleName="USER";
+
   }
   getAllUser(){
     this.userService.getAllusers().subscribe(resp=>{
@@ -38,13 +72,17 @@ export class HrUsersComponent implements OnInit {
     })
   }
   onTab(number) {
+    this.getAllUser();
     this.chatTab = false;
     this.contactTab = false;
+    this.updateUserForm=false;
     if (number == '1') {
       this.chatTab = true;
     }
     else if (number == '2') {
       this.contactTab = true;
+    }else if(number == '3'){
+      this.updateUserForm=true;
     }
   }
 // Supprimer un utilisateur
@@ -79,14 +117,30 @@ export class HrUsersComponent implements OnInit {
   }
 
   setActive(user:User, b: boolean) {
+    if(b){
+      this.error=false;
+      this.success=true;
+    }else{
+      this.success=false;
+      this.error=true;
+    }
     this.userService.update({ ...user, actived: b }).subscribe(()=>{
       this.getAllUser();
 
+
     })
+    setTimeout(() => {
+      setTimeout(() => {
+        this.success=false;
+        this.error=false;
+      });
+    }, 6000);
 
 
   }
 // ajouter un utilisateur par un administrateur
+  success=false;
+  error=false;
   onAddUser(value: any) {
     console.log(value);
     console.log(value.username.length);
@@ -133,37 +187,112 @@ export class HrUsersComponent implements OnInit {
     }else{
       this.validPassword=true;
       this.validRepass=true;
-    }if(value.ADMIN == false && value.USER == false){
-      document.getElementById('permission').style.border="1px solid #ff0000";
-      this.validPermssion =false;
-    }else{
-      this.validPermssion = true;
-      document.getElementById('permission').style.border="1px solid ";
     }
-    if (this.validUsername && this.validEmail && this.validNom && this.validPrenom && this.validNumTel && this.validPassword && this.validRepass && this.validPermssion )
+    if (this.validUsername && this.validEmail && this.validNom && this.validPrenom && this.validNumTel && this.validPassword && this.validRepass )
     {
-      this.onTab(1);
+      this.authService.existUser(value).subscribe(resp=>{
+        if(resp.body){
+          this.alerte=true;
+          this.message="Cette nom d'utilisateur existe déja !";
+          this.validUsername=false;
+          return;
+        } else{
+
+     this.userService.adduser(value).subscribe(resp=>{
+       console.log(value.IsAdmin)
+       if(value.IsAdmin){
+         this.userService.addRoles(value).subscribe(()=>{
+
+         })
+       }
+       Swal.fire(
+         'Utilisateur ajouté !',
+         value.nom+' a été ajouté à la liste des utilisateurs',
+         'success'
+       )
+       setTimeout(() => {
+         setTimeout(() => {
+           this.onTab(1);
+         });
+       }, 500);
+     })
+    }})
+
+
+
+    }
+}
+
+  UpdateUser(u: User) {
+    this.CurrentlyUSerUpdated = u ;
+    this.usernme=this.CurrentlyUSerUpdated.username;
+    this.onTab(3);
+    console.log(this.CurrentlyUSerUpdated);
+    this.editForm.patchValue({
+      username:this.CurrentlyUSerUpdated.username,
+      nom:this.CurrentlyUSerUpdated.nom,
+      prenom:this.CurrentlyUSerUpdated.prenom,
+      email:this.CurrentlyUSerUpdated.email,
+      sexe:this.CurrentlyUSerUpdated.sexe,
+      tel:this.CurrentlyUSerUpdated.numTel,
+      note:this.CurrentlyUSerUpdated.note,
+
+
+    })
+    this.editForm.get(['sexe'])!.setValue("Homme");
+  }
+  updateUser(user: User): void {
+   // user.id=this.CurrentlyUSerUpdated.id;
+    user.username = this.editForm.get(['username'])!.value;
+    user.nom = this.editForm.get(['nom'])!.value;
+    user.prenom = this.editForm.get(['prenom'])!.value;
+    user.numTel = this.editForm.get(['tel'])!.value;
+    user.sexe = this.editForm.get(['sexe'])!.value;
+    user.note = this.editForm.get(['note'])!.value;
+    if(this.editForm.get(['admin'])!.value){
+      user.roles=[this.roleAdmin,this.roleUser];
+    }else{
+      user.roles=[this.roleUser];
+    }
+
+  }
+  onUpdateUser() {
+
+    console.log(this.editForm.get(['admin'])!.value);
+ this.updateUser(this.CurrentlyUSerUpdated);
+    console.log(this.CurrentlyUSerUpdated);
+    this.userService.update(this.CurrentlyUSerUpdated).subscribe(()=>{
       Swal.fire(
-        'Utilisateur ajouté !',
-        value.nom+' a été ajouté à la liste des utilisateurs',
+        'Utilisateur Modifier !',
+        this.CurrentlyUSerUpdated.nom+' a été modifier avec succées ! ',
         'success'
       )
+      setTimeout(() => {
+        setTimeout(() => {
+          this.onTab(1);
+        });
+      }, 500);
 
-      // this.user1=value;
-      // if(value.ADMIN){
-      //   let r1:roles;
-      //   r1.roleName="ADMIN";
-      //   this.user1.
-      // }
-      // if(value.USER){
-      //   let r2:roles;
-      //   r2.roleName="USER";
-      //   roles.push(r2);
-      // }
+    })
+  }
 
-     // this.userService.adduser({ ...(this.user1),  }).subscribe(resp=>{
+  profile(u: User) {
+    this.router.navigateByUrl("/profile");
 
-    //})
-    }
+  }
+
+  search(value) {
+    console.log(value)
+    if(value.seleteds == "username" ){
+    if(this.username== null||this.username=="" || this.username==undefined ){
+      this.getAllUser();
+    }else{
+      this.userService.FindByUsernameLike(this.username).subscribe(resp=>{
+        console.log(resp);
+        this.ListUsers=resp;
+
+        this.user=this.ListUsers; this.ListUsers ? this.ListUsers : [];
+      })
+    }}
   }
 }

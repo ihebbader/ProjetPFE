@@ -49,12 +49,20 @@ export class UserService implements OnInit{
     console.log(localStorage.getItem('token'));
     return this.http.get(this.host + "/getusers", {headers: {'Authorization': localStorage.getItem("token")}});
   }
+  FindByUsernameLike(username) {
+    console.log(localStorage.getItem('token'));
+    let user={'username':username};
+    return this.http.post(this.host + "/searchByUsername",user,{headers: {'Authorization': localStorage.getItem("token")}});
+  }
 
   //Sipprimer un utilisateur
 
   adduser(user){
 
     return this.http.post(this.host+"/adduser",user,{headers:{'Authorization':localStorage.getItem("token")}});
+  }
+  addRoles(user){
+    return this.http.post(this.host+"/addroles",user,{headers:{'Authorization':localStorage.getItem("token")}});
   }
   delete(user){
 
@@ -65,6 +73,7 @@ export class UserService implements OnInit{
   ngOnInit(): void {
     if (localStorage.getItem(("token")) == null ){
       this.router.navigateByUrl("/login");
+
     }
   }
 

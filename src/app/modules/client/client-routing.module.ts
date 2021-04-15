@@ -50,6 +50,7 @@ import { WSocialComponent } from './widgets/w-social/w-social.component';
 import { WOtherComponent } from './widgets/w-other/w-other.component';
 
 
+
 const routes: Routes = [
   {
     path: 'hr',
@@ -291,6 +292,8 @@ const routes: Routes = [
     component: WOtherComponent,
     data: { title: ':: Epic :: Widgets' }
   },
+
+
 ];
 
 @NgModule({

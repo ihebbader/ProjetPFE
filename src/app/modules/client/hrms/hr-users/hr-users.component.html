@@ -63,6 +63,8 @@
                             href="javascript:void(0)" (click)="onTab('1')" [ngClass]="{'active': chatTab}">Liste des utilisateur</a></li>
                     <li class="nav-item"><a class="nav-link" id="user-tab" data-toggle="tab" href="javascript:void(0)"
                             (click)="onTab('2')" [ngClass]="{'active': contactTab}">Ajouter un utilisateur</a></li>
+                  <li *ngIf="updateUserForm" class="nav-item"><a class="nav-link" id="update-user" data-toggle="tab" href="javascript:void(0)"
+                                          (click)="onTab('3')" [ngClass]="{'active': updateUserForm}">Modifier l'utilisateur {{usernme}}</a></li>
                 </ul>
 
             </div>
@@ -76,18 +78,27 @@
                         <div class="card-header">
                             <h3 class="card-title">Liste des utilisateur</h3>
                             <div class="card-options">
-                                <form>
                                     <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm"
-                                            placeholder="Rechercher.. " name="s">
-                                        <span class="input-group-btn ml-2"><button class="btn btn-sm btn-default"
-                                                type="submit"><span class="fe fe-search"></span></button></span>
+                                      <form #f="ngForm" class="mb-3">
+                                          <select ngModel name="seleteds" class="custom-select mb-3">
+                                            <option value="username">username</option>
+                                            <option value="email">email</option>
+                                          </select>
+                                        <input type="text" (keyup)="search(f.value)"   [(ngModel)]="username" class="form-control form-control-sm"
+                                            placeholder="Rechercher.. " name="s" >
+                                      </form>
                                     </div>
-                                </form>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                          <div class="alert alert-success" *ngIf="success" >
+                            <strong>Ce compte a été activé!</strong>
+                          </div>
+
+                          <div class="alert alert-danger" *ngIf="error" >
+                            <strong>Ce compte a été désactivé!</strong>
+                          </div>
+                          <div class="table-responsive">
                                 <table *ngIf="ListUsers" class="table text-center table-striped table-hover table-vcenter text-nowrap mb-0">
                                     <thead>
                                         <tr >
@@ -100,14 +111,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let u of user">
-                                            <td class="width45">
+                                        <tr *ngFor="let u of user" >
+                                            <td class="width45" (click)="profile(u)">
                                                 <span class="avatar avatar-blue" data-toggle="tooltip"
                                                     data-placement="top" title="" data-original-title="Avatar Name"
-                                                    tooltip="Avatar Name">{{u.username.charAt(0)}}</span>
+                                                    tooltip="Voir le profile de cette utilisateur">{{u.username.charAt(0)}}</span>
                                             </td>
                                             <td>
-                                                <h6 class="mb-0">{{u.nomPrenom}}</h6>
+                                                <h6 class="mb-0">{{u.nom}} {{u.prenom}}</h6>
                                                 <span>{{u.email}}</span>
                                             </td>
                                             <td>
@@ -121,8 +132,8 @@
                                             ><span  class="" style="color:white;">compte désactivé</span></button>
                                               <button class="btn btn-primary btn-sm"  (click)="setActive(u, false)" *ngIf="u.actived"><span style="color:white;">Compte activé</span></button> </td>
                                                <td>
-                                          <button type="button" class="btn btn-icon" title="Edit"><i
-                                            class="fa fa-edit"></i></button>
+                                          <button type="button" class="btn btn-icon" title="Edit"  (click)="UpdateUser(u)" ><i
+                                            class="fa fa-edit" ></i></button>
                                           <button type="button" (click)="DeleteUser(u)"
                                                   class="btn btn-icon js-sweetalert" title="Delete"
                                                   data-type="confirm"><i
@@ -136,6 +147,9 @@
                     </div>
                 </div>
                 <div class="tab-pane fade"  [ngClass]="{'show active': contactTab}" id="user-add" role="tabpanel">
+                  <div *ngIf="alerte" class="alert alert-danger" role="alert">
+                    {{message}}
+                  </div>
                   <form #f="ngForm" (ngSubmit)="onAddUser(f.value)">
                     <div class="card">
                         <div class="card-body">
@@ -199,7 +213,7 @@
                                                     <td>Administrateur</td>
                                                     <td>
                                                         <label class="custom-control custom-checkbox">
-                                                            <input ngModel name="ADMIN" type="checkbox" class="custom-control-input"
+                                                            <input ngModel name="IsAdmin" type="checkbox" class="custom-control-input"
                                                                 value="option1" checked="">
                                                             <span class="custom-control-label">&nbsp;</span>
                                                         </label>
@@ -210,8 +224,8 @@
                                                     <td>Employée</td>
                                                     <td>
                                                         <label class="custom-control custom-checkbox">
-                                                            <input  name="USER" ngModel type="checkbox" class="custom-control-input"
-                                                                value="option1" checked="">
+                                                            <input  name="USER"  type="checkbox" class="custom-control-input"
+                                                                value="option1" checked disabled="disabled">
                                                             <span class="custom-control-label">&nbsp;</span>
                                                         </label>
                                                     </td>
@@ -230,8 +244,150 @@
                             </div>
                         </div>
                     </div>
+
                   </form>
                 </div>
+              <div class="tab-pane fade"  [ngClass]="{'show active': updateUserForm}" id="user-add" role="tabpanel">
+                <form [formGroup]="editForm" (ngSubmit)="onUpdateUser()">
+                  <div class="card">
+                    <div class="card-body" *ngIf="CurrentlyUSerUpdated">
+                      <div class="col clearfix">
+                          <div class="form-group col-lg-6 col-md-6 col-sm-12" >
+                            <label for="id" >ID utilisateur</label> <br>
+                            <input type="text" name="id" id="id" value={{CurrentlyUSerUpdated.id}}  readonly><br>
+                          </div>
+                        <div  class="col-lg-6 col-md-6 col-sm-12">
+                          <div class="form-group">
+                            <label for="username1" >Nom d'utilisateur</label> <br>
+                            <input type="email" id="username1" formControlName="username" name="username1"  class="form-control" >
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('username')?.errors?.required">
+                              Ce champs est obligatoire
+                            </small>
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('username')?.errors?.maxlength">
+                              Vous avez dépasser la taille maximale de ce champs
+                            </small>
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('username')?.errors?.minlength">
+                              ce champs doit avoir au minimum 3 caractéres
+                            </small>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                          <div class="form-group">
+                            <label for="nom" >Nom </label> <br>
+                            <input type="text" id="nom" name="nom"  class="form-control" formControlName="nom">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('nom')?.errors?.maxlength">
+                              Vous avez dépasser la taille maximal de ce champs
+                            </small>
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('nom')?.errors?.minlength">
+                              ce champs doit contient 3 caractéres au minimum 3 caractéres
+                            </small>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                          <div class="form-group">
+                            <label for="prenom" >Prénom </label> <br>
+                            <input type="text"  id="prenom" name="prenom" class="form-control" formControlName="prenom">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('prenom')?.errors?.maxlength">
+                              Vous avez dépasser la taille maximal de ce champs
+                            </small>
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('prenom')?.errors?.minlength">
+                              ce champs doit contient 3 caractéres au minimum 3 caractéres
+                            </small>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                          <div class="form-group">
+                            <label for="email" >Email </label> <br>
+                            <input type="email" id="email"  name="email"  class="form-control" formControlName="email">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('email')?.errors?.email">
+                              ce champs est invalide
+                            </small>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                          <div class="form-group">
+                            <label for="numtel" >Numéro de téléphone</label> <br>
+                            <input type="number"  id="numtel" name="numTel" class="form-control" formControlName="tel">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('tel')?.errors?.minlength">
+                              le numéro de téléphone doit etre composée de 8 chiffre
+                            </small>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="form-group">
+                            <label for="sexe">Choisir </label>  <br>
+                            <select formControlName="sexe" id="sexe" class="col-lg-6 col-md-6 col-sm-12" name="sexe">
+                              <option value="homme">Homme</option>
+                              <option value="saab">Femme</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class=" col-sm-12">
+                          <div class="form-group">
+                            <label  for="notes" >Note sur l'utilisateur</label>
+                            <textarea class="form-control"formControlName="note" name="note" id="notes" rows="3">{{CurrentlyUSerUpdated.note}}</textarea>
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('note')?.errors?.minlength">
+                              ce champs doit contient 3 caractéres au minimum 3 caractéres
+                            </small>
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('note')?.errors?.maxlength">
+                              vous avez dépassé la taille maximal de ce champs !
+                            </small>
+                          </div>
+                        </div>
+
+                        <div  class="col-12">
+                          <hr   class="mt-4">
+                          <h6>Permission</h6>
+                          <div id="permission" class="table-responsive">
+                            <table class="table table-striped text-center mb--10">
+                              <thead>
+                              <tr>
+                                <th></th>
+                                <th>Selectionnée une permission</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                                <td>Administrateur</td>
+                                <td>
+                                  <label class="custom-control custom-checkbox">
+                                    <input  name="IsAdmin" formControlName="admin" type="checkbox" class="custom-control-input"
+                                           value="option1" checked="">
+                                    <span class="custom-control-label">&nbsp;</span>
+                                  </label>
+                                </td>
+
+                              </tr>
+
+
+                              <tr>
+
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="mt-5 float-lg-right">
+                            <button type="submit" class="btn btn-primary ">Modifier</button>
+                            <button type="button" (click)="onTab('1')" class="btn btn-secondary ml-1"
+                                    data-dismiss="modal">Annuler</button></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
             </div>
         </div>
     </div>
