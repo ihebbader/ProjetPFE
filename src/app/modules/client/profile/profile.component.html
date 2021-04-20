@@ -7,25 +7,35 @@
             <div class="row clearfix">
                 <div class="col-md-12">
                     <div class="card card-profile">
-                        <div class="card-body text-center">
-                            <img class="card-profile-img" src="../assets/images/sm/avatar1.jpg" alt="" />
-                            <h4 class="mb-3">Sara Hopkins</h4>
-                            <ul class="social-links list-inline mb-3 mt-2">
-                                <li class="list-inline-item"><a href="javascript:void(0)" tooltip="Facebook"
-                                        title="Facebook" data-toggle="tooltip"><i class="fa fa-facebook"></i></a></li>
-                                <li class="list-inline-item"><a href="javascript:void(0)" tooltip="Twitter"
-                                        title="Twitter" data-toggle="tooltip"><i class="fa fa-twitter"></i></a></li>
-                                <li class="list-inline-item"><a href="javascript:void(0)" tooltip="1234567890"
-                                        title="1234567890" data-toggle="tooltip"><i class="fa fa-phone"></i></a></li>
-                                <li class="list-inline-item"><a href="javascript:void(0)" tooltip="@skypename"
-                                        title="@skypename" data-toggle="tooltip"><i class="fa fa-skype"></i></a></li>
-                            </ul>
-                            <p class="mb-4">Contrary to popular belief, Lorem Ipsum is not simply random text.<br> It
-                                has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years
-                                old.</p>
-                            <button class="btn btn-outline-primary btn-sm"><span class="fa fa-twitter"></span>
-                                Follow</button>
+                        <div class="card-body "><div class="text-center">
+                            <img class="card-profile-img  " *ngIf="image" src="http://localhost:8080/photoUser/{{user.id}}?ts={{getTS()}}" alt="" />
+                          <h4 class="mb-3 text-center">{{user.nom}} {{user.prenom}}</h4>
+                          <ul class="social-links list-inline mb-3 mt-2">
+                            <li class="list-inline-item"><a href="javascript:void(0)" tooltip="Facebook"
+                                                            title="Facebook" data-toggle="tooltip"><i class="fa fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="javascript:void(0)" tooltip="Twitter"
+                                                            title="Twitter" data-toggle="tooltip"><i class="fa fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="javascript:void(0)" tooltip="1234567890"
+                                                            title="1234567890" data-toggle="tooltip"><i class="fa fa-phone"></i></a></li>
+                            <li class="list-inline-item"><a href="javascript:void(0)" tooltip="@skypename"
+                                                            title="@skypename" data-toggle="tooltip"><i class="fa fa-skype"></i></a></li>
+                          </ul>
+                          <p class="mb-4">{{user.note}}</p>
+
                         </div>
+                          <h5>Nom d'utilisateur :<h6>{{user.username}}</h6></h5>
+                          <h5>Email :<h6>{{user.email}}</h6></h5>
+                          <h5>Adresse : <h6>{{user.adresse}}</h6></h5>
+                          <h5>Numéro de téléphone : <h6>{{user.numTel}}</h6></h5>
+                          <h5>Post : <h6>{{user.post}}</h6></h5>
+                          <h5>Sexe : <h6>{{user.sexe}}</h6></h5>
+                          <h5>Roles : <div *ngFor="let r of user.roles"><span *ngIf="r.roleName =='ADMIN'" class="tag tag-info ">Administrateur</span>
+                            <span *ngIf="r.roleName == 'USER'" class="tag tag-default">Employee</span></div></h5>
+                          <div class="text-center">
+                          <button (click)="onProfileChange()" class="btn btn-outline-primary btn-sm mr-3">
+                            Modifier mon profil</button><button (click)="changePassword()" class="btn btn-outline-primary btn-sm ">
+                            Changer mon mot de passe</button>
+</div>                  </div>
                     </div>
                 </div>
             </div>
@@ -36,67 +46,27 @@
             <div class="row clearfix">
                 <div class="col-12">
                     <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-calendar-tab" [ngClass]="{'active': CalenderTab}"
-                                data-toggle="tab" (click)="onTab('1')" href="javascript:void(0)">Calendar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-timeline-tab" [ngClass]="{'active': TimelineTab}"
-                                class="nav-link" (click)="onTab('2')" href="javascript:void(0)">Timeline</a>
-                        </li>
-                        <li class="nav-item">
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" id="pills-calendar-tab" [ngClass]="{'active': CalenderTab}"-->
+<!--                                data-toggle="tab" (click)="onTab('1')" href="javascript:void(0)">Calendar</a>-->
+<!--                        </li>-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" id="pills-timeline-tab" [ngClass]="{'active': TimelineTab}"-->
+<!--                                class="nav-link" (click)="onTab('2')" href="javascript:void(0)">Timeline</a>-->
+<!--                        </li>-->
+                        <li class="nav-item" *ngIf="onProfileChangeTab">
                             <a class="nav-link" id="pills-profile-tab" [ngClass]="{'active': ProfileTab}"
-                                class="nav-link" (click)="onTab('3')" href="javascript:void(0)">Profile</a>
+                                class="nav-link" (click)="onTab('3')" href="javascript:void(0)">Modifier mon profil ({{user.nom}} {{user.prenom}})</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-blog-tab" [ngClass]="{'active': BlogTab}" class="nav-link"
-                                (click)="onTab('4')" href="javascript:void(0)">Blog</a>
-                        </li>
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" id="pills-blog-tab" [ngClass]="{'active': BlogTab}" class="nav-link"-->
+<!--                                (click)="onTab('4')" href="javascript:void(0)">Blog</a>-->
+<!--                        </li>-->
                     </ul>
                 </div>
-                <div class="col-lg-8 col-md-12">
+                <div class="col-lg-12 col-sm-6">
                     <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade" id="pills-calendar" [ngClass]="{'show active': CalenderTab}"
-                            role="tabpanel" aria-labelledby="pills-calendar-tab">
-                            <div class="card" [ngClass]="{'card-fullscreen': isFull}">
-                                <div class="card-header bline">
-                                    <h3 class="card-title">Calendar</h3>
-                                    <div class="card-options">
-                                        <a href="javascript:void(0)" (click)="fullScreenSection(1)"
-                                            class="card-options-fullscreen" data-toggle="card-fullscreen"><i
-                                                class="fe fe-maximize"></i></a>
-                                        <div class="item-action dropdown ml-2" dropdown>
-                                            <a href="javascript:void(0)" id="button-basic" dropdownToggle
-                                                data-toggle="dropdown" aria-expanded="false"><i
-                                                    class="fe fe-more-vertical"></i></a>
-                                            <div id="dropdown-basic" *dropdownMenu role="menu"
-                                                aria-labelledby="button-basic" class="dropdown-menu dropdown-menu-right"
-                                                x-placement="bottom-end"
-                                                style="position: absolute; transform: translate3d(-174px, 25px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-copy"></i> Copy to</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-folder"></i> Move to</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-edit"></i> Rename</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-trash"></i> Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <app-fullcalender></app-fullcalender>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="tab-pane fade" id="pills-timeline" [ngClass]="{'show active': TimelineTab}"
                             role="tabpanel" aria-labelledby="pills-timeline-tab">
                             <div class="card" *ngIf="cardremove2" [ngClass]="{'card-fullscreen': isFull1}"
@@ -304,119 +274,138 @@
                             role="tabpanel" aria-labelledby="pills-profile-tab">
                             <div class="card" *ngIf="cardremove3" [ngClass]="{'card-fullscreen': isFull2}">
                                 <div class="card-header">
-                                    <h3 class="card-title">Edit Profile</h3>
+                                    <h3 class="card-title">Modifier mon profil</h3>
                                     <div class="card-options">
                                         <a href="javascript:void(0)" (click)="fullScreenSection(3)"
                                             class="card-options-fullscreen" data-toggle="card-fullscreen"><i
                                                 class="fe fe-maximize"></i></a>
-                                        <a href="javascript:void(0)" (click)="CardRemoveTrans(3)"
-                                            class="card-options-remove" data-toggle="card-remove"><i
-                                                class="fe fe-x"></i></a>
-                                        <div class="item-action dropdown ml-2" dropdown>
-                                            <a href="javascript:void(0)" id="button-basic" dropdownToggle
-                                                data-toggle="dropdown" aria-expanded="false"><i
-                                                    class="fe fe-more-vertical"></i></a>
-                                            <div id="dropdown-basic" *dropdownMenu role="menu"
-                                                aria-labelledby="button-basic" class="dropdown-menu dropdown-menu-right"
-                                                x-placement="bottom-end"
-                                                style="position: absolute; transform: translate3d(-174px, 25px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-copy"></i> Copy to</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-folder"></i> Move to</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-edit"></i> Rename</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-trash"></i> Delete</a>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row clearfix">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label class="form-label">Company</label>
-                                                <input type="text" class="form-control" disabled=""
-                                                    placeholder="Company" value="Epic Theme">
+                                    <div class="">
+                                      <form *ngIf="user" [formGroup]="editForm" (ngSubmit)="onUpdateUser()">
+                                        <div class="card">
+                                          <div class="card-body">
+                                            <div class="col clearfix">
+                                              <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                  <label for="nom" >Photo de profil </label> <br>
+                                                  <input type="file"   class="form-control" (change)="onSelectedFile($event.target)">
+                                                </div>
+                                              </div>
+                                              <div  class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                  <label for="username1" >Nom d'utilisateur</label> <br>
+                                                  <input type="email" id="username1" formControlName="username" name="username1"  class="form-control" readonly >
+                                                  <small class="form-text text-danger"
+                                                         *ngIf="editForm.get('username')?.errors?.required">
+                                                    Ce champs est obligatoire
+                                                  </small>
+                                                  <small class="form-text text-danger"
+                                                         *ngIf="editForm.get('username')?.errors?.maxlength">
+                                                    Vous avez dépasser la taille maximale de ce champs
+                                                  </small>
+                                                  <small class="form-text text-danger"
+                                                         *ngIf="editForm.get('username')?.errors?.minlength">
+                                                    ce champs doit avoir au minimum 3 caractéres
+                                                  </small>
+                                                </div>
+                                              </div>
+                                              <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                  <label for="nom" >Nom </label> <br>
+                                                  <input type="text" id="nom" name="nom"  class="form-control" formControlName="nom">
+                                                  <small class="form-text text-danger"
+                                                         *ngIf="editForm.get('nom')?.errors?.maxlength">
+                                                    Vous avez dépasser la taille maximal de ce champs
+                                                  </small>
+                                                  <small class="form-text text-danger"
+                                                         *ngIf="editForm.get('nom')?.errors?.minlength">
+                                                    ce champs doit contient 3 caractéres au minimum 3 caractéres
+                                                  </small>
+                                                </div>
+                                              </div>
+                                              <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                  <label for="prenom" >Prénom </label> <br>
+                                                  <input type="text"  id="prenom" name="prenom" class="form-control" formControlName="prenom">
+                                                  <small class="form-text text-danger"
+                                                         *ngIf="editForm.get('prenom')?.errors?.maxlength">
+                                                    Vous avez dépasser la taille maximal de ce champs
+                                                  </small>
+                                                  <small class="form-text text-danger"
+                                                         *ngIf="editForm.get('prenom')?.errors?.minlength">
+                                                    ce champs doit contient 3 caractéres au minimum 3 caractéres
+                                                  </small>
+                                                </div>
+                                              </div>
+                                              <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                  <label for="email" >Email </label> <br>
+                                                  <input type="email" id="email"  name="email"  class="form-control" formControlName="email">
+                                                  <small class="form-text text-danger"
+                                                         *ngIf="editForm.get('email')?.errors?.email">
+                                                    ce champs est invalide
+                                                  </small>
+                                                </div>
+                                              </div>
+                                              <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                  <label for="email" >Adreese </label> <br>
+                                                  <input type="text" id="adresse"  name="adress"  class="form-control" formControlName="adresse">
+                                                  <small class="form-text text-danger"
+                                                         *ngIf="editForm.get('adresse')?.errors?.email">
+                                                    ce champs est invalide
+                                                  </small>
+                                                </div>
+                                              </div>
+                                              <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                  <label for="numtel" >Numéro de téléphone</label> <br>
+                                                  <input type="number"  id="numtel" name="numTel" class="form-control" formControlName="tel">
+                                                  <small class="form-text text-danger"
+                                                         *ngIf="editForm.get('tel')?.errors?.minlength">
+                                                    le numéro de téléphone doit etre composée de 8 chiffre
+                                                  </small>
+                                                </div>
+                                              </div>
+
+                                              <div>
+                                                <div class="form-group">
+                                                  <label for="sexe">Choisir </label>  <br>
+                                                  <select formControlName="sexe" id="sexe" class="col-lg-6 col-md-6 col-sm-12" name="sexe">
+                                                    <option value="homme">Homme</option>
+                                                    <option value="saab">Femme</option>
+                                                  </select>
+                                                </div>
+                                              </div>
+                                              <div class=" col-sm-12">
+                                                <div class="form-group">
+                                                  <label  for="notes" >Note sur l'utilisateur</label>
+                                                  <textarea class="form-control"formControlName="note" name="note" id="notes" rows="3">{{user.note}}</textarea>
+                                                  <small class="form-text text-danger"
+                                                         *ngIf="editForm.get('note')?.errors?.minlength">
+                                                    ce champs doit contient 3 caractéres au minimum 3 caractéres
+                                                  </small>
+                                                  <small class="form-text text-danger"
+                                                         *ngIf="editForm.get('note')?.errors?.maxlength">
+                                                    vous avez dépassé la taille maximal de ce champs !
+                                                  </small>
+                                                </div>
+
+                                              </div>
+
                                             </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-3">
-                                            <div class="form-group">
-                                                <label class="form-label">Username</label>
-                                                <input type="text" class="form-control" placeholder="Username"
-                                                    value="michael23">
+                                            <div class="card-footer text-right">
+                                              <button type="submit" class="btn btn-primary ">Modifier</button>
+                                              <button type="button" (click)="onTab('1')" class="btn btn-secondary ml-1"
+                                                      data-dismiss="modal">Annuler</button></div>
+                                          </div>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label class="form-label">Email address</label>
-                                                <input type="email" class="form-control" placeholder="Email">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-label">First Name</label>
-                                                <input type="text" class="form-control" placeholder="Company"
-                                                    value="Jane">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" placeholder="Last Name"
-                                                    value="Pearson">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Address</label>
-                                                <input type="text" class="form-control" placeholder="Home Address"
-                                                    value="455 S. Airport St. Moncks Corner">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-4">
-                                            <div class="form-group">
-                                                <label class="form-label">City</label>
-                                                <input type="text" class="form-control" placeholder="City"
-                                                    value="New York">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-3">
-                                            <div class="form-group">
-                                                <label class="form-label">Postal Code</label>
-                                                <input type="number" class="form-control" placeholder="ZIP Code">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label class="form-label">Country</label>
-                                                <select class="form-control custom-select">
-                                                    <option value="">USA</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group mb-0">
-                                                <label class="form-label">About Me</label>
-                                                <textarea rows="5" class="form-control"
-                                                    placeholder="Here can be your description">Oh so, your weak rhyme You doubt I'll bother, reading into it I'll probably won't, left to my own devices But that's the difference in our opinions.</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer text-right">
-                                    <button type="submit" class="btn btn-primary">Update Profile</button>
-                                </div>
+
+                                      </form>    </div>
                             </div>
-                        </div>
+                            </div></div>
                         <div class="tab-pane fade" id="pills-blog" [ngClass]="{'show active': BlogTab}" role="tabpanel"
                             aria-labelledby="pills-blog-tab">
                             <div class="card">
@@ -577,151 +566,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="widgets1">
-                                <div class="icon">
-                                    <i class="icon-trophy text-success font-30"></i>
-                                </div>
-                                <div class="details">
-                                    <h6 class="mb-0 font600">Total Earned</h6>
-                                    <span class="mb-0">$96K +</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="widgets1">
-                                <div class="icon">
-                                    <i class="icon-heart text-warning font-30"></i>
-                                </div>
-                                <div class="details">
-                                    <h6 class="mb-0 font600">Total Likes</h6>
-                                    <span class="mb-0">6,270</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="widgets1">
-                                <div class="icon">
-                                    <i class="icon-handbag text-danger font-30"></i>
-                                </div>
-                                <div class="details">
-                                    <h6 class="mb-0 font600">Delivered</h6>
-                                    <span class="mb-0">720 Delivered</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="widgets1">
-                                <div class="icon">
-                                    <i class="icon-user text-primary font-30"></i>
-                                </div>
-                                <div class="details">
-                                    <h6 class="mb-0 font600">Jobs</h6>
-                                    <span class="mb-0">614</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card" *ngIf="cardremove1" [ngClass]="{'card-collapsed': !isCollapsed, '': isCollapsed}">
-                        <div class="card-header">
-                            <h3 class="card-title">Followers</h3>
-                            <div class="card-options">
-                                <a href="javascript:void(0)" class="card-options-collapse"
-                                    (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
-                                    aria-controls="collapseBasic" data-toggle="card-collapse"><i
-                                        class="fe fe-chevron-up"></i></a>
-                                <a href="javascript:void(0)" (click)="CardRemoveTrans(1)" class="card-options-remove"
-                                    data-toggle="card-remove"><i class="fe fe-x"></i></a>
-                            </div>
-                        </div>
-                        <div class="card-body" id="collapseBasic" [collapse]="isCollapsed">
-                            <ul class="right_chat list-unstyled mb-0">
-                                <li class="online">
-                                    <a href="javascript:void(0);">
-                                        <div class="media">
-                                            <img class="media-object " src="../assets/images/xs/avatar4.jpg" alt="">
-                                            <div class="media-body">
-                                                <span class="name">Donald Gardner</span>
-                                                <span class="message">Designer, Blogger</span>
-                                                <span class="badge badge-outline status"></span>
-                                            </div>
+
                                         </div>
-                                    </a>
-                                </li>
-                                <li class="offline">
-                                    <a href="javascript:void(0);">
-                                        <div class="media">
-                                            <img class="media-object " src="../assets/images/xs/avatar1.jpg" alt="">
-                                            <div class="media-body">
-                                                <span class="name">Nancy Flanary</span>
-                                                <span class="message">Art director, Movie Cut</span>
-                                                <span class="badge badge-outline status"></span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="online">
-                                    <a href="javascript:void(0);">
-                                        <div class="media">
-                                            <img class="media-object " src="../assets/images/xs/avatar3.jpg" alt="">
-                                            <div class="media-body">
-                                                <span class="name">Phillip Smith</span>
-                                                <span class="message">Writter, Mag Editor</span>
-                                                <span class="badge badge-outline status"></span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="online">
-                                    <a href="javascript:void(0);">
-                                        <div class="media">
-                                            <img class="media-object " src="../assets/images/xs/avatar4.jpg" alt="">
-                                            <div class="media-body">
-                                                <span class="name">Donald Gardner</span>
-                                                <span class="message">Designer, Blogger</span>
-                                                <span class="badge badge-outline status"></span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="offline">
-                                    <a href="javascript:void(0);">
-                                        <div class="media">
-                                            <img class="media-object " src="../assets/images/xs/avatar1.jpg" alt="">
-                                            <div class="media-body">
-                                                <span class="name">Nancy Flanary</span>
-                                                <span class="message">Art director, Movie Cut</span>
-                                                <span class="badge badge-outline status"></span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="online">
-                                    <a href="javascript:void(0);">
-                                        <div class="media">
-                                            <img class="media-object " src="../assets/images/xs/avatar3.jpg" alt="">
-                                            <div class="media-body">
-                                                <span class="name">Phillip Smith</span>
-                                                <span class="message">Writter, Mag Editor</span>
-                                                <span class="badge badge-outline status"></span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
+          <app-footer></app-footer>
+
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <app-footer></app-footer>
-</div>
+
+
+

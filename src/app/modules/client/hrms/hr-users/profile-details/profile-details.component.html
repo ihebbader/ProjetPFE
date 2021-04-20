@@ -1,0 +1,41 @@
+<app-leftmenu></app-leftmenu>
+<!-- Main body part  -->
+<div class="page">
+  <app-header></app-header>
+  <div class="section-body">
+    <div class="container-fluid">
+      <div class="row clearfix">
+        <div class="col-md-12">
+          <div class="card card-profile">
+            <div class="card-body "><div class="text-center">
+              <img class="card-profile-img " src="http://localhost:8080/photoUser/{{user.id}}"  >
+              <h4 class="mb-3 text-center">{{user.nom}} {{user.prenom}}</h4>
+              <ul class="social-links list-inline mb-3 mt-2">
+                <li class="list-inline-item"><a href="javascript:void(0)" tooltip="Facebook"
+                                                title="Facebook" data-toggle="tooltip"><i class="fa fa-facebook"></i></a></li>
+                <li class="list-inline-item"><a href="javascript:void(0)" tooltip="Twitter"
+                                                title="Twitter" data-toggle="tooltip"><i class="fa fa-twitter"></i></a></li>
+                <li class="list-inline-item"><a href="javascript:void(0)" tooltip="1234567890"
+                                                title="1234567890" data-toggle="tooltip"><i class="fa fa-phone"></i></a></li>
+                <li class="list-inline-item"><a href="javascript:void(0)" tooltip="@skypename"
+                                                title="@skypename" data-toggle="tooltip"><i class="fa fa-skype"></i></a></li>
+              </ul>
+              <p class="mb-4">{{user.note}}</p>
+
+            </div>
+              <h5>Nom d'utilisateur :<h6>{{user.username}}</h6></h5>
+              <h5>Email :<h6>{{user.email}}</h6></h5>
+              <h5>Adresse : <h6>{{user.adresse}}</h6></h5>
+              <h5>Numéro de téléphone : <h6>{{user.numTel}}</h6></h5>
+              <h5>Post : <h6>{{user.post}}</h6></h5>
+              <h5>Sexe : <h6>{{user.sexe}}</h6></h5>
+              <h5>Roles : <div *ngFor="let r of user.roles"><span *ngIf="r.roleName =='ADMIN'" class="tag tag-info ">Administrateur</span>
+                <span *ngIf="r.roleName == 'USER'" class="tag tag-default">Employee</span></div></h5>
+              <div class="text-center">
+                <button class="btn btn-outline-primary btn-sm mr-3" routerLink="/user-management">
+                  Retouner à la liste des utilisateur</button>
+              </div>                  </div>
+          </div>
+        </div>
+      </div>
+    </div></div></div>

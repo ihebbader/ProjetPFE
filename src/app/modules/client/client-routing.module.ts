@@ -48,6 +48,8 @@ import { WStaticsComponent } from './widgets/w-statics/w-statics.component';
 import { WDataComponent } from './widgets/w-data/w-data.component';
 import { WSocialComponent } from './widgets/w-social/w-social.component';
 import { WOtherComponent } from './widgets/w-other/w-other.component';
+import {ProfileDetailsComponent} from './hrms/hr-users/profile-details/profile-details.component';
+import {TestComponent} from './test/test.component';
 
 
 
@@ -145,6 +147,11 @@ const routes: Routes = [
   {
     path: 'project-list',
     component: PrProjectlistComponent,
+    data: { title: ':: Epic :: Project List' }
+  },
+  {
+    path: 'test',
+    component: TestComponent,
     data: { title: ':: Epic :: Project List' }
   },
   {
@@ -258,9 +265,14 @@ const routes: Routes = [
     data: { title: ':: Epic :: Settings' }
   },
   {
+    path: 'userDetails',
+    component:ProfileDetailsComponent,
+    data: { title: 'userdetails' }
+  },
+  {
     path: 'profile',
     component: ProfileComponent,
-    data: { title: ':: Epic :: Profile' }
+    data: { title: 'Mon Profile' }
   },
   {
     path: 'widgets',

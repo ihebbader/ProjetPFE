@@ -12,7 +12,7 @@ export class User {
   password?: string;
   sexe?: string;
   note?: string;
-
+  image?:string;
 }
 export class roles{
   id?:any;

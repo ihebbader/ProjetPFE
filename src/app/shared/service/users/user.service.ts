@@ -33,13 +33,13 @@ export class UserService implements OnInit{
   }
   // pour update un utilisateur
   update( user){
-    console.log(user)
+
     const req = new HttpRequest('PUT','http://localhost:8080/updateUser',user,{
       responseType: 'json',
       headers:new HttpHeaders({Authorization: `${localStorage.getItem('token')}`})
     });
 
-    console.log("req"+req);
+
     return this.http.request(req);
 
 
@@ -53,6 +53,19 @@ export class UserService implements OnInit{
     console.log(localStorage.getItem('token'));
     let user={'username':username};
     return this.http.post(this.host + "/searchByUsername",user,{headers: {'Authorization': localStorage.getItem("token")}});
+  }
+  changePass(username,password) {
+    let form = {"password":password}
+    return this.http.post(this.host + "/updateMotDePasse/"+username,form,{headers: {'Authorization': localStorage.getItem("token")}});
+  }
+  VerifyPass(username,password) {
+    let form1 = {"password":password}
+    return this.http.post(this.host + "/verifyPass/"+username,form1,{headers: {'Authorization': localStorage.getItem("token")}});
+  }
+  FindByEmailLike(username) {
+    console.log(localStorage.getItem('token'));
+    let user={'email':username};
+    return this.http.post(this.host + "/searchByEmail",user,{headers: {'Authorization': localStorage.getItem("token")}});
   }
 
   //Sipprimer un utilisateur
@@ -69,6 +82,18 @@ export class UserService implements OnInit{
     return this.http.post(this.host+"/delete",user,{headers:{'Authorization':localStorage.getItem("token")}});
 
 
+  }
+  uploadPhotoUser(file:File,id){
+    console.log(id);
+    let formData : FormData=new FormData()  ;
+    formData.append('file',file);
+      return this.http.post(this.host+"/uploadPhoto/"+id,formData,{headers:{'Authorization':localStorage.getItem("token")}});
+
+
+  }
+  getPhotoUser(id){
+    console.log(id);
+    return this.http.get(this.host+"/photoUser/4",{headers:{'Authorization':localStorage.getItem("token")}});
   }
   ngOnInit(): void {
     if (localStorage.getItem(("token")) == null ){

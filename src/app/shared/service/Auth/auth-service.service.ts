@@ -12,6 +12,9 @@ export class AuthServiceService {
   private roleUser;
   helper=new JwtHelperService();
   constructor(private http:HttpClient) { }
+  getUserlogin(){
+    return this.http.post(this.host+"/getuser",this.DecodeToken.sub,{headers:{'Authorization':localStorage.getItem('token')}});
+  }
   login(user){
 
     return this.http.post(this.host+"/login",user,{observe:'response'});
@@ -31,7 +34,12 @@ export class AuthServiceService {
       } else return false;
     }
   }
+  getUserDetails(username){
+
+    return this.http.post(this.host+"/getuser",username,{headers:{'Authorization':localStorage.getItem('token')}});
+  }
   getUser(){
+    this.DecodeToken=this.helper.decodeToken(localStorage.getItem('token'));
     console.log(this.DecodeToken);
     return this.http.post(this.host+"/getuser",this.DecodeToken.sub,{headers:{'Authorization':localStorage.getItem('token')}});
   }

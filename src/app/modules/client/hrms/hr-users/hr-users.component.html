@@ -79,12 +79,12 @@
                             <h3 class="card-title">Liste des utilisateur</h3>
                             <div class="card-options">
                                     <div class="input-group">
-                                      <form #f="ngForm" class="mb-3">
+                                      <form #f1="ngForm" class="mb-3">
                                           <select ngModel name="seleteds" class="custom-select mb-3">
                                             <option value="username">username</option>
                                             <option value="email">email</option>
                                           </select>
-                                        <input type="text" (keyup)="search(f.value)"   [(ngModel)]="username" class="form-control form-control-sm"
+                                        <input type="text" (keyup)="search(f1.value)"   [(ngModel)]="username" class="form-control form-control-sm"
                                             placeholder="Rechercher.. " name="s" >
                                       </form>
                                     </div>
@@ -112,9 +112,9 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let u of user" >
-                                            <td class="width45" (click)="profile(u)">
+                                            <td class="width45" >
                                                 <span class="avatar avatar-blue" data-toggle="tooltip"
-                                                    data-placement="top" title="" data-original-title="Avatar Name"
+                                                    data-placement="top" title="" (click)="details(u.username)" data-original-title="Avatar Name"
                                                     tooltip="Voir le profile de cette utilisateur">{{u.username.charAt(0)}}</span>
                                             </td>
                                             <td>
@@ -312,7 +312,6 @@
                             </small>
                           </div>
                         </div>
-
                         <div class="col-lg-6 col-md-6 col-sm-12">
                           <div class="form-group">
                             <label for="numtel" >Numéro de téléphone</label> <br>

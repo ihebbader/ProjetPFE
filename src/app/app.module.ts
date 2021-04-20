@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
     }),
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+
   ],
   providers: [BsDatepickerModule],
   bootstrap: [AppComponent]

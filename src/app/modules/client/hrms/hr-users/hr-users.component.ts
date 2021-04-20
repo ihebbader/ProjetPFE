@@ -142,8 +142,7 @@ username;
   success=false;
   error=false;
   onAddUser(value: any) {
-    console.log(value);
-    console.log(value.username.length);
+    console.log(value)
     if(value.username.length <3){
       this.validUsername= false;
       console.log(this.validUsername);
@@ -172,13 +171,14 @@ username;
     }else{
       this.validPrenom=true;
     }
-    if(value.numTel.toString().length !=0){
+    if(value.numTel == null){
     if(value.numTel.toString().length<8){
       this.validNumTel =false;
 
     }else {
       this.validNumTel=true;
     }}else{
+      console.log("aaaaaaaaaa")
       this.validNumTel=true;
     }
     if( value.password.length<8 || value.password != value.repass ){
@@ -283,16 +283,35 @@ username;
 
   search(value) {
     console.log(value)
-    if(value.seleteds == "username" ){
-    if(this.username== null||this.username=="" || this.username==undefined ){
-      this.getAllUser();
-    }else{
-      this.userService.FindByUsernameLike(this.username).subscribe(resp=>{
-        console.log(resp);
-        this.ListUsers=resp;
+    if (value.seleteds == "username") {
+      if (this.username == null || this.username == "" || this.username == undefined) {
+        this.getAllUser();
+      } else {
+        this.userService.FindByUsernameLike(this.username).subscribe(resp => {
+          console.log(resp);
+          this.ListUsers = resp;
 
-        this.user=this.ListUsers; this.ListUsers ? this.ListUsers : [];
-      })
-    }}
+          this.user = this.ListUsers;
+          this.ListUsers ? this.ListUsers : [];
+        })
+      }
+    } else {
+        if (this.username == null || this.username == "" || this.username == undefined) {
+          this.getAllUser();
+        } else {
+          this.userService.FindByEmailLike(this.username).subscribe(resp => {
+            console.log(resp);
+            this.ListUsers = resp;
+
+            this.user = this.ListUsers;
+            this.ListUsers ? this.ListUsers : [];
+          })
+        }
+      }
+    }
+
+  details(username: any) {
+    this.router.navigateByUrl("userDetails?username="+username);
+
   }
 }

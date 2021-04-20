@@ -97,6 +97,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CountToModule } from 'angular-count-to';
 import { FooterComponent } from './footer/footer.component';
+import { ProfileDetailsComponent } from './hrms/hr-users/profile-details/profile-details.component';
+import { ChangePasswordComponent } from './profile/change-password/change-password.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { TestComponent } from './test/test.component';
+import {FormioModule} from '@formio/angular';
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   timeGridPlugin,
@@ -124,8 +130,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     NgApexchartsModule,
     NgMultiSelectDropDownModule.forRoot(),
     CountToModule,
-    ToastrModule.forRoot({
-    }),
+    ToastrModule.forRoot({}),
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
@@ -134,7 +139,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
       apiKey: 'GOOGLE_API_KEY'
     }),
     FullCalendarModule,
-    CKEditorModule
+    CKEditorModule,
+    MatDialogModule,
+    FormioModule,
   ],
   declarations: [
     ClientRoutingModule.components,
@@ -207,6 +214,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     WOtherComponent,
     ProfileComponent,
     FooterComponent,
+    ProfileDetailsComponent,
+    ChangePasswordComponent,
+    TestComponent,
   ],
   providers: [BsDatepickerModule]
 })
