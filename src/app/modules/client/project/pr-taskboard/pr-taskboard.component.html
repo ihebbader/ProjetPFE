@@ -7,20 +7,18 @@
             <div class="d-md-flex justify-content-between align-items-center">
                 <ul class="nav nav-tabs page-header-tab">
                     <li class="nav-item"><a class="nav-link" id="TaskBoard-tab" data-toggle="tab"
-                            href="javascript:void(0)" (click)="onTab('1')" [ngClass]="{'active': dplistTab}">List
-                            View</a>
+                            href="javascript:void(0)" (click)="onTab('1')" [ngClass]="{'active': dplistTab}">Liste des
+                    flux de travail</a>
                     </li>
-                    <li class="nav-item"><a class="nav-link" id="TaskBoard-tab" data-toggle="tab"
-                            href="javascript:void(0)" (click)="onTab('2')" [ngClass]="{'active': dpgridTab}">Grid
-                            View</a></li>
+                    <li *ngIf="Details" class="nav-item"><a *ngIf="CurrentlyFlow" class="nav-link" id="TaskBoard-tab" data-toggle="tab"
+                            href="javascript:void(0)" (click)="onTab('2')" [ngClass]="{'active': dpgridTab}">Liste
+                    des entités pour le flux {{CurrentlyFlow.dataModelName}}</a></li>
 
                 </ul>
                 <div class="header-action d-flex">
-                    <div class="input-group mr-2">
-                        <input type="text" class="form-control" placeholder="Search...">
-                    </div>
-                    <button type="button" class="btn btn-primary" (click)="openModal(template)"><i
-                            class="fe fe-plus mr-2"></i>Add</button>
+
+                    <button *ngIf="!Details" type="button" class="btn btn-primary mt-3" (click)="openModal(template)"><i
+                            class="fe fe-plus mr-2"></i>Ajouter une nouvelle flux de travail</button>
                 </div>
             </div>
             <div class="row clearfix mt-2">
@@ -79,20 +77,21 @@
                         <table class="table table-hover table-vcenter mb-0 table_custom spacing8 text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Task</th>
-                                    <th>Team</th>
-                                    <th>Duration</th>
+                                    <th>#ID</th>
+                                    <th>WORKFLOW</th>
+                                    <th>GROUPE</th>
+                                    <th>PERIODE</th>
                                     <th>Action</th>
                                     <th class="w200"></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>01</td>
-                                    <td>
-                                        <h6 class="mb-0">New code Update on github</h6>
-                                        <span>It is a long established fact that a reader will be distracted...</span>
+                            <tbody *ngIf="workflowList" >
+                                <tr  *ngFor="let w of workflowList" (click)="entityDetails(w)">
+                                  <td > <div *ngIf="w.id<10 ; else elseBlock">0{{w.id}}</div>
+                                    <ng-template #elseBlock>{{w.id}}</ng-template></td>
+                                <td>
+                                        <h6 class="mb-0">{{w.dataModelName}}</h6>
+                                        <span>{{w.dataModelDescrip}}</span>
                                     </td>
                                     <td>
                                         <ul class="list-unstyled team-info mb-0">
@@ -105,11 +104,11 @@
                                         </ul>
                                     </td>
                                     <td>
-                                        <div class="text-info">Start: 3 Jun 2019</div>
-                                        <div class="text-pink">End: 15 Jun 2019</div>
+                                        <div class="text-info">Début: {{w.startDate}}</div>
+                                        <div class="text-pink">Fin: {{w.endDate}}</div>
                                     </td>
                                     <td>
-                                        <span class="tag tag-blue">Planned</span>
+                                        <span class="tag tag-blue">Commence Bientot</span>
                                     </td>
                                     <td>
                                         <div class="clearfix">
@@ -122,224 +121,226 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>02</td>
-                                    <td>
-                                        <h6 class="mb-0">Design Events</h6>
-                                        <span>It is a long established fact that a reader will be distracted...</span>
-                                    </td>
-                                    <td>
-                                        <ul class="list-unstyled team-info mb-0">
-                                            <li><img src="../assets/images/xs/avatar1.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="text-info">Start: 02 Jun 2019</div>
-                                        <div class="text-pink">End: 08 Jun 2019</div>
-                                    </td>
-                                    <td>
-                                        <span class="tag tag-green">Completed</span>
-                                    </td>
-                                    <td>
-                                        <div class="clearfix">
-                                            <div class="float-left"><strong>100%</strong></div>
-                                            <div class="float-right"><small class="text-muted">Progress</small></div>
-                                        </div>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar bg-green" role="progressbar" style="width: 100%"
-                                                aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>03</td>
-                                    <td>
-                                        <h6 class="mb-0">Feed Details on Dribbble</h6>
-                                        <span>The point of using Lorem Ipsum is that...</span>
-                                    </td>
-                                    <td>
-                                        <ul class="list-unstyled team-info mb-0">
-                                            <li><img src="../assets/images/xs/avatar1.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                            <li><img src="../assets/images/xs/avatar2.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                            <li><img src="../assets/images/xs/avatar5.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="text-info">Start: 3 Jun 2019</div>
-                                        <div class="text-pink">End: 15 Jun 2019</div>
-                                    </td>
-                                    <td>
-                                        <span class="tag tag-orange">In progress</span>
-                                    </td>
-                                    <td>
-                                        <div class="clearfix">
-                                            <div class="float-left"><strong>35%</strong></div>
-                                            <div class="float-right"><small class="text-muted">Progress</small></div>
-                                        </div>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar bg-azure" role="progressbar" style="width: 35%"
-                                                aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>04</td>
-                                    <td>
-                                        <h6 class="mb-0">New code Update on github</h6>
-                                        <span>It is a long established fact that a reader will be distracted...</span>
-                                    </td>
-                                    <td>
-                                        <ul class="list-unstyled team-info mb-0">
-                                            <li><img src="../assets/images/xs/avatar1.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                            <li><img src="../assets/images/xs/avatar2.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                            <li><img src="../assets/images/xs/avatar5.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                            <li><img src="../assets/images/xs/avatar3.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                            <li><img src="../assets/images/xs/avatar7.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="text-info">Start: 13 Jun 2019</div>
-                                        <div class="text-pink">End: 23 Jun 2019</div>
-                                    </td>
-                                    <td>
-                                        <span class="tag tag-orange">In progress</span>
-                                    </td>
-                                    <td>
-                                        <div class="clearfix">
-                                            <div class="float-left"><strong>75%</strong></div>
-                                            <div class="float-right"><small class="text-muted">Progress</small></div>
-                                        </div>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar bg-green" role="progressbar" style="width: 75%"
-                                                aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>05</td>
-                                    <td>
-                                        <h6 class="mb-0">New code Update on github</h6>
-                                        <span>Contrary to popular belief, Lorem Ipsum is not simply random text.</span>
-                                    </td>
-                                    <td>
-                                        <ul class="list-unstyled team-info mb-0">
-                                            <li><img src="../assets/images/xs/avatar4.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                            <li><img src="../assets/images/xs/avatar5.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                            <li><img src="../assets/images/xs/avatar6.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                            <li><img src="../assets/images/xs/avatar7.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="text-info">Start: 8 Jun 2019</div>
-                                        <div class="text-pink">End: 15 Jun 2019</div>
-                                    </td>
-                                    <td>
-                                        <span class="tag tag-orange">In progress</span>
-                                    </td>
-                                    <td>
-                                        <div class="clearfix">
-                                            <div class="float-left"><strong>35%</strong></div>
-                                            <div class="float-right"><small class="text-muted">Progress</small></div>
-                                        </div>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar bg-azure" role="progressbar" style="width: 35%"
-                                                aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>06</td>
-                                    <td>
-                                        <h6 class="mb-0">Angular App Design bug</h6>
-                                        <span>There are many variations of passages of Lorem Ipsum available...</span>
-                                    </td>
-                                    <td>
-                                        <ul class="list-unstyled team-info mb-0">
-                                            <li><img src="../assets/images/xs/avatar3.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                            <li><img src="../assets/images/xs/avatar4.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                            <li><img src="../assets/images/xs/avatar7.jpg" tooltip="Avatar"
-                                                    data-placement="top" title="Avatar" alt="Avatar"></li>
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <div class="text-info">Start: 3 Jun 2019</div>
-                                        <div class="text-pink">End: 15 Jun 2019</div>
-                                    </td>
-                                    <td>
-                                        <span class="tag tag-orange">Planned</span>
-                                    </td>
-                                    <td>
-                                        <div class="clearfix">
-                                            <div class="float-left"><strong>35%</strong></div>
-                                            <div class="float-right"><small class="text-muted">Progress</small></div>
-                                        </div>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar bg-azure" role="progressbar" style="width: 35%"
-                                                aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
+<!--                                <tr>-->
+<!--                                    <td>02</td>-->
+<!--                                    <td>-->
+<!--                                        <h6 class="mb-0">Design Events</h6>-->
+<!--                                        <span>It is a long established fact that a reader will be distracted...</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <ul class="list-unstyled team-info mb-0">-->
+<!--                                            <li><img src="../assets/images/xs/avatar1.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                        </ul>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <div class="text-info">Start: 02 Jun 2019</div>-->
+<!--                                        <div class="text-pink">End: 08 Jun 2019</div>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <span class="tag tag-green">Completed</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <div class="clearfix">-->
+<!--                                            <div class="float-left"><strong>100%</strong></div>-->
+<!--                                            <div class="float-right"><small class="text-muted">Progress</small></div>-->
+<!--                                        </div>-->
+<!--                                        <div class="progress progress-xs">-->
+<!--                                            <div class="progress-bar bg-green" role="progressbar" style="width: 100%"-->
+<!--                                                aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>03</td>-->
+<!--                                    <td>-->
+<!--                                        <h6 class="mb-0">Feed Details on Dribbble</h6>-->
+<!--                                        <span>The point of using Lorem Ipsum is that...</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <ul class="list-unstyled team-info mb-0">-->
+<!--                                            <li><img src="../assets/images/xs/avatar1.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                            <li><img src="../assets/images/xs/avatar2.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                            <li><img src="../assets/images/xs/avatar5.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                        </ul>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <div class="text-info">Start: 3 Jun 2019</div>-->
+<!--                                        <div class="text-pink">End: 15 Jun 2019</div>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <span class="tag tag-orange">In progress</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <div class="clearfix">-->
+<!--                                            <div class="float-left"><strong>35%</strong></div>-->
+<!--                                            <div class="float-right"><small class="text-muted">Progress</small></div>-->
+<!--                                        </div>-->
+<!--                                        <div class="progress progress-xs">-->
+<!--                                            <div class="progress-bar bg-azure" role="progressbar" style="width: 35%"-->
+<!--                                                aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>04</td>-->
+<!--                                    <td>-->
+<!--                                        <h6 class="mb-0">New code Update on github</h6>-->
+<!--                                        <span>It is a long established fact that a reader will be distracted...</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <ul class="list-unstyled team-info mb-0">-->
+<!--                                            <li><img src="../assets/images/xs/avatar1.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                            <li><img src="../assets/images/xs/avatar2.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                            <li><img src="../assets/images/xs/avatar5.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                            <li><img src="../assets/images/xs/avatar3.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                            <li><img src="../assets/images/xs/avatar7.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                        </ul>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <div class="text-info">Start: 13 Jun 2019</div>-->
+<!--                                        <div class="text-pink">End: 23 Jun 2019</div>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <span class="tag tag-orange">In progress</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <div class="clearfix">-->
+<!--                                            <div class="float-left"><strong>75%</strong></div>-->
+<!--                                            <div class="float-right"><small class="text-muted">Progress</small></div>-->
+<!--                                        </div>-->
+<!--                                        <div class="progress progress-xs">-->
+<!--                                            <div class="progress-bar bg-green" role="progressbar" style="width: 75%"-->
+<!--                                                aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>05</td>-->
+<!--                                    <td>-->
+<!--                                        <h6 class="mb-0">New code Update on github</h6>-->
+<!--                                        <span>Contrary to popular belief, Lorem Ipsum is not simply random text.</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <ul class="list-unstyled team-info mb-0">-->
+<!--                                            <li><img src="../assets/images/xs/avatar4.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                            <li><img src="../assets/images/xs/avatar5.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                            <li><img src="../assets/images/xs/avatar6.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                            <li><img src="../assets/images/xs/avatar7.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                        </ul>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <div class="text-info">Start: 8 Jun 2019</div>-->
+<!--                                        <div class="text-pink">End: 15 Jun 2019</div>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <span class="tag tag-orange">In progress</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <div class="clearfix">-->
+<!--                                            <div class="float-left"><strong>35%</strong></div>-->
+<!--                                            <div class="float-right"><small class="text-muted">Progress</small></div>-->
+<!--                                        </div>-->
+<!--                                        <div class="progress progress-xs">-->
+<!--                                            <div class="progress-bar bg-azure" role="progressbar" style="width: 35%"-->
+<!--                                                aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>06</td>-->
+<!--                                    <td>-->
+<!--                                        <h6 class="mb-0">Angular App Design bug</h6>-->
+<!--                                        <span>There are many variations of passages of Lorem Ipsum available...</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <ul class="list-unstyled team-info mb-0">-->
+<!--                                            <li><img src="../assets/images/xs/avatar3.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                            <li><img src="../assets/images/xs/avatar4.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                            <li><img src="../assets/images/xs/avatar7.jpg" tooltip="Avatar"-->
+<!--                                                    data-placement="top" title="Avatar" alt="Avatar"></li>-->
+<!--                                        </ul>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <div class="text-info">Start: 3 Jun 2019</div>-->
+<!--                                        <div class="text-pink">End: 15 Jun 2019</div>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <span class="tag tag-orange">Planned</span>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <div class="clearfix">-->
+<!--                                            <div class="float-left"><strong>35%</strong></div>-->
+<!--                                            <div class="float-right"><small class="text-muted">Progress</small></div>-->
+<!--                                        </div>-->
+<!--                                        <div class="progress progress-xs">-->
+<!--                                            <div class="progress-bar bg-azure" role="progressbar" style="width: 35%"-->
+<!--                                                aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="tab-pane fade" [ngClass]="{'show active': dpgridTab}" id="TaskBoard-grid" role="tabpanel">
                     <div class="row clearfix" cdkDropListGroup>
-                        <div class="col-lg-4 col-md-12">
+                        <div class="col-lg-12 col-md-12" *ngIf="CurrentlyFlow">
                             <div class="card planned_task" *ngIf="cardremove1" [ngClass]="{'card-fullscreen': isFull1}"
                                 [ngClass]="{'card-collapsed': !isCollapsed, '': isCollapsed}">
                                 <div class="card-header">
-                                    <h3 class="card-title">Planned</h3>
+                                    <h3 class="card-title">{{CurrentlyFlow.dataModelName}}</h3>
                                     <div class="card-options">
-                                        <a class="card-options-collapse" (click)="isCollapsed = !isCollapsed"
-                                            href="javascript:void(0);" [attr.aria-expanded]="!isCollapsed"
-                                            aria-controls="collapseBasic" data-toggle="card-collapse"><i
-                                                class="fe fe-chevron-up"></i></a>
-                                        <a href="javascript:void(0)" (click)="fullScreenSection(1)"
-                                            class="card-options-fullscreen" data-toggle="card-fullscreen"><i
-                                                class="fe fe-maximize"></i></a>
-                                        <a href="javascript:void(0)" class="card-options-remove"
-                                            (click)="CardRemoveTrans(1)"><i class="fe fe-x"></i></a>
-                                        <div class="item-action dropdown ml-2" dropdown>
-                                            <a href="javascript:void(0)" id="button-basic" dropdownToggle
-                                                data-toggle="dropdown" aria-expanded="false"><i
-                                                    class="fe fe-more-vertical"></i></a>
-                                            <div id="dropdown-basic" *dropdownMenu role="menu"
-                                                aria-labelledby="button-basic" class="dropdown-menu dropdown-menu-right"
-                                                x-placement="bottom-end"
-                                                style="position: absolute; transform: translate3d(-174px, 25px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-copy"></i> Copy to</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-folder"></i> Move to</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-edit"></i> Rename</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-trash"></i> Delete</a>
-                                            </div>
-                                        </div>
+                                      <button type="button" class="btn btn-primary mr-2" (click)="openModal1(templateUpdate)" >Modifier ce flux</button>
+                                      <button type="button" (click)="Delete()" class="btn btn-danger " >Supprimer ce flux</button>
+<!--                                        <a class="card-options-collapse" (click)="isCollapsed = !isCollapsed"-->
+<!--                                            href="javascript:void(0);" [attr.aria-expanded]="!isCollapsed"-->
+<!--                                            aria-controls="collapseBasic" data-toggle="card-collapse"><i-->
+<!--                                                class="fe fe-chevron-up"></i></a>-->
+<!--                                        <a href="javascript:void(0)" (click)="fullScreenSection(1)"-->
+<!--                                            class="card-options-fullscreen" data-toggle="card-fullscreen"><i-->
+<!--                                                class="fe fe-maximize"></i></a>-->
+<!--                                        <a href="javascript:void(0)" class="card-options-remove"-->
+<!--                                            (click)="CardRemoveTrans(1)"><i class="fe fe-x"></i></a>-->
+<!--                                        <div class="item-action dropdown ml-2" dropdown>-->
+<!--                                            <a href="javascript:void(0)" id="button-basic" dropdownToggle-->
+<!--                                                data-toggle="dropdown" aria-expanded="false"><i-->
+<!--                                                    class="fe fe-more-vertical"></i></a>-->
+<!--                                            <div id="dropdown-basic" *dropdownMenu role="menu"-->
+<!--                                                aria-labelledby="button-basic" class="dropdown-menu dropdown-menu-right"-->
+<!--                                                x-placement="bottom-end"-->
+<!--                                                style="position: absolute; transform: translate3d(-174px, 25px, 0px); top: 0px; left: 0px; will-change: transform;">-->
+<!--                                                <a href="javascript:void(0)" class="dropdown-item"><i-->
+<!--                                                        class="dropdown-icon fa fa-eye"></i> View Details </a>-->
+<!--                                                <a href="javascript:void(0)" class="dropdown-item"><i-->
+<!--                                                        class="dropdown-icon fa fa-share-alt"></i> Share </a>-->
+<!--                                                <a href="javascript:void(0)" class="dropdown-item"><i-->
+<!--                                                        class="dropdown-icon fa fa-cloud-download"></i> Download</a>-->
+<!--                                                <div class="dropdown-divider"></div>-->
+<!--                                                <a href="javascript:void(0)" class="dropdown-item"><i-->
+<!--                                                        class="dropdown-icon fa fa-copy"></i> Copy to</a>-->
+<!--                                                <a href="javascript:void(0)" class="dropdown-item"><i-->
+<!--                                                        class="dropdown-icon fa fa-folder"></i> Move to</a>-->
+<!--                                                <a href="javascript:void(0)" class="dropdown-item"><i-->
+<!--                                                        class="dropdown-icon fa fa-edit"></i> Rename</a>-->
+<!--                                                <a href="javascript:void(0)" class="dropdown-item"><i-->
+<!--                                                        class="dropdown-icon fa fa-trash"></i> Delete</a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                     </div>
                                 </div>
                                 <div class="card-body" id="collapseBasic" [collapse]="isCollapsed">
@@ -347,12 +348,12 @@
                                         <ol class="dd-list">
                                             <li class="dd-item" cdkDropList [cdkDropListData]="todo"
                                                 (cdkDropListDropped)="drop($event)">
-                                                <div class="dd-handle" *ngFor="let item of todo" cdkDrag>
-                                                    <h6>{{item.title}}</h6>
-                                                    <span class="time"><span class="text-primary">{{item.time}}</span>
-                                                        to
-                                                        <span class="text-danger">{{item.completetime}}</span></span>
-                                                    <p>{{item.text}}</p>
+                                                <div class="dd-handle" *ngFor="let e of CurrentlyFlow.entity" cdkDrag>
+                                                    <h6>{{e.entityModelName}}</h6>
+                                                    <span class="time"><span class="text-primary">{{e.entityModelDescrip}}</span>
+                                                        <br>De {{e.startDate}} jusqu'a {{e.endDate}}
+                                                        <span class="text-danger">{{e.etapeOrd}}</span></span>
+                                                    <p></p>
                                                     <ul class="list-unstyled team-info">
                                                         <li><img src="../assets/images/xs/avatar1.jpg" tooltip="Avatar"
                                                                 data-placement="top" title="Avatar" alt="Avatar"></li>
@@ -361,150 +362,38 @@
                                                         <li><img src="../assets/images/xs/avatar5.jpg" tooltip="Avatar"
                                                                 data-placement="top" title="Avatar" alt="Avatar"></li>
                                                     </ul>
-                                                </div>
+                                                      <div class="align-right mt-3">
+                                                  <button type="button" class="btn btn-primary mr-2" (click)="openModal1(templateUpdate)" >Modifier cette étape</button>
+                                                  <button type="button" (click)="Delete()" class="btn btn-danger " >Supprimer cette étape</button>
+                                                      </div>
+                                                  </div>
                                             </li>
 
                                         </ol>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="card progress_task" *ngIf="cardremove2" [ngClass]="{'card-fullscreen': isFull2}"
-                                [ngClass]="{'card-collapsed': !isCollapsed1, '': isCollapsed1}">
-                                <div class="card-header">
-                                    <h3 class="card-title">In progress</h3>
-                                    <div class="card-options">
-                                        <a class="card-options-collapse" (click)="isCollapsed1 = !isCollapsed1"
-                                            href="javascript:void(0);" [attr.aria-expanded]="!isCollapsed1"
-                                            aria-controls="collapseBasic" data-toggle="card-collapse"><i
-                                                class="fe fe-chevron-up"></i></a>
-                                        <a href="javascript:void(0)" (click)="fullScreenSection(2)"
-                                            class="card-options-fullscreen" data-toggle="card-fullscreen"><i
-                                                class="fe fe-maximize"></i></a>
-                                        <a href="javascript:void(0)" class="card-options-remove"
-                                            (click)="CardRemoveTrans(2)"><i class="fe fe-x"></i></a>
-                                        <div class="item-action dropdown ml-2" dropdown>
-                                            <a href="javascript:void(0)" id="button-basic" dropdownToggle
-                                                data-toggle="dropdown" aria-expanded="false"><i
-                                                    class="fe fe-more-vertical"></i></a>
-                                            <div id="dropdown-basic" *dropdownMenu role="menu"
-                                                aria-labelledby="button-basic" class="dropdown-menu dropdown-menu-right"
-                                                x-placement="bottom-end"
-                                                style="position: absolute; transform: translate3d(-174px, 25px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-copy"></i> Copy to</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-folder"></i> Move to</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-edit"></i> Rename</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-trash"></i> Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body" id="collapseBasic" [collapse]="isCollapsed1">
-                                    <div class="dd" data-plugin="nestable">
-                                        <ol class="dd-list">
-                                            <li class="dd-item" cdkDropList [cdkDropListData]="done"
-                                                (cdkDropListDropped)="drop($event)">
-                                                <div class="dd-handle" *ngFor="let item of done" cdkDrag>
-                                                    <h6>{{item.title}}</h6>
-                                                    <p>{{item.text}}</p>
-                                                    <span class="time"><span class="text-primary">{{item.time}}</span>
-                                                        to
-                                                        <span class="text-danger">{{item.completetime}}</span></span>
-                                                    <ul class="list-unstyled team-info">
-                                                        <li><img src="../assets/images/xs/avatar7.jpg" tooltip="Avatar"
-                                                                data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="../assets/images/xs/avatar9.jpg" tooltip="Avatar"
-                                                                data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                    </ul>
-                                                </div>
-                                            </li>
+                              <div class="card-body" (click)="openModal2(CreateEntity)" id="collapseBasic" [collapse]="isCollapsed">
+                                <div class="dd" data-plugin="nestable">
+                                  <ol class="dd-list">
+                                    <li class="dd-item" cdkDropList [cdkDropListData]="todo"
+                                        (cdkDropListDropped)="drop($event)">
+                                      <div class="dd-handle"  cdkDrag>
+                                        <h6 class="text-center">Ajouter une nouvelle étape</h6>
+                                        <span class="time"><span class="text-primary"></span>
+                                                        <br>
+                                          <span class="text-danger"></span></span>
+                                        <p></p>
+                                      </div>
+                                    </li>
 
-                                        </ol>
-                                    </div>
+                                  </ol>
                                 </div>
+                              </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="card completed_task" *ngIf="cardremove3"
-                                [ngClass]="{'card-fullscreen': isFull3}"
-                                [ngClass]="{'card-collapsed': !isCollapsed2, '': isCollapsed2}">
-                                <div class="card-header">
-                                    <h3 class="card-title">Completed</h3>
-                                    <div class="card-options">
-                                        <a class="card-options-collapse" (click)="isCollapsed2 = !isCollapsed2"
-                                            href="javascript:void(0);" [attr.aria-expanded]="!isCollapsed2"
-                                            aria-controls="collapseBasic" data-toggle="card-collapse"><i
-                                                class="fe fe-chevron-up"></i></a>
-                                        <a href="javascript:void(0)" (click)="fullScreenSection(3)"
-                                            class="card-options-fullscreen" data-toggle="card-fullscreen"><i
-                                                class="fe fe-maximize"></i></a>
-                                        <a href="javascript:void(0)" class="card-options-remove"
-                                            (click)="CardRemoveTrans(3)"><i class="fe fe-x"></i></a>
-                                        <div class="item-action dropdown ml-2" dropdown>
-                                            <a href="javascript:void(0)" id="button-basic" dropdownToggle
-                                                data-toggle="dropdown" aria-expanded="false"><i
-                                                    class="fe fe-more-vertical"></i></a>
-                                            <div id="dropdown-basic" *dropdownMenu role="menu"
-                                                aria-labelledby="button-basic" class="dropdown-menu dropdown-menu-right"
-                                                x-placement="bottom-end"
-                                                style="position: absolute; transform: translate3d(-174px, 25px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-cloud-download"></i> Download</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-copy"></i> Copy to</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-folder"></i> Move to</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-edit"></i> Rename</a>
-                                                <a href="javascript:void(0)" class="dropdown-item"><i
-                                                        class="dropdown-icon fa fa-trash"></i> Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body" id="collapseBasic" [collapse]="isCollapsed2">
-                                    <div class="dd" data-plugin="nestable">
-                                        <ol class="dd-list">
-                                            <li class="dd-item" cdkDropList [cdkDropListData]="completed"
-                                                (cdkDropListDropped)="drop($event)">
-                                                <div class="dd-handle" *ngFor="let item of completed" cdkDrag>
-                                                    <h6>{{item.title}}</h6>
-                                                    <p>{{item.text}}</p>
-                                                    <ul class="list-unstyled team-info">
-                                                        <li><img src="../assets/images/xs/avatar4.jpg" tooltip="Avatar"
-                                                                data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="../assets/images/xs/avatar5.jpg" tooltip="Avatar"
-                                                                data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="../assets/images/xs/avatar6.jpg" tooltip="Avatar"
-                                                                data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="../assets/images/xs/avatar8.jpg" tooltip="Avatar"
-                                                                data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                    </ul>
-                                                </div>
-                                            </li>
 
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+
                     </div>
                 </div>
             </div>
@@ -516,52 +405,245 @@
 
 <ng-template #template>
     <div class="modal-header">
-        <h4 class="modal-title pull-left">Add New Task</h4>
+        <h4 class="modal-title pull-left">Ajouter une nouvelle flux de travail</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true">Fermer</span>
         </button>
     </div>
     <div class="modal-body">
         <div class="row clearfix">
+          <form [formGroup]="editForm" >
             <div class="col-12">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Task no.">
+                    <input type="text" name="dataModelName" formControlName="dataModelName" class="form-control" placeholder="Entrer le nom de flux de travail">
+                  <small class="form-text text-danger"
+                         *ngIf="editForm.get('dataModelName')?.errors?.required">
+                    Ce champs est obligatoire
+                  </small>
+                  <small class="form-text text-danger"
+                         *ngIf="editForm.get('dataModelName')?.errors?.minlength">
+                    ce champs doit avoir au minimum 3 caractéres
+                  </small>
+                  <small class="form-text text-danger"
+                         *ngIf="editForm.get('dataModelName')?.errors?.maxlength">
+                    Vous avez dépasser la taille maximale de ce champs
+                  </small>
                 </div>
             </div>
             <div class="col-12">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Job title">
+                  <textarea type="text" formControlName="dataModelDescrip" class="form-control" rows="5" cols="35" placeholder="Saisir la discription de ce flux de travail"></textarea>
+                  <small class="form-text text-danger"
+                         *ngIf="editForm.get('dataModelDescrip')?.errors?.required">
+                    Ce champs est obligatoire
+                  </small>
+                  <small class="form-text text-danger"
+                         *ngIf="editForm.get('dataModelDescrip')?.errors?.minlength">
+                    ce champs doit avoir au minimum 3 caractéres
+                  </small>
+                  <small class="form-text text-danger"
+                         *ngIf="editForm.get('dataModelDescrip')?.errors?.maxlength">
+                    Vous avez dépasser la taille maximale de ce champs
+                  </small>
                 </div>
             </div>
             <div class="col-12">
                 <div class="form-group">
-                    <textarea class="form-control" placeholder="Description"></textarea>
+                  <label for="start"> Date de début</label>
+                    <input id="start" type="date" formControlName="start" class="form-control" value="2021-03-02" min="2021-03-01" max="2030-12-31">
+                  <small class="form-text text-danger"
+                         *ngIf="editForm.get('start')?.errors?.required">
+                    Ce champs est obligatoire
+                  </small>
                 </div>
             </div>
-            <div class="col-12">
-                <div class="form-group">
-                    <select class="form-control show-tick">
-                        <option>Select Team</option>
-                        <option>John Smith</option>
-                        <option>Claire Peters</option>
-                        <option>Allen Collins</option>
-                        <option>Cory Carter</option>
-                        <option>Rochelle Barton</option>
-                    </select>
-                </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label for="start"> Date Fin</label>
+              <input type="date" class="form-control" formControlName="end" value="2021-03-02" min="2021-03-01" max="2030-12-31">
+              <small class="form-text text-danger"
+                     *ngIf="editForm.get('end')?.errors?.required">
+                Ce champs est obligatoire
+              </small>
             </div>
-            <div class="col-12">
-                <label>Range</label>
-                <div class="input-daterange input-group" data-provide="datepicker">
-                    <input type="text" class="form-control" name="start">
-                    <span class="input-group-addon"> to </span>
-                    <input type="text" class="form-control" name="end">
-                </div>
-            </div>
+          </div>
+          </form>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Add</button>
-        <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
+        <button type="submit" (click)="onAdd()" class="btn btn-primary">Ajouter</button>
+        <button type="button" class="btn btn-default" (click)="modalRef.hide()">Fermer</button>
     </div>
+</ng-template>
+<ng-template #templateUpdate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modifier le flux de travail || #ID:{{CurrentlyFlow.id}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">Fermer</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row clearfix">
+      <form  >
+        <div class="col-12">
+          <div class="form-group">
+            <input type="text" name="dataModelName" formControlName="dataModelName" class="form-control" placeholder="Entrer le nom de flux de travail">
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <textarea type="text" formControlName="dataModelDescrip" class="form-control" rows="5" cols="35" placeholder="Saisir la discription de ce flux de travail"></textarea>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label for="start"> Date de début</label>
+            <input id="start" type="date" formControlName="start" class="form-control" >
+            <small class="form-text text-danger">
+              Date Anciens : {{this.CurrentlyFlow.startDate}}
+            </small>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label for="start"> Date Fin</label>
+            <input type="date" class="form-control" formControlName="end" value="2021/03/02" min="2021-03-01" max="2030-12-31">
+            <small class="form-text text-danger">
+              Date Anciens : {{this.CurrentlyFlow.startDate}}
+            </small>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" (click)="onClickUpdate()" class="btn btn-primary">Mettre a jour</button>
+    <button type="button" class="btn btn-default" (click)="modalRef.hide()">Fermer</button>
+  </div>
+</ng-template>
+<ng-template class="page" #CreateEntity>
+
+      <div class="section-body">
+        <div class="container-fluid">
+          <div class="d-md-flex justify-content-between align-items-center">
+            <ul class="nav nav-tabs page-header-tab">
+              <li class="nav-item"><a class="nav-link" id="TaskBoard-tab" data-toggle="tab"
+                                      href="javascript:void(0)" (click)="onTab1('1')" [ngClass]="{'active': tab1}">Liste des
+                flux de travail</a>
+              </li>
+              <li class="nav-item" ><a  class="nav-link" id="TaskBoard-tab" data-toggle="tab"
+                                                      href="javascript:void(0)" (click)="onTab1('2')" [ngClass]="{'active': tab2}">Acteurs</a></li>
+              <li class="nav-item"><a class="nav-link" id="TaskBoard-tab" data-toggle="tab"
+                                      href="javascript:void(0)" (click)="onTab1('3')" [ngClass]="{'active': tab3}">Création
+              de formulaire</a>
+              </li>
+              <li class="nav-item"><a class="nav-link" id="TaskBoard-tab" data-toggle="tab"
+                                      href="javascript:void(0)" (click)="onTab1('4')" [ngClass]="{'active': tab4}">
+                Notification
+              </a>
+              </li>
+            </ul>
+
+        </div>
+      </div>
+  </div>
+  <div class="modal-body">
+  <div class="tab-pane fade" *ngIf="tab1inter" [ngClass]="{'show active': tab1}" id="add-grid" role="tabpanel">
+
+        <form [formGroup]="editForm">
+            <div class="form-group">
+              <label for="start"> Nom</label>
+              <input type="text" name="EntityModelName" formControlName="EntityModelName" class="form-control" placeholder="Nom de flux..">
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label for="start"> Description</label>
+              <textarea type="text" formControlName="EntityModelDescrip" class="form-control" rows="5" cols="35" placeholder="Description de flux.."></textarea>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label for="start"> Date de début</label>
+              <input id="start" type="date" formControlName="startDate" class="form-control" >
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <label for="start"> Date Fin</label>
+              <input type="date" class="form-control" formControlName="endDate" value="2021/03/02" min="2021-03-01" max="2030-12-31">
+            </div>
+          </div>
+          <div class="form-group ">
+              <label for="delai"> Délai d'execution</label>
+               <input type="text" name="delai" id="delai" formControlName="DelaiDexecutionEnHeure" class="form-control mb-2"  placeholder="Nombre">
+              <select  name="seleteds" class="custom-select mb-3">
+                <option value="username">Heures</option>
+                <option value="email">Jours</option>
+              </select>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" (click)="onTab1(2)"  class="btn btn-primary">suivant</button>
+            <button type="button" class="btn btn-default align-right" (click)="modalRef.hide()">annuler</button>
+          </div>
+        </form>
+
+
+  </div>
+  <div class="tab-pane fade" *ngIf="tab2inter"  [ngClass]="{'show active': tab2}" id="add-grid" role="tabpanel">
+    <div class="alert alert-warning mb-5" role="alert">
+      {{message}}
+    </div>
+      <div class="form-check form-check-inline mr-3">
+        <input class="form-check-input" [checked]="checkedUSER" (click)="checkedUser()" type="checkbox" id="inlineCheckbox1" value="option1" >
+        <label class="form-check-label" for="inlineCheckbox1">Role utilisateur</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" [checked]="checkedGroupe" (click)="chekedGroup()" type="checkbox" id="inlineCheckbox2"  value="option2">
+        <label class="form-check-label"  for="inlineCheckbox2">Groupe Utilisateur</label>
+      </div>
+    </div>
+    <div *ngIf="checkedUSER" class="mt-5">
+      <label>Selectionner des utilisateurs :</label>
+    <ng-multiselect-dropdown
+      class="mb-15"
+      [placeholder]="'Selectionner les utilisateur'"
+      [settings]="dropdownSettings"
+      [data]="dropdownList"
+      [(ngModel)]="selectedItems"
+      (onSelect)="onItemSelect($event)"
+      (onSelectAll)="onSelectAll($event)">
+    </ng-multiselect-dropdown>
+      <div class="modal-footer mt-15">
+        <button type="submit" (click)="onTab1(3)"  class="btn btn-primary">suivant</button>
+        <button type="button" class="btn btn-default align-right" (click)="modalRef.hide()">annuler</button>
+      </div>
+
+    </div>
+
+    <div class="tab-pane fade"  [ngClass]="{'show active': tab3}" id="add-grid" role="tabpanel">
+      <form-builder [options]="{builder: {
+    basic: false,
+    advanced: false,
+    data: false,
+    customBasic: {
+      title: 'les basiques du formulaire',
+      default: true,
+      weight: 0,
+      components: {
+        textfield: true,
+        textarea: true,
+        email: true,
+        phoneNumber: true
+      }}
+}}"
+                    [form]="form" (change)="onChange($event)"></form-builder>
+      <hr/>
+      <div class="modal-footer mt-15">
+        <button type="submit" (click)="onTab1(4)"  class="btn btn-primary">suivant</button>
+        <button type="button" class="btn btn-default align-right" (click)="modalRef.hide()">annuler</button>
+      </div>
+    </div>
+  </div>
 </ng-template>

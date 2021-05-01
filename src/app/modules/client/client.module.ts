@@ -102,6 +102,9 @@ import { ChangePasswordComponent } from './profile/change-password/change-passwo
 import {MatDialogModule} from '@angular/material/dialog';
 import { TestComponent } from './test/test.component';
 import {FormioModule} from '@formio/angular';
+import { StepperComponent } from './test/stepper/stepper.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -142,6 +145,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CKEditorModule,
     MatDialogModule,
     FormioModule,
+    MatStepperModule,
+    MatFormFieldModule,
   ],
   declarations: [
     ClientRoutingModule.components,
@@ -217,6 +222,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ProfileDetailsComponent,
     ChangePasswordComponent,
     TestComponent,
+    StepperComponent,
   ],
   providers: [BsDatepickerModule]
 })

@@ -34,6 +34,7 @@ disabled=false;
 
 
   onConnect(value: any) {
+    console.log(value);
     if(value.username.length < 3 ){
       document.getElementById('username').style.border="1px solid #ff0000";
       this.Error=true;

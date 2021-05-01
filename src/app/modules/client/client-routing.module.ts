@@ -50,6 +50,7 @@ import { WSocialComponent } from './widgets/w-social/w-social.component';
 import { WOtherComponent } from './widgets/w-other/w-other.component';
 import {ProfileDetailsComponent} from './hrms/hr-users/profile-details/profile-details.component';
 import {TestComponent} from './test/test.component';
+import {StepperComponent} from './test/stepper/stepper.component';
 
 
 
@@ -62,6 +63,11 @@ const routes: Routes = [
   {
     path: 'Dashboard-Admin',
     component: HrDashboardComponent,
+    data: { title: 'Page daccueil' }
+  },
+  {
+    path: 'test',
+    component: StepperComponent,
     data: { title: 'Page daccueil' }
   },
   {
@@ -150,9 +156,9 @@ const routes: Routes = [
     data: { title: ':: Epic :: Project List' }
   },
   {
-    path: 'test',
+    path: 'entity',
     component: TestComponent,
-    data: { title: ':: Epic :: Project List' }
+    data: { title: 'Editer une entités workflow' }
   },
   {
     path: 'project-taskboard',

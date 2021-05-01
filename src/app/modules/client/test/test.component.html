@@ -1,5 +1,24 @@
+<app-leftmenu></app-leftmenu>
 
-<form-builder [form]="form" (change)="onChange($event)"></form-builder>
+<div class="page">
+  <app-header></app-header>
+  <div class="mt-5">
+<form-builder [options]="{builder: {
+    basic: false,
+    advanced: false,
+    data: false,
+    customBasic: {
+      title: 'Bader',
+      default: true,
+      weight: 0,
+      components: {
+        textfield: true,
+        textarea: true,
+        email: true,
+        phoneNumber: true
+      }}
+}}"
+              [form]="form" (change)="onChange($event)"></form-builder>
 <hr/>
 <h3 class="text-center text-muted">As JSON Schema</h3>
 <div class="well jsonviewer">
@@ -7,5 +26,10 @@
 </div>
 <h3 class="text-center text-muted">As Rendered Form</h3>
 <div class="well jsonviewer">
-  <formio [form]="form" [refresh]="refreshForm"></formio>
+<!--  <formio   [form]="json1" [refresh]="refreshForm"></formio>-->
+<!--  <input  type="{{formFromDataBase[0].inputType}}">-->
+</div>
+    <button (click)="submit()">bader</button>
+  </div>
+
 </div>
