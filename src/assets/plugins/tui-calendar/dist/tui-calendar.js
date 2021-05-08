@@ -3526,7 +3526,7 @@ var existy = common.isExisty,
 var dirty = {
     /**
      * Set property value with dirty flagging.
-     * @param {string} propName Property name.
+     * @param {string} propName Properties name.
      * @param {*} value Proprty value.
      */
     set: function(propName, value) {
@@ -3561,7 +3561,7 @@ var dirty = {
 
     /**
      * Check dirty flag.
-     * @returns {boolean} Property is changed.
+     * @returns {boolean} Properties is changed.
      */
     isDirty: function() {
         return !!this._dirty;
@@ -5869,7 +5869,7 @@ function createDateAsLocalTime(arg) {
 
 /**
  * is it for local time? These type can be used from Calendar API.
- * @param {Date|string} arg - date 
+ * @param {Date|string} arg - date
  * @returns {boolean}
  */
 function useLocalTimeConverter(arg) {
@@ -8355,7 +8355,7 @@ var mmin = Math.min;
  *             return 'Location : ' + schedule.location;
  *         },
  *         popupDetailUser: function(schedule) {
- *             return 'User : ' + (schedule.attendees || []).join(', ');
+ *             return 'AppUser : ' + (schedule.attendees || []).join(', ');
  *         },
  *         popupDetailState: function(schedule) {
  *             return 'State : ' + schedule.state || 'Busy';
@@ -13380,7 +13380,7 @@ MonthCreationGuide.prototype._onDrag = function(dragEvent) {
  * Drag end event handler
  */
 MonthCreationGuide.prototype._onDragEnd = function() {
-    // Do nothing. User calls destroy directly.
+    // Do nothing. AppUser calls destroy directly.
     this.guide = null;
 };
 

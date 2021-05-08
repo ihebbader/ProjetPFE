@@ -26,4 +26,11 @@ export class EntityService {
 
   }
 
+  addEntityToData(id,entity){
+
+    return this.http.post(this.host+'addNewEntity/'+id,entity,{headers:{'Authorization':localStorage.getItem("token")}})
+  }
+  DeleteEntityFromModel(id){
+    return this.http.delete(this.host+'deleteEntity/'+id,{headers:{'Authorization':localStorage.getItem("token")}})
+  }
 }

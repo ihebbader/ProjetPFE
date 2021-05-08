@@ -1,24 +1,20 @@
-import {Component, OnInit, ViewChild, TemplateRef, ElementRef, EventEmitter} from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import {
-  ApexNonAxisChartSeries,
-  ApexPlotOptions,
-  ApexChart,
-  ChartComponent
-} from "ng-apexcharts";
+import {Component, ElementRef, EventEmitter, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {ApexChart, ApexNonAxisChartSeries, ApexPlotOptions, ChartComponent} from 'ng-apexcharts';
 import {DatamodelService} from '../../../../shared/service/workflow/DataModel/datamodel.service';
 import {DataModel} from '../../../../shared/Model/data-model';
 import {FormBuilder, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import {UserService} from '../../../../shared/service/users/user.service';
-import {User} from '../../../../shared/Model/user';
-import {Components, FormioRefreshValue} from '@formio/angular';
+import {AppUser} from '../../../../shared/Model/AppUser';
+import {FormioRefreshValue} from '@formio/angular';
 import {PrismService} from '../../../../shared/prism.service';
 import {EntityService} from '../../../../shared/service/workflow/entity.service';
 import {Entity} from '../../../../shared/Model/entity';
-
+import {Properties} from '../../../../shared/Model/properties';
+import {Notification} from '../../../../shared/Model/notification';
+import {Router} from '@angular/router';
 
 
 export type ChartOptions = {
@@ -62,7 +58,8 @@ export class PrTaskboardComponent implements OnInit {
   isFull1: boolean;
   isFull2: boolean;
   isFull3: boolean;
-  user:User[] | null=null;
+  NotForm: any;
+  AppUser:AppUser[] | null=null;
   modalRef: BsModalRef;
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
@@ -71,24 +68,38 @@ export class PrTaskboardComponent implements OnInit {
   @ViewChild('json', {static: true}) jsonElement?: ElementRef;
   @ViewChild('code', {static: true}) codeElement?: ElementRef;
   public form: Object;
+  public EntityForm;
   public formFromDataBase:Object;
   public refreshForm: EventEmitter<FormioRefreshValue> = new EventEmitter();
   public refreshForm1: EventEmitter<FormioRefreshValue> = new EventEmitter();
-  constructor(public prism: PrismService,private test:EntityService,private modalService: BsModalService, private dataModelService: DatamodelService,private fb:FormBuilder,private DataModelService:DatamodelService,private userService:UserService) {
+  constructor(public prism: PrismService,
+                private router:Router,
+                private test:EntityService,private EntityModel:EntityService,private modalService: BsModalService, private dataModelService: DatamodelService,private fb:FormBuilder,private DataModelService:DatamodelService,private userService:UserService) {
     this.form = {components: [],builder:{layout:false,advanced :false}};
-
+    this.NotForm=this.fb.group({
+      role:['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
+      status:['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
+      message:['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
+    });
+    this.EntityForm=this.fb.group({
+      EntityModelName:['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
+      EntityModelDescrip:['',[Validators.required,Validators.minLength(5),Validators.maxLength(1000)]],
+      startDate:['',Validators.required],
+      endDate:['',Validators.required],
+      DelaiDexecutionEnHeure:['',[Validators.minLength(1),Validators.maxLength(2)]]
+    });
     this.editForm=this.fb.group({
       dataModelName:['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
       dataModelDescrip:['',[Validators.required,Validators.minLength(5),Validators.maxLength(1000)]],
       start:['',Validators.required],
       end:['',Validators.required]
-    })
+    });
     this.editFormUpdate=this.fb.group({
       dataModelName:['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
       dataModelDescrip:['',[Validators.required,Validators.minLength(5),Validators.maxLength(1000)]],
       start:['',Validators.required],
       end:['',Validators.required]
-    })
+    });
     this.chartOptions = {
       series: [70],
       chart: {
@@ -106,23 +117,12 @@ export class PrTaskboardComponent implements OnInit {
       labels: ["REVENUE"]
     };
   }
-  onChange(event) {
-    this.jsonElement.nativeElement.innerHTML = '';
-    console.log(event);
-    this.jsonElement.nativeElement.appendChild(document.createTextNode(JSON.stringify(event.form, null, 4)));
-    this.refreshForm.emit({
-      property: 'form',
-      value: event.form
-    });
-    this.formFromDataBase=event.form.components
 
-
-  }
   ngOnInit(): void {
    // this.prism.init();
     this.getDataModel();
     this.getUserList();
-    console.log(this.user);
+    console.log(this.AppUser);
 
     // this.dropdownList = [
     //   { item_id: 1, item_text: 'Mumbai' },
@@ -136,11 +136,11 @@ export class PrTaskboardComponent implements OnInit {
     ];
     this.dropdownSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'id',
+      textField: 'username',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
+      itemsShowLimit: 4,
       allowSearchFilter: true
     };
   }
@@ -149,7 +149,7 @@ getUserList(){
   this.userService.getAllusers().subscribe(resp=>{
    this.ListUsers=resp;
 
-    this.user=this.ListUsers; this.ListUsers ? this.ListUsers : [];
+    this.AppUser=this.ListUsers; this.ListUsers ? this.ListUsers : [];
   })
 }
   CardRemoveTrans(number) {
@@ -183,6 +183,7 @@ getUserList(){
   tab1inter=true;
   tab2inter=false;
   etapeGenerame=true;
+  tab3inter=false;
   onTab1(number) {
     this.tab1=true;
     this.tab2=false;
@@ -193,6 +194,8 @@ getUserList(){
       this.tab1=true;
       this.etapeGenerame=true;
       this.tab2inter=false;
+      this.tab3inter=false;
+
     }
     else if (number == '2') {
       this.tab1inter=false;
@@ -200,21 +203,25 @@ getUserList(){
       this.tab2=true;
       this.tab3=false;
       this.tab2inter=true;
+      this.tab3inter=false;
 
     }  else if (number == '3') {
+      this.alertebool=false;
       this.tab1inter=false;
       this.tab1=false;
       this.tab2=false;
       this.tab3=true;
       this.tab2inter=false;
       this.checkedUSER=false;
+      this.tab3inter=true;
     }
-    else if (number == '3') {
+    else if (number == '4') {
       this.tab1inter=false;
       this.tab1=false;
       this.tab2=false;
       this.tab3=false;
-      this.tab4=false;
+      this.tab4=true;
+      this.tab3inter=false;
       this.tab2inter=false;
 
     }
@@ -258,8 +265,8 @@ getUserList(){
   openModal2(template: TemplateRef<any>) {
     this.onUpdate();
     this.modalRef = this.modalService.show(template,{class:'modal-lg'});
-    this.user.forEach(element=>{
-      this.dropdownList.push({ item_id: element.id, item_text: element.username})
+    this.AppUser.forEach(element=>{
+      this.dropdownList.push({ id: element.id, username: element.username})
     })
   }
   list;
@@ -343,10 +350,11 @@ getUserList(){
   }
   onUpdate(){
     this.editFormUpdate.patchValue({
+
       dataModelName:this.CurrentlyFlow.dataModelName,
       dataModelDescrip:this.CurrentlyFlow.dataModelDescrip,
     })
-console.log(this.editFormUpdate.get(['start'])!.value)
+console.log(this.CurrentlyFlow.dataModelName)
   }
   onClickUpdate(){
     this.CurrentlyFlow.dataModelName=this.editFormUpdate.get(['dataModelName'])!.value;
@@ -368,15 +376,48 @@ console.log(this.editFormUpdate.get(['start'])!.value)
     })
     console.log(this.CurrentlyFlow);
   }
+  messageAlerte;
+  alertebool=false;
 NewEntity:Entity=new Entity();
   getEtape2() {
+    this.NewEntity.entityModelName=this.EntityForm.get(['EntityModelName'])!.value;
+    this.NewEntity.entityModelDescrip=this.EntityForm.get(['EntityModelDescrip'])!.value;
+    this.NewEntity.startDate=this.EntityForm.get(['startDate'])!.value;
+    this.NewEntity.endDate=this.EntityForm.get(['endDate'])!.value;
+    this.NewEntity.delaiDexecutionEnHeure=this.EntityForm.get(['DelaiDexecutionEnHeure'])!.value;
+    if(this.NewEntity.entityModelName== "" || this.NewEntity.entityModelDescrip=="" ){
+      this.alertebool=true;
+      this.messageAlerte="Veuillez remplir les champs correctement";
+      return;
+    }
 this.onTab1(2);
+
+console.log(this.NewEntity);
+  }
+  user=new AppUser();
+
+  getEtape3(){
+this.alertebool=false;
+    if(this.selectedItems.length==0){
+      this.alertebool=true;
+      this.messageAlerte="Vueillez selectionner au minimum un utilisateur";
+      return;
+    }
+   let AppUser=[];
+    this.onTab1(3);
+    this.selectedItems.forEach(element=>{
+     this.user.id=element.id;
+     this.user.username=element.username;
+     AppUser.push(this.user);
+
+    })
+    this.NewEntity.user=AppUser;
+    console.log(this.NewEntity);
   }
   onItemSelect(item: any) {
-    console.log(item);
   }
   onSelectAll(items: any) {
-    console.log(items);
+
   }
   message="Veuillez choisir l'un de ces options suivantes";
   checkedUSER=false;
@@ -391,5 +432,67 @@ this.onTab1(2);
     this.checkedGroupe=true;
 
   }
+  properties:Properties[];
+  onChange(event) {
+    this.refreshForm.emit({
+      property: 'form',
+      value: event.form
+    });
+    this.formFromDataBase=event.form.components
+    this.properties=event.form.components;
+    // console.log(this.property);
+    this.NewEntity.properties=this.properties;
+    console.log(this.properties);
+    console.log(this.NewEntity);
+  }
+  NotifacationForm=false;
 
+   setNotificationForm(){
+    this.NotifacationForm=true;
+  }
+  not=[];
+  onNotificationClick(){
+
+    let notifiaction: Notification=new Notification();
+    notifiaction.role=this.NotForm.get(['role'])!.value;
+    notifiaction.status=this.NotForm.get(['status'])!.value;
+    notifiaction.message=this.NotForm.get(['message'])!.value;
+    this.not.push(notifiaction)
+    this.NewEntity.notification=this.not;
+
+    console.log(this.NewEntity)
+
+  }
+  // executer la requete
+  finish(){
+    this.onNotificationClick();
+    this.getDataModel();
+    this.CurrentlyFlow
+    this.CurrentlyFlow.entity.push(this.NewEntity);
+    this.modalRef.hide();
+    //this.entityDetails();
+    Swal.fire(
+      'Opération terminé!',
+      'Cette flux de travail a été  ajouté avec succées ',
+      'success'
+    )
+this.EntityModel.addEntityToData(this.CurrentlyFlow.id,this.NewEntity).subscribe(resp=>{
+  console.log(resp);
+
+},error => {
+  console.log(error);
+})
+    this.entityDetails(this.CurrentlyFlow);
+
+}
+DeleteEntity(e){
+this.EntityModel.DeleteEntityFromModel(e.id).subscribe(resp=>{
+  console.log(resp);
+
+  this.CurrentlyFlow.entity.splice(this.CurrentlyFlow.entity.indexOf(e),1)
+  this.entityDetails(this.CurrentlyFlow);
+},error => {
+  console.log(error);
+})
+}
 }

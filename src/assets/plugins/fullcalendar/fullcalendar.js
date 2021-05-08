@@ -3885,7 +3885,7 @@ var View = /** @class */ (function (_super) {
         if (dateMutation) {
             eventInstance.dateProfile = dateMutation.buildNewDateProfile(eventInstance.dateProfile, this.calendar);
         }
-        this.triggerEventDrop(eventInstance, 
+        this.triggerEventDrop(eventInstance,
         // a drop doesn't necessarily mean a date mutation (ex: resource change)
         (dateMutation && dateMutation.dateDelta) || moment.duration(), undoFunc, el, ev);
     };
@@ -6335,7 +6335,7 @@ var DayTableMixin = /** @class */ (function (_super) {
     /* Generic
     ------------------------------------------------------------------------------------------------------------------*/
     DayTableMixin.prototype.renderIntroHtml = function () {
-        // Generates the default HTML intro for any row. User classes should override
+        // Generates the default HTML intro for any row. AppUser classes should override
     };
     // TODO: a generic method for dealing with <tr>, RTL, intro
     // when increment internalApiVersion

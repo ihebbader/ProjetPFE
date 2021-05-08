@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthServiceService} from '../../../shared/service/Auth/auth-service.service';
-import {User} from '../../../shared/Model/user';
+import {AppUser} from '../../../shared/Model/AppUser';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../shared/service/users/user.service';
 import Swal from 'sweetalert2';
@@ -33,11 +33,11 @@ export class ProfileComponent implements OnInit {
   onProfileChangeTab=false;
   editForm:FormGroup;
   currentFileUpload;  selectedFiles;
-user:User;
+user:AppUser;
   image=true;
   constructor(private authService:AuthServiceService,private userService:UserService,
               private fb: FormBuilder,private router:Router,
-              private dialogService:DialogService) {this.user=new User();
+              private dialogService:DialogService) {this.user=new AppUser();
     this.editForm=this.fb.group({
       username: ['',[Validators.required,Validators.maxLength(50),Validators.minLength(3)]],
       nom:['', [Validators.minLength(3),Validators.maxLength(30)]],
@@ -136,7 +136,7 @@ user:User;
       adresse:this.user.adresse,
     })
   }
-  updateUser(user: User): void {
+  updateUser(user: AppUser): void {
     // user.id=this.CurrentlyUSerUpdated.id;
     user.username = this.editForm.get(['username'])!.value;
     user.nom = this.editForm.get(['nom'])!.value;

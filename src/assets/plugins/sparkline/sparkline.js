@@ -1053,7 +1053,7 @@
 
 
     /**
-     * User option handler
+     * AppUser option handler
      */
     $.fn.sparkline.options = createClass({
         init: function (tag, userOptions) {

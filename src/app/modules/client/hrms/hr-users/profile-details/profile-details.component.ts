@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../../../../shared/Model/user';
+import {AppUser} from '../../../../../shared/Model/AppUser';
 import {ActivatedRoute, Params} from '@angular/router';
 import {AuthServiceService} from '../../../../../shared/service/Auth/auth-service.service';
 
@@ -9,7 +9,7 @@ import {AuthServiceService} from '../../../../../shared/service/Auth/auth-servic
   styleUrls: ['./profile-details.component.scss']
 })
 export class ProfileDetailsComponent implements OnInit {
-user:User;
+user:AppUser;
   constructor(private router: ActivatedRoute,private authService:AuthServiceService) { }
 
   ngOnInit(): void {

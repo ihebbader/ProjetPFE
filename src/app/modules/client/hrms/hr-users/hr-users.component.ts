@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2'
 import {UserService} from '../../../../shared/service/users/user.service';
-import {roles, User} from '../../../../shared/Model/user';
+import {roles, AppUser} from '../../../../shared/Model/AppUser';
 import {AuthServiceService} from '../../../../shared/service/Auth/auth-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
@@ -14,7 +14,7 @@ export class HrUsersComponent implements OnInit {
 username;
   contactTab: boolean;
   chatTab: boolean = true;
-  user:User[] | null=null;
+  user:AppUser[] | null=null;
   ListUsers;
   roles:any;
   validUsername=true;
@@ -27,9 +27,9 @@ username;
   alerte;
   updateUserForm=false;
   usernme: any;
-  CurrentlyUSerUpdated:User=null;
-  user1:User[] | null=null;
-  //UpdatedUser:User | null=null;
+  CurrentlyUSerUpdated:AppUser=null;
+  user1:AppUser[] | null=null;
+  //UpdatedUser:AppUser | null=null;
   roleAdmin:roles;
   roleUser:roles;
   private message: string;
@@ -116,7 +116,7 @@ username;
     })
   }
 
-  setActive(user:User, b: boolean) {
+  setActive(user:AppUser, b: boolean) {
     if(b){
       this.error=false;
       this.success=true;
@@ -223,7 +223,7 @@ username;
     }
 }
 
-  UpdateUser(u: User) {
+  UpdateUser(u: AppUser) {
     this.CurrentlyUSerUpdated = u ;
     this.usernme=this.CurrentlyUSerUpdated.username;
     this.onTab(3);
@@ -241,7 +241,7 @@ username;
     })
     this.editForm.get(['sexe'])!.setValue("Homme");
   }
-  updateUser(user: User): void {
+  updateUser(user: AppUser): void {
    // user.id=this.CurrentlyUSerUpdated.id;
     user.username = this.editForm.get(['username'])!.value;
     user.nom = this.editForm.get(['nom'])!.value;
@@ -276,7 +276,7 @@ username;
     })
   }
 
-  profile(u: User) {
+  profile(u: AppUser) {
     this.router.navigateByUrl("/profile");
 
   }

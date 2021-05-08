@@ -36,8 +36,6 @@ public json1//= {"components":[{"id":7,"label":"Text Field","labelPosition":"top
       value: event.form
     });
     this.formFromDataBase=event.form.components
-
-
   }
   submit(){
 

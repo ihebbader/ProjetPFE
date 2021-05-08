@@ -1,13 +1,17 @@
-import {User} from './user';
+import {AppUser} from './AppUser';
+import {Properties} from './properties';
+import {Notification} from './notification';
 
 export class Entity {
   id?:any;
-  EntityModelName?:string;
-  EntityModelDescrip?:string ;
-  StartDate?:Date;
-  EndDate?:Date;
-  EtapeOrd?:number;
-  DelaiDexecutionEnHeure?:String;
+  entityModelName?:string;
+  entityModelDescrip?:string ;
+  startDate?:Date;
+  endDate?:Date;
+  etapeOrd?:number;
+  delaiDexecutionEnHeure?:number;
   importantes?:Boolean;
-  user?:User[];
+  user?:AppUser[];
+  properties?:Properties[];
+  notification?:Notification[];
 }
