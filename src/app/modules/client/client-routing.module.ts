@@ -161,9 +161,9 @@ const routes: Routes = [
     data: { title: 'Editer une entités workflow' }
   },
   {
-    path: 'project-taskboard',
+    path: 'workflow',
     component: PrTaskboardComponent,
-    data: { title: ':: Epic :: Project Taskboard' }
+    data: { title: 'Flux de travail' }
   },
   {
     path: 'project-ticketlist',

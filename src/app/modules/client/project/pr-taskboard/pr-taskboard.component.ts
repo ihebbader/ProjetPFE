@@ -15,6 +15,7 @@ import {Entity} from '../../../../shared/Model/entity';
 import {Properties} from '../../../../shared/Model/properties';
 import {Notification} from '../../../../shared/Model/notification';
 import {Router} from '@angular/router';
+import {HttpErrorResponse} from '@angular/common/http';
 
 
 export type ChartOptions = {
@@ -37,15 +38,15 @@ export class PrTaskboardComponent implements OnInit {
   workflowList:DataModel[] | null=null;
 
   drop(event: CdkDragDrop<string[]>) {
-    debugger
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      //moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex);
     }
+    console.log(event);
   }
   dpgridTab: boolean;
   dplistTab: boolean = true;
@@ -359,10 +360,10 @@ console.log(this.CurrentlyFlow.dataModelName)
   onClickUpdate(){
     this.CurrentlyFlow.dataModelName=this.editFormUpdate.get(['dataModelName'])!.value;
     this.CurrentlyFlow.dataModelDescrip=this.editFormUpdate.get(['dataModelDescrip'])!.value;
-    if (this.editFormUpdate.get(['start'])!.value != ""){
+    if (this.editFormUpdate.get(['start'])!.value != null){
       this.CurrentlyFlow.startDate=this.editFormUpdate.get(['start'])!.value;
     }
-    if (this.editFormUpdate.get(['end'])!.value != ""){
+    if (this.editFormUpdate.get(['end'])!.value != null){
       this.CurrentlyFlow.endDate=this.editFormUpdate.get(['end'])!.value;
     }
     this.dataModelService.updateModel(this.CurrentlyFlow).subscribe(resp=>{
@@ -466,21 +467,56 @@ this.alertebool=false;
   // executer la requete
   finish(){
     this.onNotificationClick();
-    this.getDataModel();
-    this.CurrentlyFlow
-    this.CurrentlyFlow.entity.push(this.NewEntity);
-    this.modalRef.hide();
-    //this.entityDetails();
-    Swal.fire(
-      'Opération terminé!',
-      'Cette flux de travail a été  ajouté avec succées ',
-      'success'
-    )
-this.EntityModel.addEntityToData(this.CurrentlyFlow.id,this.NewEntity).subscribe(resp=>{
+
+    let timerInterval;
+    // @ts-ignore
+    Swal.fire({
+        title: 'Exécution de lopération!',
+      html: 'Lexecution de cette opération est en cours <b></b> ',
+      timer: 20000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+        timerInterval = setInterval(() => {
+          const content = Swal.getContent()
+          if (content) {
+            const b = content.querySelector('b')
+            if (b) {
+              b.textContent = String(Swal.getTimerLeft())
+            }
+          }
+        }, 100)
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+      }
+    })
+
+
+
+
+
+    this.EntityModel.addEntityToData(this.CurrentlyFlow.id,this.NewEntity).subscribe(resp=>{
   console.log(resp);
 
-},error => {
-  console.log(error);
+      this.getDataModel();
+      this.CurrentlyFlow
+      this.CurrentlyFlow.entity.push(this.NewEntity);
+      this.modalRef.hide();
+      Swal.fire(
+        'Opération terminé!',
+        'Cette flux de travail a été  ajouté avec succées ',
+        'success'
+      )
+},err => {
+      this.alertebool=true;
+      this.messageAlerte=err.error.message;
+  console.log(err.error.message);
 })
     this.entityDetails(this.CurrentlyFlow);
 
@@ -492,6 +528,7 @@ this.EntityModel.DeleteEntityFromModel(e.id).subscribe(resp=>{
   this.CurrentlyFlow.entity.splice(this.CurrentlyFlow.entity.indexOf(e),1)
   this.entityDetails(this.CurrentlyFlow);
 },error => {
+
   console.log(error);
 })
 }
