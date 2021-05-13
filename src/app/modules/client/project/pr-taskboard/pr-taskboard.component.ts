@@ -8,7 +8,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import {UserService} from '../../../../shared/service/users/user.service';
 import {AppUser} from '../../../../shared/Model/AppUser';
-import {FormioRefreshValue} from '@formio/angular';
+import {Components, FormioRefreshValue} from '@formio/angular';
 import {PrismService} from '../../../../shared/prism.service';
 import {EntityService} from '../../../../shared/service/workflow/entity.service';
 import {Entity} from '../../../../shared/Model/entity';
@@ -16,6 +16,7 @@ import {Properties} from '../../../../shared/Model/properties';
 import {Notification} from '../../../../shared/Model/notification';
 import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
+import components = Components.components;
 
 
 export type ChartOptions = {
@@ -76,7 +77,7 @@ export class PrTaskboardComponent implements OnInit {
   constructor(public prism: PrismService,
                 private router:Router,
                 private test:EntityService,private EntityModel:EntityService,private modalService: BsModalService, private dataModelService: DatamodelService,private fb:FormBuilder,private DataModelService:DatamodelService,private userService:UserService) {
-    this.form = {components: [],builder:{layout:false,advanced :false}};
+    this.form = {components: []};
     this.NotForm=this.fb.group({
       role:['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
       status:['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
@@ -118,7 +119,9 @@ export class PrTaskboardComponent implements OnInit {
       labels: ["REVENUE"]
     };
   }
-
+  ngAfterViewInit() {
+    this.prism.init();
+  }
   ngOnInit(): void {
    // this.prism.init();
     this.getDataModel();
@@ -186,6 +189,7 @@ getUserList(){
   etapeGenerame=true;
   tab3inter=false;
   onTab1(number) {
+    this.tab1=true;
     this.tab1=true;
     this.tab2=false;
     this.tab3=false;
@@ -439,12 +443,15 @@ this.alertebool=false;
       property: 'form',
       value: event.form
     });
-    this.formFromDataBase=event.form.components
-    this.properties=event.form.components;
+    //
+  //  this.formFromDataBase=event.form.components
+    //this.properties=event.form.components;
     // console.log(this.property);
+  //
+    //
+    this.properties=this.form.components;
+    console.log(event);
     this.NewEntity.properties=this.properties;
-    console.log(this.properties);
-    console.log(this.NewEntity);
   }
   NotifacationForm=false;
 
@@ -461,7 +468,7 @@ this.alertebool=false;
     this.not.push(notifiaction)
     this.NewEntity.notification=this.not;
 
-    console.log(this.NewEntity)
+    //console.log(this.NewEntity)
 
   }
   // executer la requete
@@ -502,7 +509,7 @@ this.alertebool=false;
 
 
     this.EntityModel.addEntityToData(this.CurrentlyFlow.id,this.NewEntity).subscribe(resp=>{
-  console.log(resp);
+ // console.log(resp);
 
       this.getDataModel();
       this.CurrentlyFlow

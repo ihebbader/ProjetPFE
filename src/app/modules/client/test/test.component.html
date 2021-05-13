@@ -3,33 +3,18 @@
 <div class="page">
   <app-header></app-header>
   <div class="mt-5">
-<form-builder [options]="{builder: {
-    basic: false,
-    advanced: false,
-    data: false,
-    customBasic: {
-      title: 'Bader',
-      default: true,
-      weight: 0,
-      components: {
-        textfield: true,
-        textarea: true,
-        email: true,
-        phoneNumber: true
-      }}
-}}"
-              [form]="form" (change)="onChange($event)"></form-builder>
+<form-builder [form]="json11" (change)="onChange($event)"></form-builder>
 <hr/>
 <h3 class="text-center text-muted">As JSON Schema</h3>
 <div class="well jsonviewer">
   <pre id="json"><code class="language-json" #json></code></pre>
 </div>
 <h3 class="text-center text-muted">As Rendered Form</h3>
-<div class="well jsonviewer">
-<!--  <formio   [form]="json1" [refresh]="refreshForm"></formio>-->
+<div class="well jsonviewer" >
+  <formio   [form]='json11'></formio>
 <!--  <input  type="{{formFromDataBase[0].inputType}}">-->
 </div>
-    <button (click)="submit()">bader</button>
+    <button (click)="getDataModel()">bader</button>
   </div>
 
 </div>

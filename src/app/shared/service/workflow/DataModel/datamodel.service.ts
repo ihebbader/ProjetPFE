@@ -21,4 +21,7 @@ export class DatamodelService {
   updateModel(w){
     return this.http.put(this.host + "updateDataModel",w,{headers: {'Authorization': localStorage.getItem("token")}});
   }
+getModelById(id){
+    return this.http.get(this.host+'getModel/'+id,{headers: {'Authorization': localStorage.getItem("token")}})
+}
 }

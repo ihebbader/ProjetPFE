@@ -399,7 +399,6 @@
             </div>
         </div>
     </div>
-    <app-footer></app-footer>
 </div>
 
 
@@ -647,22 +646,7 @@
       <div class="alert alert-warning mb-5" role="alert">
         Vueillez remplir le formulaire
       </div>
-      <form-builder [options]="{builder: {
-    basic: false,
-    advanced: false,
-    data: false,
-    customBasic: {
-      title: 'les basiques du formulaire',
-      default: true,
-      weight: 0,
-      components: {
-        textfield: true,
-        textarea: true,
-        email: true,
-        phoneNumber: true
-      }}
-}}"
-                    [form]="form" (change)="onChange($event)"></form-builder>
+      <form-builder [form]="form" (change)="onChange($event)"></form-builder>
       <hr/>
       <div class="modal-footer mt-15">
         <button type="submit" (click)="onTab1(4)"  class="btn btn-primary">suivant</button>
