@@ -33,10 +33,12 @@ export type ChartOptions = {
   styleUrls: ['./pr-taskboard.component.scss']
 })
 export class PrTaskboardComponent implements OnInit {
+  CurrentlyEntity:Entity=new Entity();
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
   workflowList:DataModel[] | null=null;
+  UpdateFormEntity:any;
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -49,6 +51,10 @@ export class PrTaskboardComponent implements OnInit {
     }
     console.log(event);
   }
+  tab11=true;
+  tab22=false;
+  tab33=false;
+  tab44=false;
   dpgridTab: boolean;
   dplistTab: boolean = true;
   isCollapsed = false;
@@ -78,6 +84,12 @@ export class PrTaskboardComponent implements OnInit {
                 private router:Router,
                 private test:EntityService,private EntityModel:EntityService,private modalService: BsModalService, private dataModelService: DatamodelService,private fb:FormBuilder,private DataModelService:DatamodelService,private userService:UserService) {
     this.form = {components: []};
+    this.UpdateFormEntity=this.fb.group({
+      entityModelName:['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
+      entityModelDescrip:['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
+      start:['',Validators.required],
+      end:['',Validators.required]
+    });
     this.NotForm=this.fb.group({
       role:['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
       status:['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
@@ -232,7 +244,19 @@ getUserList(){
     }
 
     }
-
+onTab3(number){
+    if(number == '1'){
+      this.tab11=true;
+      this.tab22=false;
+      this.tab33=false;
+      this.tab44=false;
+    }else if(number==2){
+      this.tab11=false;
+      this.tab22=true;
+      this.tab33=false;
+      this.tab44=false;
+    }
+}
 
   fullScreenSection(number) {
     if (number == 1) {
@@ -538,5 +562,14 @@ this.EntityModel.DeleteEntityFromModel(e.id).subscribe(resp=>{
 
   console.log(error);
 })
+}
+updateEntity(template,entity){
+    this.openModal2(template);
+    this.CurrentlyEntity=entity;
+    console.log(this.CurrentlyEntity);
+  this.UpdateFormEntity.patchValue({
+    entityModelName:this.CurrentlyEntity.entityModelName,
+    entityModelDescrip:this.CurrentlyEntity.entityModelDescrip,
+  })
 }
 }

@@ -363,7 +363,7 @@
                                                                 data-placement="top" title="Avatar" alt="Avatar"></li>
                                                     </ul>
                                                       <div class="align-right mt-3">
-                                                  <button type="button" class="btn btn-primary mr-2" (click)="openModal1(templateUpdate)" >Modifier cette étape</button>
+                                                  <button type="button" class="btn btn-primary mr-2" (click)="updateEntity(UpdateEntity,e)" >Modifier cette étape</button>
                                                   <button type="button" (click)="DeleteEntity(e)" class="btn btn-danger " >Supprimer cette étape</button>
                                                       </div>
                                                   </div>
@@ -688,4 +688,117 @@
       </div>
     </div>
   </div>
+</ng-template>
+<!-- update entity -->
+<ng-template #UpdateEntity>
+  <div class="section-body">
+    <div class="container-fluid">
+      <div class="d-md-flex justify-content-between align-items-center">
+        <ul class="nav nav-tabs page-header-tab">
+          <li class="nav-item"><a class="nav-link" id="TaskBoard-tab" data-toggle="tab"
+                                  href="javascript:void(0)"  (click)="onTab3(1)" [ngClass]="{'active': tab11}">
+            Information générale</a>
+          </li>
+          <li class="nav-item" ><a  class="nav-link" id="TaskBoard-tab" data-toggle="tab"
+                                    href="javascript:void(0)" (click)="onTab3(2)" [ngClass]="{'active': tab22}">Consulter ou modofer les acteurs </a></li>
+          <li class="nav-item"><a class="nav-link" id="TaskBoard-tab" data-toggle="tab"
+                                  href="javascript:void(0)"  [ngClass]="{'active': tab33}">Consulter ou modifier
+          le formulaire</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" id="TaskBoard-tab" data-toggle="tab"
+                                  href="javascript:void(0)" [ngClass]="{'active': tab44}">
+            Notification
+          </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" *ngIf="tab11" [ngClass]="{'show active': tab11}" id="add-grid" role="tabpanel">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modifier l'étape || #ID:{{CurrentlyEntity.id}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">Fermer</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class=" ">
+      <form  [formGroup]="UpdateFormEntity">
+        <div class="col-12">
+          <div class="form-group">
+            <input type="text" name="entityModelName" formControlName="entityModelName" class="form-control" placeholder="Entrer le nom de cette étape">
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <textarea type="text" formControlName="entityModelDescrip" class="form-control" rows="5" cols="35" placeholder="Saisir la discription de cette étape"></textarea>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label for="start"> Date de début</label>
+            <input id="start" type="date" formControlName="start" class="form-control" >
+            <small class="form-text text-danger">
+              Date Anciens : {{this.CurrentlyEntity.startDate}}
+            </small>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label for="start"> Date Fin</label>
+            <input type="date" class="form-control" formControlName="end" value="2021/03/02" min="2021-03-01" max="2030-12-31">
+            <small class="form-text text-danger">
+              Date Anciens : {{this.CurrentlyEntity.startDate}}
+            </small>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" (click)="onClickUpdate()" class="btn btn-primary">Mettre a jour</button>
+    <button type="button" class="btn btn-default" (click)="modalRef.hide()">Fermer</button>
+  </div>
+  </div>
+  <div class="tab-pane fade" *ngIf="tab22" [ngClass]="{'show active': tab22}" id="add-grid" role="tabpanel">
+    <div class="table-responsive">
+      <table class="table table-hover table-striped table-vcenter mb-0">
+        <thead>
+        <tr>
+          <th colspan="8">Liste des utilisateur</th>
+        </tr>
+        <tr class="bg-gray">
+          <th class="w30">&nbsp;</th>
+          <th>ID</th>
+          <th>Nom et Prenom</th>
+          <th>Username</th>
+          <th>email</th>
+          <th>Numéro de téléphone</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of CurrentlyEntity.user">
+          <td>
+            <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input"
+                     name="example-checkbox1" value="option1" checked="">
+              <span class="custom-control-label">&nbsp;</span>
+            </label>
+          </td>
+          <td><a href="#">{{user.id}}</a></td>
+          <td><span>{{user.nom}} {{user.prenom}}</span></td>
+          <td><span class="tag tag-default">{{user.prenom}}</span></td>
+          <td><span>{{user.email}}</span></td>
+          <td><span>{{user.numTel}}</span></td>
+
+        </tr>
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-primary ml-50 mt-5 mb-25 align-right">Ajouter une nouvelle utilisateur</button>
+    </div>
+  </div>
+  <div class="tab-pane fade" *ngIf="tab33" [ngClass]="{'show active': tab33}" id="add-grid" role="tabpanel">
+
 </ng-template>
