@@ -104,8 +104,8 @@
                                         </ul>
                                     </td>
                                     <td>
-                                        <div class="text-info">Début: {{w.startDate}}</div>
-                                        <div class="text-pink">Fin: {{w.endDate}}</div>
+                                        <div class="text-info">Début: {{w.startDate | date}}</div>
+                                        <div class="text-pink">Fin: {{w.endDate | date}}</div>
                                     </td>
                                     <td>
                                         <span class="tag tag-blue">Commence Bientot</span>
@@ -351,7 +351,7 @@
                                                 <div class="dd-handle" *ngFor="let e of CurrentlyFlow.entity" cdkDrag>
                                                     <h6>{{e.entityModelName}}</h6>
                                                     <span class="time"><span class="text-primary">{{e.entityModelDescrip}}</span>
-                                                        <br>De {{e.startDate}} jusqu'a {{e.endDate}}
+                                                        <br>De {{e.startDate | date}} jusqu'a {{e.endDate | date}}
                                                         <span class="text-danger">{{e.etapeOrd}}</span></span>
                                                     <p></p>
                                                     <ul class="list-unstyled team-info">
@@ -700,13 +700,13 @@
             Information générale</a>
           </li>
           <li class="nav-item" ><a  class="nav-link" id="TaskBoard-tab" data-toggle="tab"
-                                    href="javascript:void(0)" (click)="onTab3(2)" [ngClass]="{'active': tab22}">Consulter ou modofer les acteurs </a></li>
-          <li class="nav-item"><a class="nav-link" id="TaskBoard-tab" data-toggle="tab"
+                                    href="javascript:void(0)" (click)="onTab3(2)" [ngClass]="{'active': tab22}">Consulter ou modifier les acteurs </a></li>
+          <li class="nav-item"><a class="nav-link" id="TaskBoard-tab" data-toggle="tab" (click)="onTab3(3)"
                                   href="javascript:void(0)"  [ngClass]="{'active': tab33}">Consulter ou modifier
           le formulaire</a>
           </li>
           <li class="nav-item"><a class="nav-link" id="TaskBoard-tab" data-toggle="tab"
-                                  href="javascript:void(0)" [ngClass]="{'active': tab44}">
+                                (click)="onTab3(4)"  href="javascript:void(0)" [ngClass]="{'active': tab44}">
             Notification
           </a>
           </li>
@@ -740,16 +740,16 @@
             <label for="start"> Date de début</label>
             <input id="start" type="date" formControlName="start" class="form-control" >
             <small class="form-text text-danger">
-              Date Anciens : {{this.CurrentlyEntity.startDate}}
+              Date Anciens : {{this.CurrentlyEntity.startDate | date}}
             </small>
           </div>
         </div>
         <div class="col-12">
           <div class="form-group">
             <label for="start"> Date Fin</label>
-            <input type="date" class="form-control" formControlName="end" value="2021/03/02" min="2021-03-01" max="2030-12-31">
+            <input type="date" class="form-control" formControlName="end">
             <small class="form-text text-danger">
-              Date Anciens : {{this.CurrentlyEntity.startDate}}
+              Date Anciens : {{this.CurrentlyEntity.endDate | date}}
             </small>
           </div>
         </div>
@@ -757,12 +757,15 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="submit" (click)="onClickUpdate()" class="btn btn-primary">Mettre a jour</button>
-    <button type="button" class="btn btn-default" (click)="modalRef.hide()">Fermer</button>
+    <button type="submit" (click)="UpdateGeneraleIformation()" class="btn btn-primary">Terminer</button>
+    <button type="button" class="btn btn-default" (click)="modalRef.hide()">Annuler</button>
   </div>
   </div>
   <div class="tab-pane fade" *ngIf="tab22" [ngClass]="{'show active': tab22}" id="add-grid" role="tabpanel">
-    <div class="table-responsive">
+    <div *ngIf="alerte" class="alert alert-warning" role="alert">
+      {{alerte}}
+    </div>
+    <div class="table-responsive" >
       <table class="table table-hover table-striped table-vcenter mb-0">
         <thead>
         <tr>
@@ -796,9 +799,101 @@
         </tr>
         </tbody>
       </table>
-      <button type="submit" class="btn btn-primary ml-50 mt-5 mb-25 align-right">Ajouter une nouvelle utilisateur</button>
+      <button type="submit" *ngIf="AddNewUserFoem" (click)="AddNewUser()" class="btn btn-primary ml-50 mt-5 mb-25 align-right">Ajouter une nouvelle utilisateur</button>
+    </div>
+    <div *ngIf="!AddNewUserFoem" class="mt-5 mb-5">
+      <ng-multiselect-dropdown
+        class="mt-5 "
+        [placeholder]="'Selectionner les utilisateur'"
+        [settings]="dropdownSettings"
+        [data]="dropdownList"
+        [(ngModel)]="selectedItems"
+        (onSelect)="onItemSelect($event)"
+        (onSelectAll)="onSelectAll($event)">
+      </ng-multiselect-dropdown>
+       </div>
+    <div class="modal-footer">
+      <button type="submit" (click)="onClickAddNewUser()" class="btn btn-primary">Terminer</button>
+      <button type="button" class="btn btn-default" (click)="modalRef.hide()">Annuler</button>
     </div>
   </div>
   <div class="tab-pane fade" *ngIf="tab33" [ngClass]="{'show active': tab33}" id="add-grid" role="tabpanel">
+  <div class="card mt-5 mb-5">
+    <div class="card-title ">
+      <h2 >&nbsp;&nbsp;&nbsp;Consulter l'entité formulaire</h2>
+    </div>
+    <div class="card-body">
+    <formio [form]='json11' ></formio>
+  </div>
 
+  </div>
+    <div class="modal-footer">
+      <button type="submit" (click)="openFormUpdate(updateForm)" class="btn btn-primary ">Modifier ce formulaire</button>
+      <button type="submit" (click)="onClickUpdate()" class="btn btn-primary">Suivant</button>
+      <button type="button" class="btn btn-default" (click)="modalRef.hide()">Annuler</button>
+    </div>
+    </div>
+
+  <div class="tab-pane fade" *ngIf="tab44" [ngClass]="{'show active': tab44}" id="add-grid" role="tabpanel">
+
+    <div *ngIf="NotificationForm1" class="table-responsive">
+      <table class="table table-hover table-striped table-vcenter mb-0">
+        <thead>
+        <tr class="">
+          <th colspan="2">Liste des notifications</th>
+          <th colspan="2"><button  class="btn btn-primary text-center mb-2" (click)="addNewNotificationUpdate()"> Ajouter une nouvelle notification</button></th>
+        </tr>
+        <tr class="bg-gray">
+
+          <th>ID</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Message</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let notification of CurrentlyEntity.notification">
+          <td><a href="#">{{notification.id}}</a></td>
+          <td><span>{{notification.role}}</span></td>
+          <td><span class="tag tag-default">{{notification.status}}</span></td>
+          <td><span>{{notification.message}}</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="!NotificationForm1" class="mt-5">
+      <form [formGroup]="NotForm">
+        <div class="form-group ">
+          <label for="delai"> Role utilisateur</label>
+          <select  name="seleteds" class="custom-select mb-3" formControlName="role">
+            <option value="Employée">Employée</option>
+            <option value="Administarateur">Administarateur</option>
+            <option value="Les utilisateurs de cette étape">Les utilisateurs de cette étape</option>
+          </select>
+        </div>
+        <div class="form-group ">
+          <label for="delai"> Status</label>
+          <select  name="seleteds" class="custom-select mb-3" formControlName="status">
+            <option value="Nouveau">Nouveau</option>
+            <option value="En cours">En cours</option>
+            <option value="En attente">En attente</option>
+            <option value="Fermé">Fermé</option>
+          </select>
+        </div>
+        <div class="form-group ">
+          <label> Message</label>
+          <textarea type="text" formControlName="message" class="form-control" rows="5" cols="35" placeholder="Ecrire votre message ici ..."></textarea>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" (click)="onClickUpdate()" class="btn btn-primary">Suivant</button>
+      <button type="button" class="btn btn-default" (click)="modalRef.hide()">Annuler</button>
+    </div>
+  </div>
+</ng-template>
+<ng-template #updateForm>
+  <form-builder class="mt-5 mb-5 " [form]="json11" (change)="onChange($event)"></form-builder>
+  <button type="submit"  class="btn btn-primary mt-5" (click)="modalRef.hide()">Terminer</button>
 </ng-template>

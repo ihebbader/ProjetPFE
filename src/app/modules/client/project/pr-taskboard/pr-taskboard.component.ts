@@ -33,12 +33,20 @@ export type ChartOptions = {
   styleUrls: ['./pr-taskboard.component.scss']
 })
 export class PrTaskboardComponent implements OnInit {
+  AddNewUserFoem=true;
+  NotificationForm1=true;
   CurrentlyEntity:Entity=new Entity();
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
   workflowList:DataModel[] | null=null;
   UpdateFormEntity:any;
+  ListProperty:any;
+  json11 :any ;
+  alerte;
+  e = {components: []};
+  entity: Properties[] = null;
+
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -250,11 +258,21 @@ onTab3(number){
       this.tab22=false;
       this.tab33=false;
       this.tab44=false;
-    }else if(number==2){
+    }else if(number=='2'){
       this.tab11=false;
       this.tab22=true;
       this.tab33=false;
       this.tab44=false;
+    }else if(number =='3'){
+      this.tab11=false;
+      this.tab22=false;
+      this.tab33=true;
+      this.tab44=false;
+    }else if(number == '4'){
+      this.tab11=false;
+      this.tab22=false;
+      this.tab33=false;
+      this.tab44=true;
     }
 }
 
@@ -297,6 +315,8 @@ onTab3(number){
     this.AppUser.forEach(element=>{
       this.dropdownList.push({ id: element.id, username: element.username})
     })
+    this.selectedItems=[];
+
   }
   list;
   // get all workflow list
@@ -571,5 +591,60 @@ updateEntity(template,entity){
     entityModelName:this.CurrentlyEntity.entityModelName,
     entityModelDescrip:this.CurrentlyEntity.entityModelDescrip,
   })
+  this.getFurmFromEntity();
 }
+getFurmFromEntity(){
+    this.dataModelService.getModelById(this.CurrentlyEntity.id).subscribe(resp=>{
+      this.ListProperty = resp;
+      this.entity = this.ListProperty;
+      this.ListProperty ? this.ListProperty : [];
+      this.e.components = this.entity;
+      //this.entity=resp;
+      console.log(this.e);
+      this.json11 =this.e;
+      console.log(this.json11);
+    })
+}
+openFormUpdate(template){
+    this.selectedItems=[];
+    this.openModal2(template);
+  this.selectedItems=[];
+
+}
+addNewNotificationUpdate(){
+    this.NotificationForm1=false;
+
+
+}
+//Modifier les inforation générale d'une entity
+UpdateGeneraleIformation(){
+    this.CurrentlyEntity.entityModelName=this.UpdateFormEntity.get(['entityModelName'])!.value;
+    this.CurrentlyEntity.entityModelDescrip=this.UpdateFormEntity.get(['entityModelDescrip'])!.value;
+    if(this.UpdateFormEntity.get(['start'])!.value !="") {
+      this.CurrentlyEntity.startDate=this.UpdateFormEntity.get(['start'])!.value;
+    }
+      if(this.UpdateFormEntity.get(['end'])!.value !="") {
+         this.CurrentlyEntity.startDate=this.UpdateFormEntity.get(['end'])!.value;
+}
+     this.EntityModel.UpdateEntityModel(this.CurrentlyEntity).subscribe(resp=>{
+        Swal.fire(
+          'Opération terminé!',
+          'Cette entité a été bien mise à jour',
+          'success'
+        );
+       this.modalRef.hide();
+     })
+  }
+  AddNewUser(){
+   this.AddNewUserFoem=false;
+  }
+  onClickAddNewUser(){
+    console.log(this.selectedItems);
+    if(this.selectedItems.length==0){
+      this.alerte="Vueillez choisir un ou plusieurs utilisateurs ou annuler cette opération !";
+    }else{
+
+    }
+  }
+
 }
