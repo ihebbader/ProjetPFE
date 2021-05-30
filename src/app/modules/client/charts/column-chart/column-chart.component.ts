@@ -39,15 +39,15 @@ export class ColumnChartComponent implements OnInit {
       series: [
         {
           name: "Nombre des workflow créer",
-          data: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+          data: [0, 0, 0, 1, 1, 0, 1, 0, 2]
         },
         {
           name: "Nombres des comptes crées",
-          data: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+          data: [1, 0, 1, 0, 0, 0, 0, 0, 0]
         },
         {
           name: "Nombres des workflows terminer",
-          data: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+          data: [0, 0, 0, 0, 1, 0, 1, 0, 0]
         }
       ],
       chart: {

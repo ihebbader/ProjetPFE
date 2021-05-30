@@ -51,6 +51,7 @@ import { WOtherComponent } from './widgets/w-other/w-other.component';
 import {ProfileDetailsComponent} from './hrms/hr-users/profile-details/profile-details.component';
 import {TestComponent} from './test/test.component';
 import {StepperComponent} from './test/stepper/stepper.component';
+import {RequestComponent} from './request/request.component';
 
 
 
@@ -294,6 +295,11 @@ const routes: Routes = [
     path: 'widgets-statistics',
     component: WStaticsComponent,
     data: { title: ':: Epic :: Widgets' }
+  },
+  {
+    path: 'Request',
+    component: RequestComponent,
+    data: { title: 'Request' }
   },
   {
     path: 'widgets-data',

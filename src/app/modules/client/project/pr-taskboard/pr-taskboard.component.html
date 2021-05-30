@@ -351,8 +351,9 @@
                                                 <div class="dd-handle" *ngFor="let e of CurrentlyFlow.entity" cdkDrag>
                                                     <h6>{{e.entityModelName}}</h6>
                                                     <span class="time"><span class="text-primary">{{e.entityModelDescrip}}</span>
-                                                        <br>De {{e.startDate | date}} jusqu'a {{e.endDate | date}}
-                                                        <span class="text-danger">{{e.etapeOrd}}</span></span>
+                                                        <br>De {{e.startDate | date}} jusqu'a {{e.endDate | date}}<br>
+                                                        <span class="text-danger">Ordre : {{e.etapeOrd}}</span></span>
+                                                     <span class="text-danger">Etat : {{e.etat}}</span>
                                                     <p></p>
                                                     <ul class="list-unstyled team-info">
                                                         <li><img src="../assets/images/xs/avatar1.jpg" tooltip="Avatar"
@@ -410,7 +411,7 @@
         </button>
     </div>
     <div class="modal-body">
-        <div class="row clearfix">
+        <div class=" clearfix">
           <form [formGroup]="editForm" >
             <div class="col-12">
                 <div class="form-group">
@@ -499,7 +500,7 @@
             <label for="start"> Date de début</label>
             <input id="start" type="date" formControlName="start" class="form-control" >
             <small class="form-text text-danger">
-              Date Anciens : {{this.CurrentlyFlow.startDate}}
+              Date Anciens : {{this.CurrentlyFlow.startDate | date}}
             </small>
           </div>
         </div>
@@ -508,7 +509,7 @@
             <label for="start"> Date Fin</label>
             <input type="date" class="form-control" formControlName="end" value="2021/03/02" min="2021-03-01" max="2030-12-31">
             <small class="form-text text-danger">
-              Date Anciens : {{this.CurrentlyFlow.startDate}}
+              Date Anciens : {{this.CurrentlyFlow.endDate | date }}
             </small>
           </div>
         </div>
@@ -654,8 +655,31 @@
       </div>
     </div>
     <div class="tab-pane fade" *ngIf="tab4"  [ngClass]="{'show active': tab4}" id="add-grid" role="tabpanel">
-      <div class="mt-15" *ngIf="!NotifacationForm">
-        <button type="submit" (click)="setNotificationForm()" class="btn btn-primary w-75">Ajouter une nouvelle Notification</button>
+      <div class="mt-15" >
+        <table class="table table-hover table-striped table-vcenter mb-0">
+          <thead>
+          <tr class="">
+            <th colspan="2">Liste des notifications</th>
+            <th colspan="2"><button  class="btn btn-primary text-center mb-2" (click)="setNotificationForm()"> Ajouter une nouvelle notification</button></th>
+          </tr>
+          <tr class="bg-gray">
+
+            <th>ID</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Message</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let notification of NewEntity.notification">
+            <td><a href="#">{{notification.id}}</a></td>
+            <td><span>{{notification.role}}</span></td>
+            <td><span class="tag tag-default">{{notification.status}}</span></td>
+            <td><span>{{notification.message}}</span></td>
+          </tr>
+          </tbody>
+        </table>
       </div>
       <div *ngIf="NotifacationForm" class="mt-5">
         <form [formGroup]="NotForm">
@@ -680,6 +704,7 @@
             <label> Message</label>
           <textarea type="text" formControlName="message" class="form-control" rows="5" cols="35" placeholder="Ecrire votre message ici ..."></textarea>
           </div>
+          <button  class="btn btn-primary text-center mb-2" (click)="onNotificationClick()"> Ajouter</button>
         </form>
       </div>
       <div class="modal-footer mt-15">
@@ -792,7 +817,7 @@
           </td>
           <td><a href="#">{{user.id}}</a></td>
           <td><span>{{user.nom}} {{user.prenom}}</span></td>
-          <td><span class="tag tag-default">{{user.prenom}}</span></td>
+          <td><span class="tag tag-default">{{user.username}}</span></td>
           <td><span>{{user.email}}</span></td>
           <td><span>{{user.numTel}}</span></td>
 
@@ -894,6 +919,6 @@
   </div>
 </ng-template>
 <ng-template #updateForm>
-  <form-builder class="mt-5 mb-5 " [form]="json11" (change)="onChange($event)"></form-builder>
-  <button type="submit"  class="btn btn-primary mt-5" (click)="modalRef.hide()">Terminer</button>
+  <form-builder class="mt-5 mb-5 " [form]="json11" (change)="onChangeUpdate($event)"></form-builder>
+  <button type="submit"  class="btn btn-primary mt-5" (click)="onClickFormEntity()">Terminer</button>
 </ng-template>

@@ -1,0 +1,45 @@
+<app-header></app-header>
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover table-striped table-vcenter text-nowrap mb-0">
+          <thead>
+          <tr >
+            <th></th>
+            <th>#ID Request</th>
+            <th>#ID Utilisateur</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Date de demande</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let r of Request">
+            <td class="width45">
+                                                <span class="avatar avatar-orange" tooltip="Avatar Name"
+                                                      data-toggle="tooltip" title="Avatar Name">{{r.appUsers.username.charAt(0)}}</span>
+            </td>
+            <td>
+              <div class="font-15">{{r.id}}</div>
+            </td>
+            <td><span>{{r.appUsers.id}}</span></td>
+            <td><span>{{r.appUsers.username}}</span></td>
+            <td>{{r.appUsers.email}}</td>
+            <td> {{r.dateRequest | date}}</td>
+            <td>
+              <button type="button" class="btn btn-icon btn-sm" title="Approved"><i
+                class="fa fa-check text-success"></i></button>
+              <button type="button"
+                      class="btn btn-icon btn-sm js-sweetalert" title="Delete"
+                      data-type="confirm"><i
+                class="fa fa-trash-o text-danger"></i></button>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+

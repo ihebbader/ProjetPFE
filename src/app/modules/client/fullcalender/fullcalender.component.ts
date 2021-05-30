@@ -68,6 +68,16 @@ export class FullcalenderComponent implements OnInit {
 
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;
+    console.log(events);
   }
+  // getAllEventDay(){
+  //   this.DataModelService.getUserWorkflowProject().subscribe(resp=>{
+  //     this.ListDataModel=resp;
+  //     this.dataModels=this.ListDataModel ; this.ListDataModel ? this.ListDataModel : [];
+  //     this.SetMessage();
+  //   },error => {
+  //     console.log(error);
+  //   })
+  // }
 
 }

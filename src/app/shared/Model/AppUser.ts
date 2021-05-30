@@ -13,6 +13,7 @@ export class AppUser {
   sexe?: string;
   note?: string;
   image?:string;
+
 }
 export class roles{
   id?:any;

@@ -9,9 +9,15 @@ export class Entity {
   startDate?:Date;
   endDate?:Date;
   etapeOrd?:number;
+  status?:string;
   delaiDexecutionEnHeure?:number;
   importantes?:Boolean;
   user?:AppUser[];
   properties?:Properties[];
   notification?:Notification[];
+  dateDeCreation?:Date;
+  creator?:string;
+  etat?:string;
+  actived?:boolean;
+  finished?:boolean;
 }

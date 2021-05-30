@@ -153,46 +153,54 @@
                   <form #f="ngForm" (ngSubmit)="onAddUser(f.value)">
                     <div class="card">
                         <div class="card-body">
-                            <div class="row clearfix">
-                                <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="">
+                                <div class="col">
 
                                     <div class="form-group">
+                                      <label>Nom d'utilisateur</label>
                                         <input type="text" [ngClass]="!validUsername?'is-invalid':''" name="username" ngModel class="form-control" placeholder="Nom d'utilisateur">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="col">
                                     <div class="form-group">
-                                        <input type="email" [ngClass]="!validEmail?'is-invalid':''" name="email" ngModel class="form-control" placeholder="Email">
+                                      <label>Email</label>
+                                      <input type="email" [ngClass]="!validEmail?'is-invalid':''" name="email" ngModel class="form-control" placeholder="Email">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="col">
                                     <div class="form-group">
-                                        <input type="text" [ngClass]="!validNom?'is-invalid':''" name="nom" ngModel class="form-control" placeholder="Nom">
+                                      <label>Nom</label>
+                                      <input type="text" [ngClass]="!validNom?'is-invalid':''" name="nom" ngModel class="form-control" placeholder="Nom">
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-12">
+                                <div class="col">
                                     <div class="form-group">
-                                        <input type="text" [ngClass]="!validPrenom?'is-invalid':''" ngModel name="prenom" class="form-control" placeholder="Prenom">
+                                      <label>Prénom</label>
+                                      <input type="text" [ngClass]="!validPrenom?'is-invalid':''" ngModel name="prenom" class="form-control" placeholder="Prenom">
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-12">
+                                <div class="col">
                                     <div class="form-group">
-                                        <input type="number" [ngClass]="!validNumTel?'is-invalid':''" name="numTel" ngModel class="form-control" placeholder="Numéro de Téléphone">
+                                      <label>Numéro de Téléphone</label>
+                                      <input type="number" [ngClass]="!validNumTel?'is-invalid':''" name="numTel" ngModel class="form-control" placeholder="Numéro de Téléphone">
                                     </div>
                                 </div>
 
-                                <div class="col-md-4 col-sm-12">
+                                <div class="col">
                                     <div class="form-group">
-                                        <input type="password" [ngClass]="!validPassword?'is-invalid':''" ngModel name="password" class="form-control" placeholder="Password">
+                                      <label>Mot de passe</label>
+                                      <input type="password" [ngClass]="!validPassword?'is-invalid':''" ngModel name="password" class="form-control" placeholder="Password">
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-12">
+                                <div class="col">
                                     <div class="form-group">
-                                        <input type="password" [ngClass]="!validRepass?'is-invalid':''" ngModel name="repass" class="form-control" placeholder="Confirm Password">
+                                      <label>Confirmer mot de passe</label>
+                                      <input type="password" [ngClass]="!validRepass?'is-invalid':''" ngModel name="repass" class="form-control" placeholder="Confirm Password">
                                     </div>
                                 </div>
-                              <div class=" col-sm-12">
+                              <div class=" col">
                                 <div class="form-group">
+                                  <label>Note ou description</label>
                                   <textarea class="form-control" ngModel name="note"  rows="3" placeholder="Notes"></textarea>
                                 </div>
                               </div>

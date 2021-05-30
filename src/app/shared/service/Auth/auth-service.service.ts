@@ -22,6 +22,7 @@ export class AuthServiceService {
   saveToken(jwt){
     localStorage.setItem('token',jwt);
     this.DecodeToken=this.helper.decodeToken(jwt);
+    localStorage.setItem('username',this.DecodeToken.sub);
     this.roleUser=this.DecodeToken.roles;
   }
   logout(){

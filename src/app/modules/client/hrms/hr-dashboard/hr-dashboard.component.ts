@@ -42,4 +42,7 @@ export class HrDashboardComponent implements OnInit {
     })
   }
 
+  goToRequest() {
+    window.open("http://localhost:4200/Request")
+  }
 }

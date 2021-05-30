@@ -59,6 +59,7 @@ export class PrTaskboardComponent implements OnInit {
     }
     console.log(event);
   }
+  NotifacationForm=false;
   tab11=true;
   tab22=false;
   tab33=false;
@@ -84,6 +85,7 @@ export class PrTaskboardComponent implements OnInit {
   @ViewChild('json', {static: true}) jsonElement?: ElementRef;
   @ViewChild('code', {static: true}) codeElement?: ElementRef;
   public form: Object;
+  public form1: Object;
   public EntityForm;
   public formFromDataBase:Object;
   public refreshForm: EventEmitter<FormioRefreshValue> = new EventEmitter();
@@ -92,6 +94,7 @@ export class PrTaskboardComponent implements OnInit {
                 private router:Router,
                 private test:EntityService,private EntityModel:EntityService,private modalService: BsModalService, private dataModelService: DatamodelService,private fb:FormBuilder,private DataModelService:DatamodelService,private userService:UserService) {
     this.form = {components: []};
+    this.form1 = {components: []};
     this.UpdateFormEntity=this.fb.group({
       entityModelName:['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
       entityModelDescrip:['',[Validators.required,Validators.minLength(3),Validators.maxLength(30)]],
@@ -310,6 +313,9 @@ onTab3(number){
     this.modalRef = this.modalService.show(template);
   }
   openModal2(template: TemplateRef<any>) {
+    this.not=[];
+    this.resetAllFormGroup();
+    this.onTab1(1);
     this.onUpdate();
     this.modalRef = this.modalService.show(template,{class:'modal-lg'});
     this.AppUser.forEach(element=>{
@@ -429,6 +435,7 @@ console.log(this.CurrentlyFlow.dataModelName)
   alertebool=false;
 NewEntity:Entity=new Entity();
   getEtape2() {
+    this.selectedItems=[];
     this.NewEntity.entityModelName=this.EntityForm.get(['EntityModelName'])!.value;
     this.NewEntity.entityModelDescrip=this.EntityForm.get(['EntityModelDescrip'])!.value;
     this.NewEntity.startDate=this.EntityForm.get(['startDate'])!.value;
@@ -443,9 +450,10 @@ this.onTab1(2);
 
 console.log(this.NewEntity);
   }
-  user=new AppUser();
+
 
   getEtape3(){
+
 this.alertebool=false;
     if(this.selectedItems.length==0){
       this.alertebool=true;
@@ -455,9 +463,7 @@ this.alertebool=false;
    let AppUser=[];
     this.onTab1(3);
     this.selectedItems.forEach(element=>{
-     this.user.id=element.id;
-     this.user.username=element.username;
-     AppUser.push(this.user);
+     AppUser.push(element);
 
     })
     this.NewEntity.user=AppUser;
@@ -497,18 +503,32 @@ this.alertebool=false;
     console.log(event);
     this.NewEntity.properties=this.properties;
   }
-  NotifacationForm=false;
+  onChangeUpdate(event) {
+    this.refreshForm.emit({
+      property: 'form1',
+      value: event.form
+    });
+    //
+    //  this.formFromDataBase=event.form.components
+    //this.properties=event.form.components;
+    // console.log(this.property);
+    //
+    //
+    console.log(this.json11);
+  }
 
    setNotificationForm(){
     this.NotifacationForm=true;
   }
-  not=[];
+  not;
   onNotificationClick(){
 
     let notifiaction: Notification=new Notification();
     notifiaction.role=this.NotForm.get(['role'])!.value;
     notifiaction.status=this.NotForm.get(['status'])!.value;
     notifiaction.message=this.NotForm.get(['message'])!.value;
+    console.log(notifiaction)
+    this.not=[];
     this.not.push(notifiaction)
     this.NewEntity.notification=this.not;
 
@@ -517,13 +537,12 @@ this.alertebool=false;
   }
   // executer la requete
   finish(){
-    this.onNotificationClick();
-
+    this.NewEntity.creator=localStorage.getItem('username');
     let timerInterval;
     // @ts-ignore
     Swal.fire({
-        title: 'Exécution de lopération!',
-      html: 'Lexecution de cette opération est en cours <b></b> ',
+        title: "Exécution de l'opération !",
+      html: "L'execution de cette opération est en cours <b></b> ",
       timer: 20000,
       timerProgressBar: true,
       didOpen: () => {
@@ -605,6 +624,7 @@ getFurmFromEntity(){
       console.log(this.json11);
     })
 }
+
 openFormUpdate(template){
     this.selectedItems=[];
     this.openModal2(template);
@@ -624,7 +644,7 @@ UpdateGeneraleIformation(){
       this.CurrentlyEntity.startDate=this.UpdateFormEntity.get(['start'])!.value;
     }
       if(this.UpdateFormEntity.get(['end'])!.value !="") {
-         this.CurrentlyEntity.startDate=this.UpdateFormEntity.get(['end'])!.value;
+         this.CurrentlyEntity.endDate=this.UpdateFormEntity.get(['end'])!.value;
 }
      this.EntityModel.UpdateEntityModel(this.CurrentlyEntity).subscribe(resp=>{
         Swal.fire(
@@ -639,12 +659,34 @@ UpdateGeneraleIformation(){
    this.AddNewUserFoem=false;
   }
   onClickAddNewUser(){
+    this.alerte=null;
     console.log(this.selectedItems);
     if(this.selectedItems.length==0){
       this.alerte="Vueillez choisir un ou plusieurs utilisateurs ou annuler cette opération !";
     }else{
-
+      this.EntityModel.addUserToEntity(this.CurrentlyEntity.id,this.selectedItems).subscribe(resp=>{
+        Swal.fire(
+          'Opération terminé!',
+          'Cette entité a été bien mise à jour',
+          'success'
+        );
+        this.modalRef.hide();
+      })
     }
   }
+  onClickFormEntity(){
+    this.CurrentlyEntity.properties=this.json11;
+    this.test.UpdateEntityModel(this.CurrentlyEntity).subscribe(resp=>{
+      console.log(resp);
+      this.modalRef.hide();
 
+    })
+  }
+resetAllFormGroup(){
+    this.not=null;
+    this.EntityForm.reset();
+    this.NotForm.reset();
+    this.selectedItems=[];
+    this.dropdownList=[];
+}
 }

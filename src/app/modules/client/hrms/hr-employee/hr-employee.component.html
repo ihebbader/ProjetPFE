@@ -714,71 +714,133 @@
                 aria-hidden="true">×</span></button>
     </div>
     <div class="modal-body">
-        <div class="row clearfix">
-            <div class="col-md-4 col-sm-6">
+      <form [formGroup]="createModel">
+        <div class="">
+            <div class="col-12">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Employee ID">
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Name">
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email ID">
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="form-group">
-                    <input type="number" class="form-control" placeholder="Phone Number">
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="form-group">
-                    <input type="text" data-provide="datepicker" data-date-autoclose="true" class="form-control"
-                        placeholder="Start date *" bsDatepicker>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Role">
+                    <input type="text" formControlName="nom" class="form-control" placeholder="Nom du groupe">
+                  <small class="form-text text-danger"
+                         *ngIf="createModel.get('nom')?.errors?.required">
+                    Ce champs est obligatoire
+                  </small>
+                  <small class="form-text text-danger"
+                         *ngIf="createModel.get('nom')?.errors?.maxlength">
+                    Ce champs doit contient au maximum 30 caractéres
+                  </small>
+                  <small class="form-text text-danger"
+                         *ngIf="createModel.get('nom')?.errors?.minlength">
+                    Ce champs doit contient au minimum 3 caractéres
+                  </small>
                 </div>
             </div>
             <div class="col-12">
-                <div class="form-group mt-2 mb-3">
-                    <input type="file" class="dropify">
-                    <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level
-                        help text for the above input. It's a bit lighter and easily wraps to a new
-                        line.</small>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Facebook">
+                  <textarea type="text" formControlName="description" class="form-control" rows="10" placeholder="Description"></textarea>
+                  <small class="form-text text-danger"
+                         *ngIf="createModel.get('description')?.errors?.required">
+                    Ce champs est obligatoire
+                  </small>
+                  <small class="form-text text-danger"
+                         *ngIf="createModel.get('description')?.errors?.maxlength">
+                    Ce champs doit contient au maximum 30 caractéres
+                  </small>
+                  <small class="form-text text-danger"
+                         *ngIf="createModel.get('description')?.errors?.minlength">
+                    Ce champs doit contient au minimum 3 caractéres
+                  </small>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Twitter">
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Linkedin">
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="instagram">
-                </div>
-            </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" (click)="AddModal1(AddNewUser)"> Ajouter des nouvelles employée </button>
+            <br>
+            <small class="form-text text-danger"
+                   *ngIf="users.length==0">
+              Tu dois choisir au minimum un utilisateur
+            </small>
+          </div>
         </div>
+      </form>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="modalRef.hide()" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" (click)="addGroup()">Save changes</button>
     </div>
 
+</ng-template>
+<ng-template #AddNewUser>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-2 col-md-4 col-sm-6">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="id">
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="username">
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Email">
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Nom et prenom">
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Post">
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-6">
+          <a href="javascript:void(0);" class="btn btn-sm btn-primary btn-block"
+             title="">Search</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="modal-body">
+      <div  class="table-responsive">
+        <table class="table table-hover table-striped table-vcenter mb-0">
+          <thead>
+          <tr class="">
+            <th colspan="2">Liste des notifications</th>
+          </tr>
+          <tr class="bg-gray">
+            <th class="w30">&nbsp;</th>
+            <th>ID</th>
+            <th>Nom et prenom</th>
+            <th>Email</th>
+            <th>username</th>
+            <th>Post</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of user">
+            <td>
+              <label class="custom-control custom-checkbox">
+                <input (change)="checkCheckBoxValue($event,user)" type="checkbox" class="custom-control-input"
+                       name="example-checkbox1" value="option1" [checked]="false">
+                <span class="custom-control-label">&nbsp;</span>
+              </label>
+            </td>
+            <td><a href="#"></a>{{user.id}}</td>
+            <td><span>{{user.nom}} {{user.prenom}}</span></td>
+            <td><span>{{user.email}}</span></td>
+            <td><span class="tag tag-default">{{user.username}}</span></td>
+            <td><span>{{user.post}}</span></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" (click)="modalRef.hide()">Terminer</button>
+  </div>
 </ng-template>

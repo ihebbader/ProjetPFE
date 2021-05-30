@@ -30,7 +30,7 @@
                     <div class="card">
                         <div class="card-body ribbon">
                             <div class="ribbon-box orange">0</div>
-                            <a [routerLink]="['/hr-events']" href="javascript:void(0)" class="my_sort_cut text-muted">
+                            <a [routerLink]="['/project-list']" href="javascript:void(0)" class="my_sort_cut text-muted">
                                 <i class="icon-calendar"></i>
                                 <span>Workflow TODO</span>
                             </a>
@@ -85,7 +85,7 @@
                                 <app-radialbar-chart></app-radialbar-chart>
                             </div> -->
                             <div class="mt-4">
-                                <app-basicradar-chart ></app-basicradar-chart>
+                                <app-basicradar-chart (click)="goToRequest()" ></app-basicradar-chart>
                                 <!-- <input type="text" class="knob" value="82" data-width="147" data-height="147"
                                     data-thickness="0.07" data-bgColor="#3f454a" data-fgColor="#e8769f"> -->
                             </div>

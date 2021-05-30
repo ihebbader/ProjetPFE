@@ -95,6 +95,21 @@ export class UserService implements OnInit{
     console.log(id);
     return this.http.get(this.host+"/photoUser/4",{headers:{'Authorization':localStorage.getItem("token")}});
   }
+  getAllGroupOfUser(){
+    return this.http.get(this.host+"/getAllGroup",{headers:{'Authorization':localStorage.getItem("token")}})
+  }
+  addNewGroup(g){
+    return this.http.post(this.host+"/addGroup",g,{headers:{'Authorization':localStorage.getItem("token")}});
+
+  }
+  getNotification(){
+    return this.http.get(this.host+"/getNotification",{headers:{'Authorization':localStorage.getItem("token")}})
+
+  }
+  getDisabledAccount(){
+    return this.http.get(this.host+"/getDisabledAccount",{headers:{'Authorization':localStorage.getItem("token")}})
+
+  }
   ngOnInit(): void {
     if (localStorage.getItem(("token")) == null ){
       this.router.navigateByUrl("/login");

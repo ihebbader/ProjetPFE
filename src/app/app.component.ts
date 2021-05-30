@@ -3,6 +3,11 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter } from 'rxjs/operators';
 import { ChatComponent } from './modules/client/chat/chat.component';
+import {interval, Subscription} from 'rxjs';
+import {UserService} from './shared/service/users/user.service';
+import {AppUser} from './shared/Model/AppUser';
+import {UserNotification} from './shared/Model/user-notification';
+import {NotificationsService} from 'angular2-notifications';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,9 +22,18 @@ export class AppComponent implements OnInit {
   timberClass: boolean;
   blueClass: boolean;
   amethystClass: boolean;
+  mySub: Subscription;
+  notification:UserNotification[] | null=null;
+
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private titleService: Title) { }
+    private titleService: Title,
+              private  UserService:UserService,
+              private Notification1:NotificationsService) {
+    // this.mySub = interval(8000).subscribe((func => {
+    // this.getNotification();
+    // }))
+  }
   ngOnInit(): void {
    /* if(localStorage.getItem('token') == null){
       this.router.navigateByUrl('/login')
@@ -51,6 +65,7 @@ export class AppComponent implements OnInit {
         })
       });
 
+
     setTimeout(() => {
 
       document.getElementsByClassName('page-loader-wrapper')[0].classList.add("HideDiv");
@@ -71,10 +86,36 @@ export class AppComponent implements OnInit {
     className.classList.toggle('open');
   }
 
-
+ListNotification;
+  getNotification(){
+    if(localStorage.getItem("token") == null  ){
+   //   this.router.navigateByUrl("/");
+      return
+    }else {
+      this.UserService.getNotification().subscribe(resp => {
+        this.ListNotification = resp;
+        this.notification = this.ListNotification;
+        this.ListNotification ? this.ListNotification : [];
+        if (this.notification.length != 0){
+        this.notification.forEach(notification => {
+          console.log(this.notification)
+          this.onSuccess(notification.notificationMessage);
+        })
+        }
+      })
+    }
+  }
   closeMenu() {
     document.getElementsByClassName('right_sidebar')[0].classList.remove("open");
     document.getElementsByClassName('user_div')[0].classList.remove("open");
     document.getElementsByClassName('overlay')[0].classList.remove("open");
+  }
+  onSuccess(message){
+    this.Notification1.info('Notification',message,{
+      position: ['top','right'],
+      timeOut:10000,
+      animate: 'fade',
+      showProgressBar:true
+    });
   }
 }

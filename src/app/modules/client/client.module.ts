@@ -105,6 +105,7 @@ import {FormioModule} from '@formio/angular';
 import { StepperComponent } from './test/stepper/stepper.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { RequestComponent } from './request/request.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -223,6 +224,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ChangePasswordComponent,
     TestComponent,
     StepperComponent,
+    RequestComponent,
   ],
   providers: [BsDatepickerModule]
 })
