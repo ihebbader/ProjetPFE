@@ -19,12 +19,12 @@ export class LeftmenuComponent implements OnInit {
   toggle2: boolean;
   toggle3: boolean = true;
   toggle4: boolean;
-  toggle5: boolean;
-  toggle6: boolean;
+  toggle5: boolean=true;
+  toggle6: boolean = true;
   toggle7: boolean;
-  toggle8: boolean;
+  toggle8: boolean=true;
   toggle9: boolean;
-  toggle10: boolean;
+  toggle10: boolean=true;
   fontSelect: any;
   menuIconSelect: any;
   staticscard: boolean = true;
@@ -46,13 +46,17 @@ export class LeftmenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.toggle5 = true;
+    sessionStorage.setItem("Toggle5", "true");
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.toggle('sidebar_dark');
   }
 
   ngAfterViewInit() {
+
     let pThis: any = this;
+
     setTimeout(() => {
-      debugger
       if (sessionStorage.getItem("Font1") != "" && sessionStorage.getItem("Font1") != null) {
         this.fontSelect = sessionStorage.getItem("Font1");
       }
@@ -213,7 +217,7 @@ export class LeftmenuComponent implements OnInit {
   }
 
   onSubMenuIcon(type) {
-    debugger
+
     const submenuIconclass = document.getElementsByClassName('submenu');
     for (let index = 0; index < submenuIconclass.length; index++) {
       const element = submenuIconclass[index];

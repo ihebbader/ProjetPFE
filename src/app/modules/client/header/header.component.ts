@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {UserService} from '../../../shared/service/users/user.service';
 
 @Component({
   selector: 'app-header',
@@ -13,16 +14,15 @@ export class HeaderComponent implements OnInit {
   chatTab: boolean = true;
   title: any
   maintenant: any;
-  constructor(private route: Router) {
+  constructor(private route: Router,private UserService:UserService) {
     this.maintenant=new Date().getHours();
     this.title = route.url;
-    debugger
     this.title = this.title.replace(/\//g, '');
     this.title = this.title.toUpperCase();
   }
 
   ngOnInit(): void {
-
+this.getAllNotification()
 
   }
   mToggoleMenu() {
@@ -82,5 +82,9 @@ export class HeaderComponent implements OnInit {
       this.contactTab = true;
     }
   }
-
+getAllNotification(){
+    this.UserService.getNotification().subscribe(resp=>{
+      console.log(resp);
+    })
+}
 }

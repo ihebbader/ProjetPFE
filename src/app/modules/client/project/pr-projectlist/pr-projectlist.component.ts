@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {DatamodelService} from '../../../../shared/service/workflow/DataModel/datamodel.service';
 import {DataModel} from '../../../../shared/Model/data-model';
 import {Entity} from '../../../../shared/Model/entity';
 import {document} from 'ngx-bootstrap/utils';
+import {logger} from 'codelyzer/util/logger';
+import {ConsoleLogger} from '@angular/compiler-cli/ngcc';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {EntityService} from '../../../../shared/service/workflow/entity.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pr-projectlist',
@@ -10,6 +15,10 @@ import {document} from 'ngx-bootstrap/utils';
   styleUrls: ['./pr-projectlist.component.scss']
 })
 export class PrProjectlistComponent implements OnInit {
+  workflow:DataModel;
+  submitMessageAlerte;
+  submitVisible=false;
+  modalRef: BsModalRef;
   json;
   currentlyEntity:Entity;
   form;
@@ -25,7 +34,8 @@ export class PrProjectlistComponent implements OnInit {
   dataModels:DataModel[] | null=null;
   message=null;
   alerte=false;
-  constructor(private DataModelService:DatamodelService) { this.form={components: []};}
+  constructor(private DataModelService:DatamodelService,private modalService: BsModalService
+              ,private  EntityModelServie:EntityService) { this.form={components: []};}
 
   ngOnInit(): void {
     this.getUserDataModelProject();
@@ -48,6 +58,15 @@ export class PrProjectlistComponent implements OnInit {
     this.DataModelService.getUserWorkflowProject().subscribe(resp=>{
        this.ListDataModel=resp;
       this.dataModels=this.ListDataModel ; this.ListDataModel ? this.ListDataModel : [];
+      this.dataModels.forEach(dataModel=> {
+        dataModel.entity.forEach(entity => {
+          let res=entity.properties.sort((a,b)=>
+            a.idProp-b.idProp
+          )
+          entity.properties=res;
+          console.log(res);
+        })
+      })
       this.SetMessage();
     },error => {
       console.log(error);
@@ -73,16 +92,14 @@ visible=false;
     this.currentlyEntity=entity;
     this.form={components: []};
     this.form.components=entity.properties;
-
     this.json=this.form
-    this.onTab(2);
     if(entity.etat=='Terminer'){
       this.alert="L'execution de ce processus est terminer";
-      document.getElementById('test').style.pointerEvents='none';
+    //  document.getElementById('test').style.pointerEvents='none';
     }
     if(entity.etat=='Programmé'){
       this.alert="L'execution de ce processus commence bientot"
-      document.getElementById('test').style.pointerEvents='none';
+    //  document.getElementById('test').style.pointerEvents='none';
     }
   }
 dataForm=[];
@@ -97,12 +114,36 @@ dataForm=[];
     this.currentlyEntity.properties.forEach(
       p=>{
         if(p.idProp==event.changed.component.idProp){
-       p.data=event.changed.value;
+       p.defaultValue=event.changed.value;
         }
       }
     )
   }
-  bader(){
+  openModal1(template: TemplateRef<any>,enetity,workflow) {
+    this.submitVisible=false;
+    this.workflow=workflow;
+    this.tab2(enetity);
     console.log(this.currentlyEntity);
+    this.modalRef = this.modalService.show(template,{class:'modal-lg'});
+    this.workflow.entity.forEach(e=>{
+      let p = e.properties;
+      let json={components: []};
+      json.components=p;
+      e.p=json;
+    })
+console.log(this.workflow)
+  }
+  onSubmit(){
+    console.log(this.currentlyEntity);
+    Swal.fire(
+      'Opération terminé!',
+      'opération terminer ! ',
+      'success'
+    )
+    this.submitVisible=true;
+    this.submitMessageAlerte="operation Terminer";
+    this.EntityModelServie.executeEntityModel(this.currentlyEntity).subscribe(resp=>{
+
+    })
   }
 }

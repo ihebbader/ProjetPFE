@@ -500,7 +500,7 @@ this.alertebool=false;
   //
     //
     this.properties=this.form.components;
-    console.log(event);
+    console.log(this.form.components);
     this.NewEntity.properties=this.properties;
   }
   onChangeUpdate(event) {
@@ -532,11 +532,16 @@ this.alertebool=false;
     this.not.push(notifiaction)
     this.NewEntity.notification=this.not;
 
-    //console.log(this.NewEntity)
+    console.log(this.NewEntity.properties)
 
   }
   // executer la requete
   finish(){
+    let i=1;
+    this.NewEntity.properties.forEach(p=>{
+      p.ord=i;
+      i=i+1;
+    })
     this.NewEntity.creator=localStorage.getItem('username');
     let timerInterval;
     // @ts-ignore
@@ -570,10 +575,9 @@ this.alertebool=false;
 
 
 
-
     this.EntityModel.addEntityToData(this.CurrentlyFlow.id,this.NewEntity).subscribe(resp=>{
  // console.log(resp);
-
+console.log(this.NewEntity);
       this.getDataModel();
       this.CurrentlyFlow
       this.CurrentlyFlow.entity.push(this.NewEntity);

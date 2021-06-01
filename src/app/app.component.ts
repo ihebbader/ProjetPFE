@@ -30,9 +30,9 @@ export class AppComponent implements OnInit {
     private titleService: Title,
               private  UserService:UserService,
               private Notification1:NotificationsService) {
-    // this.mySub = interval(8000).subscribe((func => {
-    // this.getNotification();
-    // }))
+    this.mySub = interval(8000).subscribe((func => {
+    this.getNotification();
+    }))
   }
   ngOnInit(): void {
    /* if(localStorage.getItem('token') == null){
@@ -88,9 +88,10 @@ export class AppComponent implements OnInit {
 
 ListNotification;
   getNotification(){
+    console.log("aaaaaaaa")
     if(localStorage.getItem("token") == null  ){
    //   this.router.navigateByUrl("/");
-      return
+     
     }else {
       this.UserService.getNotification().subscribe(resp => {
         this.ListNotification = resp;

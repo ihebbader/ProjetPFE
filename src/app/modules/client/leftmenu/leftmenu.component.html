@@ -463,25 +463,25 @@
             <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
                 <a href="javascript:void(0)" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
                     aria-controls="collapseBasic" class="has-arrow arrow-c"><i
-                        class="fa fa-user-circle"></i><span>Admin Panel</span></a>
+                        class="fa fa-user-circle"></i><span>Menu administratif</span></a>
                 <ul class="collapse" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/Dashboard-Admin']" href="javascript:void(0)"><span>Dashboard</span>
+                            [routerLink]="['/Dashboard-Admin']" href="javascript:void(0)"><span>Tableau de bord</span>
                         </a></li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-                        <a class="submenu" [routerLink]="['/user-management']" href="javascript:void(0)"><span>Users</span></a>
+                        <a class="submenu" [routerLink]="['/user-management']" href="javascript:void(0)"><span>Gestion des utilisaeur</span></a>
                     </li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/hr-departments']" href="javascript:void(0)"><span>Departments</span></a>
+                            [routerLink]="['/workflow']" href="javascript:void(0)"><span>Gestion des workflow</span></a>
                     </li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/hr-employee']" href="javascript:void(0)"><span>Employee</span></a></li>
+                            [routerLink]="['/hr-employee']" href="javascript:void(0)"><span>Gestion des groupes des utilisateurs</span></a></li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/hr-activities']" href="javascript:void(0)"><span>Activities</span></a></li>
+                            [routerLink]="['/project-list']" href="javascript:void(0)"><span>Mes Taches</span></a></li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/hr-holidays']" href="javascript:void(0)"><span>Holidays</span></a></li>
+                            [routerLink]="['//Request']" href="javascript:void(0)"><span>Demandes de rejoidre</span></a></li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/hr-events']" href="javascript:void(0)"><span>Events</span></a></li>
+                            [routerLink]="['/hr-events']" href="javascript:void(0)"><span>Gestion des roles</span></a></li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
                             [routerLink]="['/hr-payroll']" href="javascript:void(0)"><span>Payroll</span></a></li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"

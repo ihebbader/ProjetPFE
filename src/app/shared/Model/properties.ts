@@ -25,6 +25,7 @@ export class Properties {
   input?:boolean;
   dataGridLabel?:boolean;
   inputType?:string;
-  data?:string;
+  defaultValue?:string;
+  ord?:number;
 }
 

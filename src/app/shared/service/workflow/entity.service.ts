@@ -39,4 +39,7 @@ export class EntityService {
   addUserToEntity(idEntity,UserList){
     return this.http.post('http://localhost:8080/addUserToEntity/'+idEntity,UserList,{headers:{'Authorization':localStorage.getItem("token")}})
   }
+  executeEntityModel(entity){
+    return this.http.post('http://localhost:8080/executEntity/',entity,{headers:{'Authorization':localStorage.getItem("token")}})
+  }
 }

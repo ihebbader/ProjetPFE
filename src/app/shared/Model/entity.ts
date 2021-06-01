@@ -20,4 +20,4 @@ export class Entity {
   etat?:string;
   actived?:boolean;
   finished?:boolean;
-}
+  p?:any}
