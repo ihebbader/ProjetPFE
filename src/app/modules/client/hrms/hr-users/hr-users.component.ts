@@ -60,14 +60,14 @@ username;
    this.roleUser=new roles();
    this.roleUser.id=1;
    this.roleUser.roleName="USER";
-
+  this.userService.NotAdminRedirect();
   }
   getAllUser(){
     this.userService.getAllusers().subscribe(resp=>{
       this.ListUsers=resp;
 
       this.user=this.ListUsers; this.ListUsers ? this.ListUsers : [];
-      console.log(this.user[1].roles);
+
 
     })
   }

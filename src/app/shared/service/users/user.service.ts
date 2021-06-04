@@ -14,6 +14,7 @@ export class UserService implements OnInit{
   private host = "http://localhost:8080";
 
   constructor(private router: Router, private http: HttpClient) {
+    this.isAdmin1=false;
   }
 
   getUserUsername() {
@@ -39,10 +40,7 @@ export class UserService implements OnInit{
       headers:new HttpHeaders({Authorization: `${localStorage.getItem('token')}`})
     });
 
-
     return this.http.request(req);
-
-
   }
   //pour get tous les utilisateurs de l'application
   getAllusers() {
@@ -108,6 +106,12 @@ export class UserService implements OnInit{
   }
   getDisabledAccount(){
     return this.http.get(this.host+"/getDisabledAccount",{headers:{'Authorization':localStorage.getItem("token")}})
+  }
+  deleteUserFromGroup(user,id){
+    return this.http.post(this.host+"/deleteUserFromGroup/"+id,user,{headers:{'Authorization':localStorage.getItem("token")}});
+  }
+  deleteGroup(id){
+    return this.http.delete(this.host+"/deleteGroup/"+id,{headers:{'Authorization':localStorage.getItem("token")}});
 
   }
   ngOnInit(): void {
@@ -116,5 +120,25 @@ export class UserService implements OnInit{
 
     }
   }
+  isAdmin1:Boolean;
+
+  NotAdminRedirect(){
+  this.isAdmin();
+
+  }
+   isAdmin() {
+     this.isAdmin1=false;
+     this.DecodeToken = this.helper.decodeToken(localStorage.getItem("token"));
+     this.DecodeToken.roles.forEach(r => {
+
+       if (r=='ADMIN') {
+         this.isAdmin1 = true;
+       }
+     })
+     if (this.isAdmin1 == false) {
+       console.log("bader")
+       this.router.navigateByUrl("/error-404")
+     }
+   }
 
 }

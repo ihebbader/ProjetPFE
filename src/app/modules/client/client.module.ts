@@ -55,7 +55,7 @@ import { HRMSComponent } from './hrms/hrms.component';
 import { HrUsersComponent } from './HRMS/hr-users/hr-users.component';
 import { HrDashboardComponent } from './HRMS/hr-dashboard/hr-dashboard.component';
 import { HrDepartmentsComponent } from './hrms/hr-departments/hr-departments.component';
-import { HrEmployeeComponent } from './hrms/hr-employee/hr-employee.component';
+import { HrEmployeeComponent } from './hrms/GestionGroupe/hr-employee.component';
 import { HrActivitiesComponent } from './hrms/hr-activities/hr-activities.component';
 import { HrHolidaysComponent } from './hrms/hr-holidays/hr-holidays.component';
 import { HrEventsComponent } from './hrms/hr-events/hr-events.component';

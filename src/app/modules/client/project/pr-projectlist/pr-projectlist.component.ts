@@ -133,6 +133,9 @@ dataForm=[];
     })
 console.log(this.workflow)
   }
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template,{class:'modal-lg'});
+  }
   onSubmit(){
     console.log(this.currentlyEntity);
     Swal.fire(
