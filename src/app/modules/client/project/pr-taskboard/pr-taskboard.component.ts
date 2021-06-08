@@ -17,6 +17,7 @@ import {Notification} from '../../../../shared/Model/notification';
 import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 import components = Components.components;
+import {J} from '@angular/cdk/keycodes';
 
 
 export type ChartOptions = {
@@ -76,6 +77,11 @@ export class PrTaskboardComponent implements OnInit {
   isFull2: boolean;
   isFull3: boolean;
   NotForm: any;
+  messageDate="";
+  messageDateVisibility =false;
+  messageVerifyDateFlowAndEntity=false;
+  messageVerifyDateFlowAndEntityAlert='';
+  messageVerifyDateFlowAndEntityEnd=false;
   AppUser:AppUser[] | null=null;
   modalRef: BsModalRef;
   @ViewChild("chart") chart: ChartComponent;
@@ -90,6 +96,9 @@ export class PrTaskboardComponent implements OnInit {
   public formFromDataBase:Object;
   public refreshForm: EventEmitter<FormioRefreshValue> = new EventEmitter();
   public refreshForm1: EventEmitter<FormioRefreshValue> = new EventEmitter();
+  messageAlerte;
+  alertebool=false;
+  NewEntity:Entity=new Entity();
   constructor(public prism: PrismService,
                 private router:Router,
                 private test:EntityService,private EntityModel:EntityService,private modalService: BsModalService, private dataModelService: DatamodelService,private fb:FormBuilder,private DataModelService:DatamodelService,private userService:UserService) {
@@ -218,9 +227,11 @@ getUserList(){
     this.tab3=false;
     this.tab4=false;
     if (number == '1') {
+      console.log("ihebbaderhnjfdshjbfshdfvbs")
       this.tab1inter=true;
       this.tab1=true;
-      this.etapeGenerame=true;
+      this.tab2=false;
+      this.tab3=false;
       this.tab2inter=false;
       this.tab3inter=false;
 
@@ -306,14 +317,22 @@ onTab3(number){
     }
   }
   openModal(template: TemplateRef<any>) {
+    this.messageDateVisibility=false;
     this.modalRef = this.modalService.show(template);
   }
   openModal1(template: TemplateRef<any>) {
+    this.messageDateVisibility=false;
+
     this.onUpdate();
     this.modalRef = this.modalService.show(template);
   }
   openModal2(template: TemplateRef<any>) {
+    this.messageVerifyDateFlowAndEntityEnd=false;
+    this.messageVerifyDateFlowAndEntity=false;
+    this.messageDateVisibility=false;
     this.not=[];
+    this.form=this.form = {components: []};
+    this.NotForm.reset();
     this.resetAllFormGroup();
     this.onTab1(1);
     this.onUpdate();
@@ -385,13 +404,25 @@ onTab3(number){
     })
   }
   onAdd() {
+    this.messageDateVisibility=false;
     console.log("aaaaaaaaaaaaa")
     let workflow: DataModel;
    workflow=new DataModel();
-    workflow.dataModelName=this.editForm.get(['dataModelName'])!.value;
+
+    if(  this.editForm.get('dataModelName')?.errors?.required || this.editForm.get('dataModelName')?.errors?.minlength ||
+      this.editForm.get('dataModelName')?.errors?.maxlength||  this.editForm.get('dataModelDescrip')?.errors?.required|| this.editForm.get('dataModelDescrip')?.errors?.minlength ||
+      this.editForm.get('dataModelDescrip')?.errors?.maxlength ||this.editForm.get('start')?.errors?.required|| this.editForm.get('end')?.errors?.required){
+      return
+    }else
+      workflow.dataModelName=this.editForm.get(['dataModelName'])!.value;
     workflow.dataModelDescrip=this.editForm.get(['dataModelDescrip'])!.value;
     workflow.startDate=this.editForm.get(['start'])!.value;
     workflow.endDate=this.editForm.get(['end'])!.value;
+    if (!(workflow.startDate < workflow.endDate)) {
+      this.messageDateVisibility=true;
+      this.messageDate="Veuiilez verifier que la date de debut doit est etre avant la date de fin"
+      return;
+    }
     console.log(workflow);
     this.dataModelService.CreateNew(workflow).subscribe(resp=>{
       this.modalRef.hide();
@@ -405,21 +436,27 @@ onTab3(number){
   }
   onUpdate(){
     this.editFormUpdate.patchValue({
-
       dataModelName:this.CurrentlyFlow.dataModelName,
       dataModelDescrip:this.CurrentlyFlow.dataModelDescrip,
     })
 console.log(this.CurrentlyFlow.dataModelName)
   }
   onClickUpdate(){
+    this.messageDateVisibility=false;
+
     this.CurrentlyFlow.dataModelName=this.editFormUpdate.get(['dataModelName'])!.value;
     this.CurrentlyFlow.dataModelDescrip=this.editFormUpdate.get(['dataModelDescrip'])!.value;
-    if (this.editFormUpdate.get(['start'])!.value != null){
+    if (this.editFormUpdate.get(['start'])!.value ){
       this.CurrentlyFlow.startDate=this.editFormUpdate.get(['start'])!.value;
     }
-    if (this.editFormUpdate.get(['end'])!.value != null){
+    if (this.editFormUpdate.get(['end'])!.value ){
       this.CurrentlyFlow.endDate=this.editFormUpdate.get(['end'])!.value;
     }
+    if (!(this.CurrentlyFlow.startDate < this.CurrentlyFlow.endDate)) {
+      this.messageDateVisibility=true;
+      this.messageDate="Veuiilez verifier que la date de debut doit est etre avant la date de fin"
+      return;
+    }else
     this.dataModelService.updateModel(this.CurrentlyFlow).subscribe(resp=>{
       this.getDataModel();
       this.modalRef.hide();
@@ -431,24 +468,51 @@ console.log(this.CurrentlyFlow.dataModelName)
     })
     console.log(this.CurrentlyFlow);
   }
-  messageAlerte;
-  alertebool=false;
-NewEntity:Entity=new Entity();
-  getEtape2() {
-    this.selectedItems=[];
-    this.NewEntity.entityModelName=this.EntityForm.get(['EntityModelName'])!.value;
-    this.NewEntity.entityModelDescrip=this.EntityForm.get(['EntityModelDescrip'])!.value;
-    this.NewEntity.startDate=this.EntityForm.get(['startDate'])!.value;
-    this.NewEntity.endDate=this.EntityForm.get(['endDate'])!.value;
-    this.NewEntity.delaiDexecutionEnHeure=this.EntityForm.get(['DelaiDexecutionEnHeure'])!.value;
-    if(this.NewEntity.entityModelName== "" || this.NewEntity.entityModelDescrip=="" ){
-      this.alertebool=true;
-      this.messageAlerte="Veuillez remplir les champs correctement";
-      return;
-    }
-this.onTab1(2);
 
-console.log(this.NewEntity);
+  getEtape2() {
+    this.messageVerifyDateFlowAndEntity=false;
+    this.messageDateVisibility=false;
+    this.messageVerifyDateFlowAndEntityEnd=false;
+    console.log(this.EntityForm.get('EntityModelName')?.errors?.required)
+    if(this.EntityForm.get('EntityModelName')?.errors?.required ||  this.EntityForm.get('EntityModelName')?.errors?.minlength || this.EntityForm.get('EntityModelName')?.errors?.maxlength
+       || this.EntityForm.get('EntityModelDescrip')?.errors?.required ||this.EntityForm.get('EntityModelDescrip')?.errors?.minlength || this.EntityForm.get('EntityModelDescrip')?.errors?.maxlength
+     || this.EntityForm.get('startDate')?.errors?.required || this.EntityForm.get('endDate')?.errors?.required){
+      return;
+    }else {
+
+      this.selectedItems = [];
+      this.NewEntity.entityModelName = this.EntityForm.get(['EntityModelName'])!.value;
+      this.NewEntity.entityModelDescrip = this.EntityForm.get(['EntityModelDescrip'])!.value;
+      this.NewEntity.startDate = this.EntityForm.get(['startDate'])!.value;
+      this.NewEntity.endDate = this.EntityForm.get(['endDate'])!.value;
+      this.NewEntity.delaiDexecutionEnHeure = this.EntityForm.get(['DelaiDexecutionEnHeure'])!.value;
+      if (!(this.NewEntity.startDate < this.NewEntity.endDate)) {
+        this.messageDateVisibility=true;
+       this.messageDate="Veuiilez verifier que la date de debut doit est etre avant la date de fin"
+        return;
+      } else {
+        console.log(this.NewEntity.startDate < this.NewEntity.endDate)
+        if (this.NewEntity.entityModelName == "" || this.NewEntity.entityModelDescrip == "") {
+          this.alertebool = true;
+          this.messageAlerte = "Veuillez remplir les champs correctement";
+          return;
+        }
+      if(this.NewEntity.startDate <this.CurrentlyFlow.startDate){
+        this.messageVerifyDateFlowAndEntity=true;
+        this.messageVerifyDateFlowAndEntityAlert="Merci de verifier que la date de debut cette entité qui doit etre aprés la date de date de début de flux !"
+        return;
+      }else if(this.NewEntity.endDate>this.CurrentlyFlow.endDate) {
+
+        this.messageVerifyDateFlowAndEntityEnd=true;
+        this.messageVerifyDateFlowAndEntityAlert="Merci de verifier que la date de fin cette entité qui doit etre avant la date de date de fin de flux !"
+        return;
+      }else
+
+
+        this.onTab1(2);
+      }
+      console.log(this.NewEntity);
+    }
   }
 
 
@@ -571,9 +635,7 @@ this.alertebool=false;
         console.log('I was closed by the timer')
       }
     })
-
-
-
+    console.log(this.NewEntity);
 
     this.EntityModel.addEntityToData(this.CurrentlyFlow.id,this.NewEntity).subscribe(resp=>{
  // console.log(resp);
@@ -607,6 +669,8 @@ this.EntityModel.DeleteEntityFromModel(e.id).subscribe(resp=>{
 })
 }
 updateEntity(template,entity){
+    this.messageDateVisibility=false;
+    this.message="";
     this.openModal2(template);
     this.CurrentlyEntity=entity;
     console.log(this.CurrentlyEntity);

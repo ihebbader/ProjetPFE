@@ -11,7 +11,10 @@
               <div id="alerte" *ngIf="alerte" class="alert alert-danger" role="alert">
                {{message}}
               </div>
-              <form #f="ngForm" (ngSubmit)="onCreate(f.value)">
+              <div id="alerte" *ngIf="onSuccessClick" class="alert alert-success" role="alert">
+                {{message}}
+              </div>
+              <form #f="ngForm" *ngIf="!onSuccessClick" (ngSubmit)="onCreate(f.value)">
                 <div class="form-group">
                     <label class="form-label">Nom d'utilisateur</label>
                     <input type="text"  [ngClass]="!checkUsername?'is-invalid':'is-valid'" (keydown)="check(f.value)" ngModel="" name="username"  id="username"  class="form-control  " placeholder="Entrer votre nom d'utilisateur">

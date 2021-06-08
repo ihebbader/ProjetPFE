@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
   checkIsCheked;
   message: any;
   alerte=false;
+  onSuccessClick: boolean;
 
 
 
@@ -44,6 +45,7 @@ export class RegisterComponent implements OnInit {
         return;
       }else{
         this.alerte=false;
+        this.onSuccessClick=true;
         this.message=" Inscription effectué !,Votre demande sera traiter par un administrateur au bout de 48 heure ! ";
         let users={
           "username": value.username,

@@ -5,6 +5,8 @@ import {roles, AppUser} from '../../../../shared/Model/AppUser';
 import {AuthServiceService} from '../../../../shared/service/Auth/auth-service.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {SatatisticService} from '../../../../shared/service/stat/satatistic.service';
+import {Statistic} from '../../../../shared/Model/statistic';
 @Component({
   selector: 'app-hr-users',
   templateUrl: './hr-users.component.html',
@@ -34,11 +36,13 @@ username;
   roleUser:roles;
   private message: string;
   editForm:FormGroup;
+  private  stat:Statistic;
 
   constructor(private  userService:UserService,
               private authService:AuthServiceService,
               private fb: FormBuilder,
-              private router:Router)
+              private router:Router,
+              private statService:SatatisticService)
   {
     this.editForm=this.fb.group({
       username: ['',[Validators.required,Validators.maxLength(50),Validators.minLength(3)]],
@@ -53,6 +57,7 @@ username;
   }
 
   ngOnInit( ): void {
+    this.getStat();
     this.getAllUser();
     this.roleAdmin=new roles();
     this.roleAdmin.id=2;
@@ -114,6 +119,7 @@ username;
         )
       }
     })
+    this.getStat();
   }
 
   setActive(user:AppUser, b: boolean) {
@@ -136,7 +142,7 @@ username;
       });
     }, 6000);
 
-
+    this.getStat();
   }
 // ajouter un utilisateur par un administrateur
   success=false;
@@ -220,7 +226,13 @@ username;
 
 
 
-    }
+    }this.getStat();
+}
+getStat(){
+this.statService.getStat().subscribe(resp=>{
+  this.stat=resp;
+  console.log(this.stat);
+})
 }
 
   UpdateUser(u: AppUser) {
@@ -240,6 +252,7 @@ username;
 
     })
     this.editForm.get(['sexe'])!.setValue("Homme");
+    this.getStat();
   }
   updateUser(user: AppUser): void {
    // user.id=this.CurrentlyUSerUpdated.id;
@@ -254,7 +267,7 @@ username;
     }else{
       user.roles=[this.roleUser];
     }
-
+    this.getStat();
   }
   onUpdateUser() {
 
@@ -274,6 +287,7 @@ username;
       }, 500);
 
     })
+    this.getStat();
   }
 
   profile(u: AppUser) {

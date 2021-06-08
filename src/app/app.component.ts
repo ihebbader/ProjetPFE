@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
               private  UserService:UserService,
               private Notification1:NotificationsService) {
     this.mySub = interval(8000).subscribe((func => {
-   // this.getNotification();
+    this.getNotification();
     }))
   }
   ngOnInit(): void {

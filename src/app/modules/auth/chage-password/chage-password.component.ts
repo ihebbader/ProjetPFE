@@ -11,6 +11,8 @@ import {NotificationsService} from 'angular2-notifications';
 export class ChagePasswordComponent implements OnInit {
   password: any;
   validUsername: Boolean;
+  onclickSuccess: boolean=true;
+  message: string;
 
   constructor(private router: ActivatedRoute, private routes: Router, private authService: AuthServiceService,
 
@@ -32,6 +34,8 @@ onReset()
         "token": token
       }
       this.authService.changepassword(form).subscribe(rep => {
+        this.onclickSuccess=false;
+        this.message="Votre mot de passe a été changé avec succés ! Vous pouvez maintenant vous connecter"
         this.onSuccess("Votre mot de passe a été changé avec succés !");
 
       })

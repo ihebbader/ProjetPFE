@@ -16,6 +16,7 @@ export class ForgotPasswordComponent implements OnInit {
   validUsername;
   messagee;
   alerte =false;
+  onclicksucc: boolean = true;
   constructor(private authService:AuthServiceService,
               private Notification: NotificationsService) { }
 
@@ -36,6 +37,7 @@ export class ForgotPasswordComponent implements OnInit {
           this.alerte=false;
           this.messagee="Merci de vérifier que vous avez recu un e-mail avec un lien";
           this.onSuccess(this.messagee);
+          this.onclicksucc=false;
           this.authService.DemandeReset(this.username).subscribe(resp=>{
           },error => {
 

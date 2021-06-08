@@ -62,6 +62,7 @@
                                       <span *ngIf="entity.etat.toString()=='En cours'" class="tag tag-green mt-2 mb-2">{{entity.etat}}</span>
                                       <span *ngIf="entity.etat.toString()=='Terminer'" class="tag tag-gray mt-2 mb-2">{{entity.etat}}</span>
                                       <span *ngIf="entity.etat.toString()=='Programmé'" class="tag tag-blue mt-2 mb-2">{{entity.etat}}</span>
+                                      <span *ngIf="!entity.actived" class="tag tag-danger mt-2 mb-2 mr-1">Non activés</span>
                                       <div class="col-5 py-1 mt-1"><strong>Equipe:</strong></div>
                                         <div class="col-7 py-1">
                                             <div class="avatar-list avatar-list-stacked">
@@ -508,9 +509,6 @@
   <div class="modal-body">
     <div *ngIf="submitVisible" class="alert alert-warning mb-20" role="alert">
       {{submitMessageAlerte}}
-    </div>
-    <div *ngIf="submitVisible" class="alert alert-warning mb-20" role="alert">
-
     </div>
   <formio (submit)="onSubmit()" (change)="iheb($event)" class="mt-50" [form]='json' ></formio>
   </div>

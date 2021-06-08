@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {UserService} from '../../../shared/service/users/user.service';
+import {UserNotification} from '../../../shared/Model/user-notification';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit {
   chatTab: boolean = true;
   title: any
   maintenant: any;
+  not:UserNotification[];
   constructor(private route: Router,private UserService:UserService) {
     this.maintenant=new Date().getHours();
     this.title = route.url;
@@ -22,6 +24,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllNotification();
 this.getAllNotification()
 
   }
@@ -82,9 +85,14 @@ this.getAllNotification()
       this.contactTab = true;
     }
   }
+  list;
 getAllNotification(){
-    this.UserService.getNotification().subscribe(resp=>{
+    this.UserService.getNotificationUser().subscribe(resp=>{
       console.log(resp);
+      this.list=resp;
+      this.not=this.list; this.list? this.list:[];
+      console.log(this.not);
     })
 }
+
 }

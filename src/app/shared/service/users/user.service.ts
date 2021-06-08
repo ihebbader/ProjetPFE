@@ -114,6 +114,10 @@ export class UserService implements OnInit{
     return this.http.delete(this.host+"/deleteGroup/"+id,{headers:{'Authorization':localStorage.getItem("token")}});
 
   }
+  getNotificationUser(){
+    return this.http.get(this.host+"/getAllNotification",{headers:{'Authorization':localStorage.getItem("token")}});
+
+  }
   ngOnInit(): void {
     if (localStorage.getItem(("token")) == null ){
       this.router.navigateByUrl("/login");

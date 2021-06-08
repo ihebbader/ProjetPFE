@@ -206,6 +206,9 @@
                   </small>
                 </div>
             </div>
+            <div *ngIf="messageDateVisibility" class="alert alert-danger" role="alert">
+             {{messageDate}}
+            </div>
           <div class="col-12">
             <div class="form-group">
               <label for="start"> Date Fin</label>
@@ -232,7 +235,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <div class="row clearfix">
+    <div class=" ">
       <form  [formGroup]="editFormUpdate">
         <div class="col-12">
           <div class="form-group">
@@ -248,16 +251,19 @@
           <div class="form-group">
             <label for="start"> Date de début</label>
             <input id="start" type="date" formControlName="start" class="form-control" >
-            <small class="form-text text-danger">
+            <small class="form-text alert-success">
               Date Anciens : {{this.CurrentlyFlow.startDate | date}}
             </small>
           </div>
+        </div>
+        <div *ngIf="messageDateVisibility" class="alert alert-danger" role="alert">
+          {{messageDate}}
         </div>
         <div class="col-12">
           <div class="form-group">
             <label for="start"> Date Fin</label>
             <input type="date" class="form-control" formControlName="end" value="2021/03/02" min="2021-03-01" max="2030-12-31">
-            <small class="form-text text-danger">
+            <small class="form-text alert-success">
               Date Anciens : {{this.CurrentlyFlow.endDate | date }}
             </small>
           </div>
@@ -335,12 +341,20 @@
               <input id="start" type="date" formControlName="startDate" class="form-control" >
             </div>
           </div>
-
+          <div *ngIf="messageDateVisibility" class="alert alert-danger" role="alert">
+            {{messageDate}}
+          </div>
+          <div *ngIf="messageVerifyDateFlowAndEntity" class="alert alert-danger" role="alert">
+            {{messageVerifyDateFlowAndEntityAlert}}
+          </div>
           <div class="col-12">
             <div class="form-group">
               <label for="start"> Date Fin</label>
               <input type="date" class="form-control" formControlName="endDate" value="2021/03/02" min="2021-03-01" max="2030-12-31">
             </div>
+          </div>
+          <div *ngIf="messageVerifyDateFlowAndEntityEnd" class="alert alert-danger" role="alert">
+            {{messageVerifyDateFlowAndEntityAlert}}
           </div>
           <div class="form-group ">
               <label for="delai"> Délai d'execution</label>
@@ -388,7 +402,7 @@
     </div>
     <div class="modal-footer mt-15">
       <button type="submit" (click)="getEtape3()"  class="btn btn-primary">suivant</button>
-      <button type="button" class="btn btn-default align-right" (click)="onTab1(2)">Retourner</button>
+      <button type="button" class="btn btn-default align-right" (click)="onTab1(1)">Retourner</button>
     </div>
   </div>
     <div  class="tab-pane fade " *ngIf="tab3inter" [ngClass]="{'show active': tab3}" id="add-grid" role="tabpanel">

@@ -7,7 +7,7 @@
       <div class="card">
         <div class="card-body">
           <div>Nombres des utilisateurs</div>
-          <div class="py-4 m-0 text-center h1 text-success counter" [from]="0" [CountTo]="8"
+          <div class="py-4 m-0 text-center h1 text-success counter" [from]="0" [CountTo]=stat.nbreAllUser
                [duration]="1.8"></div>
           <div class="d-flex">
             <div class="ml-auto"><i class="fa fa-caret-up text-success"></i>4%</div>
@@ -19,7 +19,7 @@
       <div class="card">
         <div class="card-body">
           <div>Nombres des administrateurs</div>
-          <div class="py-4 m-0 text-center h1 text-info counter" [from]="0" [CountTo]="1"
+          <div class="py-4 m-0 text-center h1 text-info counter" [from]="0" [CountTo]=stat.nbreAdmin
                [duration]="1.8"></div>
           <div class="d-flex">
             <small class="text-muted"></small>
@@ -32,7 +32,7 @@
       <div class="card">
         <div class="card-body">
           <div>Nombre des employées</div>
-          <div class="py-4 m-0 text-center h1 text-warning counter" [from]="0" [CountTo]="8"
+          <div class="py-4 m-0 text-center h1 text-warning counter" [from]="0" [CountTo]=stat.nbreUser
                [duration]="1.8"></div>
           <div class="d-flex">
             <small class="text-muted"></small>
@@ -45,7 +45,7 @@
       <div class="card">
         <div class="card-body">
           <div>comptes désactivés</div>
-          <div class="py-4 m-0 text-center h1 text-danger counter" [from]="0" [CountTo]="7"
+          <div class="py-4 m-0 text-center h1 text-danger counter" [from]="0" [CountTo]=stat.nbreDisabledAccount
                [duration]="1.8"></div>
           <div class="d-flex">
             <small class="text-muted"></small>

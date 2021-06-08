@@ -93,6 +93,9 @@ visible=false;
     this.form={components: []};
     this.form.components=entity.properties;
     this.json=this.form
+    if(!entity.actived){
+      document.getElementById('test').style.pointerEvents='none';
+    }
     if(entity.etat=='Terminer'){
       this.alert="L'execution de ce processus est terminer";
     //  document.getElementById('test').style.pointerEvents='none';
@@ -138,6 +141,7 @@ console.log(this.workflow)
   }
   onSubmit(){
     console.log(this.currentlyEntity);
+    this.currentlyEntity.actived=false;
     Swal.fire(
       'Opération terminé!',
       'opération terminer ! ',
@@ -148,5 +152,6 @@ console.log(this.workflow)
     this.EntityModelServie.executeEntityModel(this.currentlyEntity).subscribe(resp=>{
 
     })
+    this.modalRef.hide();
   }
 }

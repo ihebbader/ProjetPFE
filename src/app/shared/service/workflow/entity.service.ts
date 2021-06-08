@@ -42,4 +42,8 @@ export class EntityService {
   executeEntityModel(entity){
     return this.http.post('http://localhost:8080/executEntity/',entity,{headers:{'Authorization':localStorage.getItem("token")}})
   }
+  verifyDate(id,VerifyDate){
+    return this.http.post('http://localhost:8080/verfyDate/'+id,VerifyDate,{headers:{'Authorization':localStorage.getItem("token")}})
+
+  }
 }

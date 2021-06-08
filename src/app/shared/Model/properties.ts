@@ -1,3 +1,4 @@
+import {Values} from './values';
 
 export class Properties {
   idProp?:any;
@@ -27,5 +28,7 @@ export class Properties {
   inputType?:string;
   defaultValue?:string;
   ord?:number;
+  values?:Values[];
+  data?:Values[];
 }
 

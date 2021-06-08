@@ -60,12 +60,12 @@
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" id="dropdown-basic"
                             *dropdownMenu role="menu" aria-labelledby="button-basic">
                             <ul class="list-unstyled feeds_widget">
-                                <li>
+                                <li *ngFor="let n of not">
                                     <div class="feeds-left"><i class="fa fa-check"></i></div>
                                     <div class="feeds-body">
-                                        <h4 class="title text-danger">Notification <small
-                                                class="float-right text-muted">{{maintenant}}:00</small></h4>
-                                        <small>Vous n'avez pas encore des notifications</small>
+                                        <h4 class="title text-danger">Notification<small
+                                                class="float-right text-muted">{{n.dateNotification | date}}</small></h4>
+                                        <small>{{n.notificationMessage}}</small>
                                     </div>
                                 </li>
                                 <li>

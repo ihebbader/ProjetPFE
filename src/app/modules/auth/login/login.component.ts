@@ -31,7 +31,7 @@ disabled=false;
     }
 
   }
-
+ErrorMessage=false;
 
   onConnect(value: any) {
     console.log(value);
@@ -48,7 +48,10 @@ disabled=false;
       this.authService.saveToken(jwt);
       this.authService.getUser().subscribe(resp1=>{
          this.user=resp1;
+         console.log(this.user)
         if( this.user.actived == false){
+          console.log("samir") ;
+          this.ErrorMessage=true;
           this.disabled=true;
           this.message="Bonjour "+this.user.username+" votre compte est encore désactivé !";
           localStorage.removeItem('token');
