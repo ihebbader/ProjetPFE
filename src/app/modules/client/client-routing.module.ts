@@ -52,6 +52,7 @@ import {ProfileDetailsComponent} from './hrms/hr-users/profile-details/profile-d
 import {TestComponent} from './test/test.component';
 import {StepperComponent} from './test/stepper/stepper.component';
 import {RequestComponent} from './request/request.component';
+import {SupeperVisorIHMComponent} from './supeper-visor-ihm/supeper-visor-ihm.component';
 
 
 
@@ -69,6 +70,11 @@ const routes: Routes = [
   {
     path: 'test',
     component: StepperComponent,
+    data: { title: 'Page daccueil' }
+  },
+  {
+    path: 'SuperVisor',
+    component: SupeperVisorIHMComponent,
     data: { title: 'Page daccueil' }
   },
   {

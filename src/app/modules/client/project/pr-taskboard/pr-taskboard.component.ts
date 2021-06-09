@@ -706,6 +706,8 @@ addNewNotificationUpdate(){
 }
 //Modifier les inforation générale d'une entity
 UpdateGeneraleIformation(){
+  this.messageVerifyDateFlowAndEntity=false;
+  this.messageVerifyDateFlowAndEntityAlert="";
     this.CurrentlyEntity.entityModelName=this.UpdateFormEntity.get(['entityModelName'])!.value;
     this.CurrentlyEntity.entityModelDescrip=this.UpdateFormEntity.get(['entityModelDescrip'])!.value;
     if(this.UpdateFormEntity.get(['start'])!.value !="") {
@@ -714,6 +716,22 @@ UpdateGeneraleIformation(){
       if(this.UpdateFormEntity.get(['end'])!.value !="") {
          this.CurrentlyEntity.endDate=this.UpdateFormEntity.get(['end'])!.value;
 }
+  if(this.CurrentlyEntity.startDate >this.CurrentlyEntity.endDate){
+    this.messageVerifyDateFlowAndEntity=true;
+    this.messageVerifyDateFlowAndEntityAlert="Merci de verifier que la date de debut cette entité qui doit etre avant la date de fin!";
+    return;
+  }else
+    if(this.CurrentlyEntity.startDate <this.CurrentlyFlow.startDate){
+    this.messageVerifyDateFlowAndEntity=true;
+    this.messageVerifyDateFlowAndEntityAlert="Merci de verifier que la date de debut cette entité qui doit etre aprés la date de date de début de flux !"
+    return;
+  }else
+    if(this.CurrentlyEntity.endDate>this.CurrentlyFlow.endDate) {
+
+    this.messageVerifyDateFlowAndEntityEnd = true;
+    this.messageVerifyDateFlowAndEntityAlert = "Merci de verifier que la date de fin cette entité qui doit etre avant la date de date de fin de flux !"
+    return;
+  }else
      this.EntityModel.UpdateEntityModel(this.CurrentlyEntity).subscribe(resp=>{
         Swal.fire(
           'Opération terminé!',
@@ -743,7 +761,8 @@ UpdateGeneraleIformation(){
     }
   }
   onClickFormEntity(){
-    this.CurrentlyEntity.properties=this.json11;
+    this.CurrentlyEntity.properties=this.json11.components;
+    console.log(this.CurrentlyEntity.properties);
     this.test.UpdateEntityModel(this.CurrentlyEntity).subscribe(resp=>{
       console.log(resp);
       this.modalRef.hide();

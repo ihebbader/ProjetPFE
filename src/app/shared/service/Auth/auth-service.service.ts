@@ -35,6 +35,13 @@ export class AuthServiceService {
       } else return false;
     }
   }
+  IsRoleSuperviseur(){
+    for(let r of this.roleUser){
+      if(r=='SUPERVISEUR'){
+        return true
+      } else return false;
+    }
+  }
   getUserDetails(username){
 
     return this.http.post(this.host+"/getuser",username,{headers:{'Authorization':localStorage.getItem('token')}});

@@ -106,6 +106,7 @@ import { StepperComponent } from './test/stepper/stepper.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { RequestComponent } from './request/request.component';
+import { SupeperVisorIHMComponent } from './supeper-visor-ihm/supeper-visor-ihm.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -225,6 +226,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     TestComponent,
     StepperComponent,
     RequestComponent,
+    SupeperVisorIHMComponent,
   ],
   providers: [BsDatepickerModule]
 })

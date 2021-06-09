@@ -208,6 +208,11 @@ username;
        console.log(value.IsAdmin)
        if(value.IsAdmin){
          this.userService.addRoles(value).subscribe(()=>{
+         })
+       }
+       console.log(value.IsAdmin)
+       if(value.IsSuper){
+         this.userService.addRoles2(value).subscribe(()=>{
 
          })
        }

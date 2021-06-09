@@ -410,14 +410,7 @@
         Vueillez remplir le formulaire
       </div>
 
-      <form-builder style="overflow: scroll" [form]="form" (change)="onChange($event)" [options]="
-      {builder:{
-premium:false,
-data:false,
-layout:false,
-advanced:false
-                    }
-                    }"
+      <form-builder style="overflow: scroll" [form]="form" (change)="onChange($event)"
       ></form-builder>
 
       <div class="modal-footer mt-15">
@@ -535,17 +528,20 @@ advanced:false
           <div class="form-group">
             <label for="start"> Date de début</label>
             <input id="start" type="date" formControlName="start" class="form-control" >
-            <small class="form-text text-danger">
-              Date Anciens : {{this.CurrentlyEntity.startDate | date}}
+            <small class="form-text alert-success">
+              <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Date Anciens : {{this.CurrentlyEntity.startDate | date}}
             </small>
           </div>
+        </div>
+        <div *ngIf="messageVerifyDateFlowAndEntity" class="alert alert-danger" role="alert">
+          {{messageVerifyDateFlowAndEntityAlert}}
         </div>
         <div class="col-12">
           <div class="form-group">
             <label for="start"> Date Fin</label>
             <input type="date" class="form-control" formControlName="end">
-            <small class="form-text text-danger">
-              Date Anciens : {{this.CurrentlyEntity.endDate | date}}
+            <small class="form-text alert-success">
+              <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Date Anciens : {{this.CurrentlyEntity.endDate | date}}
             </small>
           </div>
         </div>
@@ -689,7 +685,11 @@ advanced:false
     </div>
   </div>
 </ng-template>
-<ng-template #updateForm>
-  <form-builder class="mt-5 mb-5 " [form]="json11" (change)="onChangeUpdate($event)"></form-builder>
+<ng-template #updateForm class="modal">
+  <div class="modal-body overflow-scroll">
+  <form-builder class="mt-5 mb-5" [form]="json11" (change)="onChangeUpdate($event)"></form-builder>
+  </div>
+    <div class="modal-footer">
   <button type="submit"  class="btn btn-primary mt-5" (click)="onClickFormEntity()">Terminer</button>
+  </div>
 </ng-template>

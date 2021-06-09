@@ -57,6 +57,9 @@ ErrorMessage=false;
           localStorage.removeItem('token');
           return;
         }else {
+if(this.authService.IsRoleSuperviseur()){
+  this.router.navigateByUrl("/SuperVisor")
+}else
           this.router.navigateByUrl("/Dashboard-Admin");
           this.onSuccess("Opération Reussite! Vous etes maintenant connecter !")
         }

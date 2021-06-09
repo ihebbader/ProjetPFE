@@ -1,20 +1,19 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {DatamodelService} from '../../../../shared/service/workflow/DataModel/datamodel.service';
-import {DataModel} from '../../../../shared/Model/data-model';
-import {Entity} from '../../../../shared/Model/entity';
-import {document} from 'ngx-bootstrap/utils';
-import {logger} from 'codelyzer/util/logger';
-import {ConsoleLogger} from '@angular/compiler-cli/ngcc';
+import {DataModel} from '../../../shared/Model/data-model';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {EntityService} from '../../../../shared/service/workflow/entity.service';
+import {Entity} from '../../../shared/Model/entity';
+import {DatamodelService} from '../../../shared/service/workflow/DataModel/datamodel.service';
+import {EntityService} from '../../../shared/service/workflow/entity.service';
+import {document} from 'ngx-bootstrap/utils';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-pr-projectlist',
-  templateUrl: './pr-projectlist.component.html',
-  styleUrls: ['./pr-projectlist.component.scss']
+  selector: 'app-supeper-visor-ihm',
+  templateUrl: './supeper-visor-ihm.component.html',
+  styleUrls: ['./supeper-visor-ihm.component.scss']
 })
-export class PrProjectlistComponent implements OnInit {
+export class SupeperVisorIHMComponent implements OnInit {
+
   workflow:DataModel;
   submitMessageAlerte;
   submitVisible=false;
@@ -35,7 +34,7 @@ export class PrProjectlistComponent implements OnInit {
   message=null;
   alerte=false;
   constructor(private DataModelService:DatamodelService,private modalService: BsModalService
-              ,private  EntityModelServie:EntityService) { this.form={components: []};}
+    ,private  EntityModelServie:EntityService) { this.form={components: []};}
 
   ngOnInit(): void {
     this.getUserDataModelProject();
@@ -55,8 +54,8 @@ export class PrProjectlistComponent implements OnInit {
   getUserDataModelProject(){
     this.message=null;
     this.alerte=false;
-    this.DataModelService.getUserWorkflowProject().subscribe(resp=>{
-       this.ListDataModel=resp;
+    this.DataModelService.getForSuper().subscribe(resp=>{
+      this.ListDataModel=resp;
       this.dataModels=this.ListDataModel ; this.ListDataModel ? this.ListDataModel : [];
       this.dataModels.forEach(dataModel=> {
         dataModel.entity.forEach(entity => {
@@ -81,10 +80,10 @@ export class PrProjectlistComponent implements OnInit {
       this.alerte=true;
       this.message="Vous n'avez pas encore une operation à executer  ";
     }
-console.log(this.alerte)
+    console.log(this.alerte)
 
   }
-visible=false;
+  visible=false;
   alert=""
   tab2(entity:Entity) {
     this.alert=""
@@ -93,19 +92,17 @@ visible=false;
     this.form={components: []};
     this.form.components=entity.properties;
     this.json=this.form
-    if(!entity.actived){
-      document.getElementById('test').style.pointerEvents='none';
-    }
+
     if(entity.etat=='Terminer'){
       this.alert="L'execution de ce processus est terminer";
-    //  document.getElementById('test').style.pointerEvents='none';
+      //  document.getElementById('test').style.pointerEvents='none';
     }
     if(entity.etat=='Programmé'){
       this.alert="L'execution de ce processus commence bientot"
-    //  document.getElementById('test').style.pointerEvents='none';
+      //  document.getElementById('test').style.pointerEvents='none';
     }
   }
-dataForm=[];
+  dataForm=[];
   iheb(event) {
 // this.currentlyEntity.properties.forEach(p=>{
 //   console.log(this.dataForm[i])
@@ -117,7 +114,7 @@ dataForm=[];
     this.currentlyEntity.properties.forEach(
       p=>{
         if(p.idProp==event.changed.component.idProp){
-       p.defaultValue=event.changed.value;
+          p.defaultValue=event.changed.value;
         }
       }
     )
@@ -134,7 +131,7 @@ dataForm=[];
       json.components=p;
       e.p=json;
     })
-console.log(this.workflow)
+    console.log(this.workflow)
   }
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template,{class:'modal-lg'});

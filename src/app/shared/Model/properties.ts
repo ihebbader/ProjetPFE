@@ -30,5 +30,11 @@ export class Properties {
   ord?:number;
   values?:Values[];
   data?:Values[];
+  signature?:string;
+  imageSize?:string;
+  fileMinSize?:string;
+  fileMaxSize?:string;
+  filePattern?:string;
+  storage?:string;
 }
 

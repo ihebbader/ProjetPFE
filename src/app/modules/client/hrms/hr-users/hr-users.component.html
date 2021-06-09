@@ -125,6 +125,7 @@
                                         <div class="mb-2" *ngFor="let r of u.roles">
                                               <span *ngIf="r.roleName =='ADMIN'" class="tag tag-info ">Administrateur</span>
                                               <span *ngIf="r.roleName == 'USER'" class="tag tag-default">Employee</span>
+                                              <span *ngIf="r.roleName == 'SUPERVISEUR'" class="tag tag-blue">Supervisor</span>
                                         </div>
                                             </td >
                                             <td >{{u.username}}</td>
@@ -237,6 +238,17 @@
                                                             <span class="custom-control-label">&nbsp;</span>
                                                         </label>
                                                     </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>SuperVisor</td>
+                                                  <td>
+                                                    <label class="custom-control custom-checkbox">
+                                                      <input ngModel name="IsSuper" type="checkbox" class="custom-control-input"
+                                                             value="option1" checked="">
+                                                      <span class="custom-control-label">&nbsp;</span>
+                                                    </label>
+                                                  </td>
+
                                                 </tr>
 
                                                 <tr>

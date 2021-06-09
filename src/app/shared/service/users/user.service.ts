@@ -75,6 +75,9 @@ export class UserService implements OnInit{
   addRoles(user){
     return this.http.post(this.host+"/addroles",user,{headers:{'Authorization':localStorage.getItem("token")}});
   }
+  addRoles2(user){
+    return this.http.post(this.host+"/addroles2",user,{headers:{'Authorization':localStorage.getItem("token")}});
+  }
   delete(user){
 
     return this.http.post(this.host+"/delete",user,{headers:{'Authorization':localStorage.getItem("token")}});

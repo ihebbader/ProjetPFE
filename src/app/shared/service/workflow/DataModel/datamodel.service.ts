@@ -37,4 +37,7 @@ getModelById(id){
     console.log(DecodeToken);
     return this.http.get(this.host+'getDataModleToDo/'+DecodeToken.sub,{headers: {'Authorization': localStorage.getItem("token")}})
   }
+  getForSuper(){
+    return this.http.get(this.host+'getAllForSuperVisor',{headers: {'Authorization': localStorage.getItem("token")}})
+  }
 }
